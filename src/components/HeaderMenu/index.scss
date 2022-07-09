@@ -1,0 +1,19 @@
+.HeaderMenu {
+    display: flex;
+    justify-content: space-between;
+    .logo {
+        width: 50%;
+        margin-left: 45px;
+    }
+    .menus {
+        display: flex;
+        justify-content: space-around;
+        width: 50%;
+        h5 {
+            text-transform: uppercase;
+        }
+        .cart {
+            margin: 0 25px 0 45px;
+        }
+    }
+}
