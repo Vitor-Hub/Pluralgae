@@ -1,19 +1,36 @@
+@import 'src/theme/_theme.scss';
+
 .HeaderMenu {
     display: flex;
     justify-content: space-between;
+    padding: 10px 0;
     .logo {
         width: 50%;
         margin-left: 45px;
+        img {
+            width: 120px;
+        }
     }
     .menus {
         display: flex;
         justify-content: space-around;
         width: 50%;
+        align-items: center;
         h5 {
             text-transform: uppercase;
+            font-family: 'OpenSans-Light', sans-serif;
+            font-size: $SMALL_SIZE;
+            color: $SECONDARY_TEXT_COLOR;
+            white-space: nowrap;
+            cursor: pointer;
+            letter-spacing: 2px;
         }
         .cart {
             margin: 0 25px 0 45px;
+            cursor: pointer;
+            img {
+                width: 50px;
+            }
         }
     }
 }

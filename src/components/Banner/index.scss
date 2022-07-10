@@ -1,0 +1,44 @@
+@import 'src/theme/_theme.scss';
+
+.Banner {
+    display: flex;
+    flex-wrap: wrap;
+    img {
+        width: 50%;
+    }
+    .bannerInfos {
+        width: 50%;
+        background-color: $PRIMARY_DARK_ALT;
+        .title {
+            text-transform: uppercase;
+            color: $PRIMARY_TEXT_COLOR;
+            font-family: 'OpenSans-ExtraBold', sans-serif;
+            font-size: $XLARGE_SIZE;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+        .subTitle {
+            color: $WHITE;
+            font-family: 'OpenSans-Bold', sans-serif;
+            font-size: $XLARGE_SIZE;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+        .description{
+            color: $WHITE;
+            font-family: 'OpenSans-Light', sans-serif;
+            font-size: $XLARGE_SIZE;
+            margin: 0;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+        .subDescription {
+            text-transform: uppercase;
+            color: $WHITE;
+            font-family: 'OpenSans-Bold', sans-serif;
+            font-size: $MEDIUM_SIZE;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+    }
+}

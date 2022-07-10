@@ -1,25 +1,11 @@
+@import 'src/theme/_theme.scss';
+
 body {
   margin: 0;
   .main {
     .topBar {
       height: 25px;
-      background-color: #023827;
-    }
-    .topInfos {
-      background-color: #e7a3b4;
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      h5 {
-        margin: 0;
-        cursor: pointer;
-        padding: 0 10px;
-        color: #fff;
-        text-decoration: underline;
-      }
-    }
-    span {
-      color: #fff;
+      background-color: $PRIMARY_DARK;
     }
   }
 }
