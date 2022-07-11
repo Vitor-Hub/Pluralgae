@@ -1,0 +1,62 @@
+@import 'src/theme/_theme.scss';
+
+.ContactUs{
+    background-color: $PRIMARY;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 80px;
+    .infos {
+        h2{
+            color: $PRIMARY_DARK;
+            text-transform: uppercase;
+            font-family: 'OpenSans-ExtraBold', sans-serif;
+            font-size: $XLARGE_SIZE;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+        .iconInfos{
+            display: flex;
+            flex-direction: column;
+            margin: 40px 0;
+            img {
+                width: 35px;
+                height: 35px;
+                margin-left: -6px;
+            }
+            div {
+                display: flex;
+                align-items: center;
+                h3 {
+                    color: $WHITE;
+                    font-family: 'OpenSans-Bold', sans-serif;
+                    font-size: $LARGE_SIZE;
+                    letter-spacing: 2px;
+                    margin: 8px;
+                }
+            }
+        }
+        .follow {
+            display: flex;
+            align-items: center;
+            .socialIcons {
+                display: flex;
+                align-items: center;
+                margin-left: 35px;
+                div {
+                    width: 60px;
+                    height: 60px;
+                    background-color: $PRIMARY_DARK;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0 15px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .inputs {
+        
+    }
+}
