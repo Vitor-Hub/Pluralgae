@@ -9,36 +9,55 @@
     .bannerInfos {
         width: 50%;
         background-color: $PRIMARY_DARK_ALT;
-        .title {
-            text-transform: uppercase;
-            color: $PRIMARY_TEXT_COLOR;
-            font-family: 'OpenSans-ExtraBold', sans-serif;
-            font-size: $XLARGE_SIZE;
-            margin: 0;
-            letter-spacing: 2px;
-        }
-        .subTitle {
-            color: $WHITE;
-            font-family: 'OpenSans-Bold', sans-serif;
-            font-size: $XLARGE_SIZE;
-            margin: 0;
-            letter-spacing: 2px;
-        }
-        .description{
-            color: $WHITE;
-            font-family: 'OpenSans-Light', sans-serif;
-            font-size: $XLARGE_SIZE;
-            margin: 0;
-            letter-spacing: 2px;
-            font-weight: 400;
-        }
-        .subDescription {
-            text-transform: uppercase;
-            color: $WHITE;
-            font-family: 'OpenSans-Bold', sans-serif;
-            font-size: $MEDIUM_SIZE;
-            margin: 0;
-            letter-spacing: 2px;
+        .infos {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 30px;
+            height: 100%;
+            .title {
+                text-transform: uppercase;
+                color: $PRIMARY_TEXT_COLOR;
+                font-family: 'OpenSans-ExtraBold', sans-serif;
+                font-size: $XLARGE_SIZE;
+                margin: 0;
+                letter-spacing: 2px;
+                margin-bottom: 15px;
+            }
+            .subTitle {
+                color: $WHITE;
+                font-family: 'OpenSans-Bold', sans-serif;
+                font-size: $XLARGE_SIZE;
+                margin: 0;
+                letter-spacing: 2px;
+            }
+            .description{
+                color: $WHITE;
+                font-family: 'OpenSans-Light', sans-serif;
+                font-size: $XLARGE_SIZE;
+                margin: 0;
+                letter-spacing: 2px;
+                font-weight: 400;
+            }
+            .subDescription {
+                text-transform: uppercase;
+                color: $WHITE;
+                font-family: 'OpenSans-Bold', sans-serif;
+                font-size: $MEDIUM_SIZE;
+                margin: 0;
+                letter-spacing: 2px;
+                margin-top: 15px;
+            }
+            .knowMoreButton {
+                background-color: $SECONDARY;
+                width: 150px;
+                height: 25px;
+                margin-top: 15px;
+                font-family: 'OpenSans-Bold', sans-serif;
+                font-size: $BIG_SIZE;
+                letter-spacing: 2px;
+                text-transform: inherit;
+            }
         }
     }
 }

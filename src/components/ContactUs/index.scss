@@ -6,6 +6,7 @@
     flex-wrap: wrap;
     padding: 80px;
     .infos {
+        width: 50%;
         h2{
             color: $PRIMARY_DARK;
             text-transform: uppercase;
@@ -52,11 +53,51 @@
                     align-items: center;
                     margin: 0 15px;
                     cursor: pointer;
+                    color: $WHITE;
                 }
             }
         }
     }
     .inputs {
-        
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 60%;
+            .textField {
+                background: none;
+                border-radius: 14px;
+                border-width: 2px;
+                border-color: $PRIMARY_DARK;
+                height: 30px;
+            }
+            .areaField {
+                background: none;
+                border-radius: 14px;
+                border-width: 2px;
+                border-color: $PRIMARY_DARK;
+                height: 80px;
+                resize: none;
+            }
+            label,input, .areaField {
+                margin-top: 8px;
+            }
+            label,.sendMessage {
+                font-family: 'OpenSans-SemiBold', sans-serif;
+                font-size: $SMALL_SIZE;
+            }
+            .sendMessage {
+                background-color: $PRIMARY_DARK;
+                width: 170px;
+                height: 25px;
+                text-transform: inherit;
+                font-family: 'OpenSans-SemiBold', sans-serif;
+                font-size: $SMALL_SIZE;
+                letter-spacing: 2px;
+                margin: 5px 0 0 auto;
+            }
+        }
     }
 }

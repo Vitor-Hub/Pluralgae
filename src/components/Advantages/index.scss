@@ -1,0 +1,66 @@
+@import 'src/theme/_theme.scss';
+
+.Advantages{
+    .title {
+        font-family: 'OpenSans-ExtraBold', sans-serif;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: $PRIMARY_DARK;
+        font-size: $XLARGE_SIZE;
+        max-width: 440px;
+        padding-left: 80px;
+        display: inline-block;
+        margin-bottom: 50px;
+    }
+
+    .mainDiv {
+        display: flex;
+        justify-content: space-between;
+        .leftContent {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: center;
+            h3 {
+                font-family: 'OpenSans-ExtraBold', sans-serif;
+                color: $PRIMARY_DARK;
+                font-size: $BIG_SIZE;
+                font-weight: $WEIGHT_XBOLD;
+                max-width: 350px;
+                margin-left: 10px;
+            }
+            .infos{
+                display: flex;
+                padding-left: 80px;
+                flex-direction: column;
+                img {
+                    width: 110px;
+                    height: 110px;
+                }
+                .infosTop{
+                    display: flex;
+                    >div {
+                        display: flex;
+                        align-items: center;
+                    }
+                    .cholesterol {
+                        margin-left: 100px;
+                    }
+                }
+                .infosBottom{
+                    display: flex;
+                    >div {
+                        display: flex;
+                        align-items: center;
+                    }
+                    .safe{
+                        margin-left: 100px;
+                    }
+                }
+            }
+        }
+        .rightContent {
+            max-height: 661px;
+        }
+    }
+}

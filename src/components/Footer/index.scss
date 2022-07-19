@@ -1,0 +1,36 @@
+@import 'src/theme/_theme.scss';
+
+.Footer {
+    background-color: $PRIMARY_DARK;
+    display: flex;
+    padding: 10px 80px;
+    justify-content: space-between;
+    .pluralgae {
+        font-family: 'OpenSans-Regular', sans-serif;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: $WHITE;
+        font-size: $SMALL_SIZE;
+        font-weight: $WEIGHT_LIGHT;
+        margin: 0;
+        display: flex;
+        align-items: center;
+    }
+    .socialIcons {
+        display: flex;
+        align-items: center;
+        margin-right: 200px;
+        div {
+            width: 35px;
+            height: 35px;
+            background-color: $PRIMARY;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 15px;
+            cursor: pointer;
+            color: $WHITE;
+        }
+    }
+}

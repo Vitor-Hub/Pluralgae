@@ -1,0 +1,66 @@
+@import 'src/theme/_theme.scss';
+
+.WhoWeAre {
+    background-color: $SECONDARY;
+    padding: 80px;
+    display: flex;
+    .leftContent {
+        width: 50%;
+        .title {
+            text-transform: uppercase;
+            font-family: 'OpenSans-ExtraBold', sans-serif;
+            font-size: $XLARGE_SIZE;
+            color: $PRIMARY_DARK;
+            letter-spacing: 2px;
+        }
+        .description{
+            font-family: 'OpenSans-Regular', sans-serif;
+            font-size: $BIG_SIZE;
+            color: $PRIMARY_DARK;
+            letter-spacing: 2px;
+            font-weight: $WEIGHT_BOLD;
+        }
+        .subDescription {
+            font-family: 'OpenSans-Bold', sans-serif;
+            font-size: $BIG_SIZE;
+            color: $PRIMARY_DARK;
+            letter-spacing: 2px;
+        }
+    }
+    .rightContent {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            height: 225px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .profile {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-left: 50px;
+            .infos {
+                max-width: 180px;
+                text-align: center;
+                margin-top: 15px;
+                .name {
+                    font-family: 'OpenSans-Bold', sans-serif;
+                    font-size: $MEDIUM_SIZE;
+                    color: $PRIMARY_DARK;
+                    margin: 0;
+                }
+                .role {
+                    font-family: 'OpenSans-Regular', sans-serif;
+                    font-size: $MEDIUM_SIZE;
+                    color: $PRIMARY_DARK;
+                    font-weight: $WEIGHT_BOLD;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

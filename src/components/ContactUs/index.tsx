@@ -1,5 +1,6 @@
 import React from "react";
 import "./index.scss";
+import Button from '@mui/material/Button';
 
 var StarIcon = require('../../assets/icon_star.png');
 var FavoriteIcon = require('../../assets/icon_favorite.png');
@@ -36,17 +37,19 @@ const ContactUs = () => {
         </div>
         <div className="inputs">
             <form action="/action_page.php" method="get">
-                <label htmlFor="fname">Nome</label>
-                <input type="text" id="fname" name="fname"/>
+                <label htmlFor="name">Nome</label>
+                <input className="textField" id="name"/>
 
-                <label htmlFor="lname">E-mail</label>
-                <input type="text" id="lname" name="lname"/>
+                <label htmlFor="email">E-mail</label>
+                <input className="textField" id="email"/>
 
-                <label htmlFor="lname">Assunto</label>
-                <input type="submit" value="Submit"/>
+                <label htmlFor="subject">Assunto</label>
+                <input className="textField" id="subject"/>
                 
-                <label htmlFor="lname">Assunto</label>
-                <input type="submit" value="Submit"/>
+                <label htmlFor="field">Assunto</label>
+                <textarea className="areaField" id="field"/>
+
+                <Button className="sendMessage" variant="contained">Enviar mensagem</Button>
             </form>
         </div>
       </div>
