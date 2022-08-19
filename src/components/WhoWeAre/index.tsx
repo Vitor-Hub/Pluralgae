@@ -76,6 +76,12 @@ const WhoWeAre = () => {
             <h3 className="description">Fundada em 2017 pela Drª Mariana Fortes a partir do seu doutorado em microalgas na UFRJ, uniu-se ao sonho de fazer a diferença no mundo do Ariel Kozlowski, economista e empreendedor social.</h3>
             <h3 className="subDescription"><br/>Pluralgae, fazendo o bem para você e para o Planeta. Bem-vindos ao negócio do futuro!</h3>
           </div>
+
+          <div className="socialIcons">
+              <div className="instagram">icon</div>
+              <div className="facebook">icon</div>
+              <div className="linkedin">icon</div>
+          </div>
         </div>
       }
     </>

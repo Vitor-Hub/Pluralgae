@@ -23,6 +23,8 @@
             letter-spacing: 2px;
             margin: 0;
             white-space: nowrap;
+        }
+        .contactTitle {
             @media only screen and (max-width: 1060px) {
                 text-align: center;
                 white-space: break-spaces;
