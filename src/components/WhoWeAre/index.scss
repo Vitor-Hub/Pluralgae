@@ -4,8 +4,14 @@
     background-color: $SECONDARY;
     padding: 80px;
     display: flex;
+    @media only screen and (max-width: 1060px) {
+        flex-direction: column;
+    } 
     .leftContent {
         width: 50%;
+        @media only screen and (max-width: 1060px) {
+            width: 100%;
+        }
         .title {
             text-transform: uppercase;
             font-family: 'OpenSans-ExtraBold', sans-serif;
@@ -32,6 +38,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        @media only screen and (max-width: 1060px) {
+            width: 100%;
+        }
+        @media only screen and (max-width: 520px) {
+            flex-direction: column;
+        }
         img {
             height: 225px;
             object-fit: cover;
@@ -43,6 +55,9 @@
             justify-content: center;
             align-items: center;
             margin-left: 50px;
+            @media only screen and (max-width: 520px) {
+                margin-left: 0;
+            }
             .infos {
                 max-width: 180px;
                 text-align: center;

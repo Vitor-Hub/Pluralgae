@@ -4,9 +4,33 @@
     display: flex;
     justify-content: space-between;
     padding: 10px 0;
+    @media only screen and (max-width: 1060px) {
+       flex-direction: column;
+    }
+    hr {
+        background-color: black;
+        width: 100%;
+    }
+    .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .logo {
+            width: auto;
+        }
+        .cart {
+            margin-right: 85px;
+            @media only screen and (max-width: 1060px) {
+                margin-right: 15px;
+            }
+        }
+    } 
     .logo {
         width: 50%;
         margin-left: 45px;
+        @media only screen and (max-width: 1060px) {
+            margin-left: 15px;
+        }
         img {
             width: 120px;
         }
@@ -16,6 +40,12 @@
         justify-content: space-around;
         width: 50%;
         align-items: center;
+        @media only screen and (max-width: 1060px) {
+            width: 100%;
+        }
+        @media only screen and (max-width: 720px) {
+            flex-direction: column;
+        } 
         h5 {
             text-transform: uppercase;
             font-family: 'OpenSans-Light', sans-serif;
@@ -24,6 +54,9 @@
             white-space: nowrap;
             cursor: pointer;
             letter-spacing: 2px;
+            @media only screen and (max-width: 1060px) {
+                font-size: 16px;
+            }
         }
         .cart {
             margin: 0 25px 0 45px;

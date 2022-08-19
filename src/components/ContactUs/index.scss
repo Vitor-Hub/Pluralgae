@@ -5,8 +5,16 @@
     display: flex;
     flex-wrap: wrap;
     padding: 80px;
+    @media only screen and (max-width: 1060px) {
+        flex-direction: column;
+        position: relative;
+        padding: 50px 50px 160px 50px;
+    }  
     .infos {
         width: 50%;
+        @media only screen and (max-width: 1060px) {
+            width: 100%;
+        }  
         h2{
             color: $PRIMARY_DARK;
             text-transform: uppercase;
@@ -14,6 +22,11 @@
             font-size: $XLARGE_SIZE;
             letter-spacing: 2px;
             margin: 0;
+            white-space: nowrap;
+            @media only screen and (max-width: 1060px) {
+                text-align: center;
+                white-space: break-spaces;
+            } 
         }
         .iconInfos{
             display: flex;
@@ -27,6 +40,10 @@
             div {
                 display: flex;
                 align-items: center;
+                @media only screen and (max-width: 1060px) {
+                    margin: 0 auto;
+                    min-width: 400px;
+                } 
                 h3 {
                     color: $WHITE;
                     font-family: 'OpenSans-Bold', sans-serif;
@@ -39,10 +56,23 @@
         .follow {
             display: flex;
             align-items: center;
+            @media only screen and (max-width: 1060px) {
+                position: absolute;
+                bottom: 10px;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }    
+            @media only screen and (max-width: 720px) {
+                flex-direction: column;
+                bottom: -25px;
+            }    
             .socialIcons {
                 display: flex;
                 align-items: center;
                 margin-left: 35px;
+                @media only screen and (max-width: 720px) {
+                    margin-left: 0;
+                }
                 div {
                     width: 60px;
                     height: 60px;
@@ -62,10 +92,16 @@
         width: 50%;
         display: flex;
         justify-content: center;
+        @media only screen and (max-width: 1060px) {
+            width: 100%;
+        } 
         form {
             display: flex;
             flex-direction: column;
             width: 60%;
+            @media only screen and (max-width: 720px) {
+                width: 80%;
+            } 
             .textField {
                 background: none;
                 border-radius: 14px;

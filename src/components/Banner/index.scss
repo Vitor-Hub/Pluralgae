@@ -3,18 +3,36 @@
 .Banner {
     display: flex;
     flex-wrap: wrap;
+    @media only screen and (max-width: 1060px) {
+        position: relative;
+        flex-direction: column;
+    } 
     img {
         width: 50%;
+        @media only screen and (max-width: 1060px) {
+            width: 100%;
+        } 
     }
     .bannerInfos {
         width: 50%;
         background-color: $PRIMARY_DARK_ALT;
+        @media only screen and (max-width: 1060px) {
+            width: 100%;
+        } 
         .infos {
             display: flex;
             flex-direction: column;
             justify-content: center;
             margin-left: 30px;
             height: 100%;
+            @media only screen and (max-width: 1060px) {
+                align-items: center;
+                padding: 25px 0;
+                max-width: 80%;
+                justify-content: center;
+                margin: 0 auto;
+            } 
+             
             .title {
                 text-transform: uppercase;
                 color: $PRIMARY_TEXT_COLOR;
@@ -23,6 +41,12 @@
                 margin: 0;
                 letter-spacing: 2px;
                 margin-bottom: 15px;
+                @media only screen and (max-width: 1060px) {
+                    font-size: 50px;
+                }
+                @media only screen and (max-width: 720px) {
+                    font-size: 35px;
+                }
             }
             .subTitle {
                 color: $WHITE;
@@ -30,6 +54,12 @@
                 font-size: $XLARGE_SIZE;
                 margin: 0;
                 letter-spacing: 2px;
+                @media only screen and (max-width: 1060px) {
+                    font-size: 40px;
+                }
+                @media only screen and (max-width: 720px) {
+                    font-size: 25px;
+                }
             }
             .description{
                 color: $WHITE;
@@ -38,6 +68,12 @@
                 margin: 0;
                 letter-spacing: 2px;
                 font-weight: 400;
+                @media only screen and (max-width: 1060px) {
+                    font-size: 40px;
+                }
+                @media only screen and (max-width: 720px) {
+                    font-size: 25px;
+                }
             }
             .subDescription {
                 text-transform: uppercase;
@@ -47,6 +83,13 @@
                 margin: 0;
                 letter-spacing: 2px;
                 margin-top: 15px;
+                @media only screen and (max-width: 1060px) {
+                    font-size: 24px;
+                    text-align: center;
+                }
+                @media only screen and (max-width: 720px) {
+                    font-size: 20px;
+                }
             }
             .knowMoreButton {
                 background-color: $SECONDARY;

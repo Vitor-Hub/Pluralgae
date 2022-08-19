@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./index.scss";
 import Button from '@mui/material/Button';
 
@@ -7,11 +7,32 @@ var FavoriteIcon = require('../../assets/icon_favorite.png');
 var HandIcon = require('../../assets/icon_hand.png');
 
 const ContactUs = () => {
+
+    const [windowSize, setWindowSize] = useState(getWindowSize());
+    const responsiveWidth = 1060;
+
+    useEffect(() => {
+        function handleWindowResize() {
+        setWindowSize(getWindowSize());
+        }
+
+        window.addEventListener('resize', handleWindowResize);
+
+        return () => {
+        window.removeEventListener('resize', handleWindowResize);
+        };
+    }, []);
+
+    function getWindowSize() {
+        const {innerWidth, innerHeight} = window;
+        return {innerWidth, innerHeight};
+    }
+
   return (
     <>
       <div className="ContactUs">
         <div className="infos">
-            <h2 className="contactTitle">Entre em contato conosco</h2>
+            <h2 className="contactTitle">{windowSize.innerWidth > responsiveWidth ? "Entre em contato conosco" : "Entre em contato"}</h2>
             <div className="iconInfos">
                 <div className="star">
                     <img src={StarIcon} alt="icon" />
