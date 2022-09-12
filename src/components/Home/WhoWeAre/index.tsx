@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import "./index.scss";
 
-var marianaProfile = require('../../assets/mariana_profile.jpg');
-var arielProfile = require('../../assets/ariel_profile.jpg');
+var marianaProfile = require('../../../assets/mariana_profile.jpg');
+var arielProfile = require('../../../assets/ariel_profile.jpg');
 
 const WhoWeAre = () => {
 

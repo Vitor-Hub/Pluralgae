@@ -25,7 +25,7 @@ const Footer = () => {
 
   return (
     <>
-      <div className="Footer">
+      <footer className="Footer">
         <h4 className="pluralgae">
             © 2022 PLURALGAE - TODOS OS DIREITOS RESERVADOS
         </h4>
@@ -38,7 +38,7 @@ const Footer = () => {
           :
           <></>
         }
-      </div>
+      </footer>
     </>
   );
 };

@@ -1,12 +1,10 @@
-import React from "react";
 import "./index.scss";
-import Button from '@mui/material/Button';
 
-var workIcon = require('../../assets/gicon_work.png');
-var heartIcon = require('../../assets/gicon_heart.png');
-var organicIcon = require('../../assets/gicon_organic.png');
-var chemistryIcon = require('../../assets/gicon_chemistry.png');
-var productImg = require('../../assets/product_alt.png');
+var workIcon = require('../../../assets/gicon_work.png');
+var heartIcon = require('../../../assets/gicon_heart.png');
+var organicIcon = require('../../../assets/gicon_organic.png');
+var chemistryIcon = require('../../../assets/gicon_chemistry.png');
+var productImg = require('../../../assets/product_alt.png');
 
 const Advantages = () => {
   return (
@@ -39,8 +37,8 @@ const Advantages = () => {
                 </div>
             </div>
             <div className="rightContent">
-                <div className="img">
-                    <img src={productImg} alt="image" />
+                <div>
+                    <img src={productImg} alt="productImage" />
                 </div>
             </div>
         </div>

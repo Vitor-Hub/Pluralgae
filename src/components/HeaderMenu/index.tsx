@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import { Link } from "react-router-dom";
 import "./index.scss";
 
 var iconCart = require('../../assets/icon_cart.png');
@@ -35,10 +36,10 @@ const HeaderMenu = () => {
             </div>
 
             <div className="menus">
-              <h5>Spirulina</h5>
-              <h5>Fale Conosco</h5>
-              <h5>Comprar</h5>
-              <h5>Quem somos</h5>
+              <Link className="link" to="/"><h5>Spirulina</h5></Link>
+              <Link className="link" to="/FaleConosco"><h5>Fale Conosco</h5></Link>
+              <Link className="link" to="/"><h5>Comprar</h5></Link>
+              <Link className="link" to="/"><h5>Quem somos</h5></Link>
               <div className="cart">
                 <img src={iconCart} alt="cart icon" />
               </div>
@@ -58,10 +59,10 @@ const HeaderMenu = () => {
             <hr/>
 
             <div className="menus">
-              <h5>Spirulina</h5>
-              <h5>Fale Conosco</h5>
-              <h5>Comprar</h5>
-              <h5>Quem somos</h5>
+              <Link className="link" to="/"><h5>Spirulina</h5></Link>
+              <Link className="link" to="/FaleConosco"><h5>Fale Conosco</h5></Link>
+              <Link className="link" to="/"><h5>Comprar</h5></Link>
+              <Link className="link" to="/"><h5>Quem somos</h5></Link>
             </div>
           </div>
         }    

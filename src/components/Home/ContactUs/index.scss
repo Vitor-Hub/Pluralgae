@@ -100,44 +100,68 @@
         @media only screen and (max-width: 1060px) {
             width: 100%;
         } 
-        form {
+        .form {
             display: flex;
             flex-direction: column;
             width: 60%;
+            position: relative;
             @media only screen and (max-width: 720px) {
                 width: 80%;
             } 
             .textField {
-                background: none;
-                border-radius: 14px;
-                border-width: 2px;
-                border-color: $PRIMARY_DARK;
-                height: 30px;
+                margin-top: 10px;
+                input {
+                    padding-left: 10px;
+                    background-color: $WHITE;
+                    border-radius: 14px;
+                    border-width: 2px;
+                    border-color: $PRIMARY_DARK;
+                    height: 30px;
+                    margin-top: 0;
+                }
             }
             .areaField {
-                background: none;
+                margin-top: 5px;
+                border-radius: 14px;
+                background-color: $WHITE;
                 border-radius: 14px;
                 border-width: 2px;
                 border-color: $PRIMARY_DARK;
-                height: 80px;
-                resize: none;
+                >div {
+                    border-radius: 14px;
+                    align-items: baseline;
+                    min-height: 80px;
+                }
+                input {
+                    margin-top: 0;
+                }
             }
             label,input, .areaField {
                 margin-top: 8px;
             }
             label,.sendMessage {
                 font-family: 'OpenSans-SemiBold', sans-serif;
-                font-size: $SMALL_SIZE;
+                font-size: $MEDIUM_SIZE;
             }
             .sendMessage {
                 background-color: $PRIMARY_DARK;
                 width: 170px;
-                height: 25px;
+                height: 30px;
                 text-transform: inherit;
                 font-family: 'OpenSans-SemiBold', sans-serif;
                 font-size: $SMALL_SIZE;
                 letter-spacing: 2px;
-                margin: 5px 0 0 auto;
+                margin: 15px 0 15px auto;
+                >div {
+                    color: $WHITE;
+                }
+            }
+            .AlertComponent {
+                position: absolute;
+                bottom: -50px;
+            }
+            .Loading {
+                margin: 10px 30px 10px auto;
             }
         }
     }

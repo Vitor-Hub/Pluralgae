@@ -1,12 +1,11 @@
 @import 'src/theme/_theme.scss';
-$base-color: #c6538c;
 
-.App {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
+body {
+  margin: 0;
+  .main {
     .topBar {
       height: 25px;
       background-color: $PRIMARY_DARK;
     }
+  }
 }

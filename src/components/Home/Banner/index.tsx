@@ -2,7 +2,7 @@ import React from "react";
 import "./index.scss";
 import Button from '@mui/material/Button';
 
-var banner = require('../../assets/banner_product.png');
+var banner = require('../../../assets/banner_product.png');
 
 const Banner = () => {
   return (
