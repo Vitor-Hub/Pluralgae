@@ -1,0 +1,19 @@
+@import 'src/theme/_theme.scss';
+
+.ContactDescription {
+    h2 {
+        color: $PRIMARY_DARK;
+        text-transform: uppercase;
+        font-family: 'OpenSans-ExtraBold', sans-serif;
+        font-size: $XLARGE_SIZE;
+        letter-spacing: 2px;
+        margin: 0;
+        white-space: nowrap;
+    }
+    h3 {
+        font-family: 'OpenSans-Bold', sans-serif;
+        font-size: $LARGE_SIZE;
+        letter-spacing: 2px;
+        margin: 8px;
+    }
+}

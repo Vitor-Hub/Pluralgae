@@ -78,17 +78,14 @@
                 @media only screen and (max-width: 720px) {
                     margin-left: 0;
                 }
-                div {
-                    width: 60px;
-                    height: 60px;
-                    background-color: $PRIMARY_DARK;
-                    border-radius: 50%;
+                a {
                     display: flex;
-                    justify-content: center;
                     align-items: center;
-                    margin: 0 15px;
-                    cursor: pointer;
-                    color: $WHITE;
+                    svg {
+                        cursor: pointer;
+                        margin: 0 6px;
+                        color: $PRIMARY_DARK;
+                    }
                 }
             }
         }

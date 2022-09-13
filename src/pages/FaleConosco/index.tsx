@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.scss";
 
-const Home = () => {
+const FaleConosco = () => {
   return (
     <>
       <div className="main">
@@ -10,4 +10,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default FaleConosco;

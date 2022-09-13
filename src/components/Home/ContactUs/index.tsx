@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, {RefObject, useEffect, useRef, useState} from "react";
 import "./index.scss";
 import SendEmail from "../../../services/email.service";
 import ISendEmailData from "../../../types/email.type";
-import { Alert, AlertTitle, FormGroup, InputBase, TextField } from "@mui/material";
+import { Alert, AlertTitle, InputBase, TextField } from "@mui/material";
 import LoadingButton from '@mui/lab/LoadingButton';
+import SocialIcons from "../../SocialIcons";
 
 var StarIcon = require('../../../assets/icon_star.png');
 var FavoriteIcon = require('../../../assets/icon_favorite.png');
@@ -16,13 +17,21 @@ interface IEmailData {
     text: string;
 }
 
+interface IContactUs {
+    ContactUsRef: RefObject<HTMLDivElement>
+}
+
 enum EIsEmailSent {
     Sent = "sent",
     Error = "error",
     Empty = ""
 }
 
-const ContactUs = () => {
+const ContactUs = (props: IContactUs) => {
+
+    const {ContactUsRef} = props;
+
+    const formRef = useRef<HTMLFormElement>(null);
 
     const [loading, setLoading] = useState<boolean>(false);
     const [isEmailSent, setIsEmailSent] = useState<EIsEmailSent>(EIsEmailSent.Empty);
@@ -71,11 +80,12 @@ const ContactUs = () => {
         setEmailData({name: "", email: "", subject: "", text: ""});
         setLoading(false);
         setTimeout(() => setIsEmailSent(EIsEmailSent.Empty), 5000);
+        formRef?.current?.reportValidity();
     }
 
   return (
     <>
-      <div className="ContactUs">
+      <div ref={ContactUsRef} className="ContactUs">
         <div className="infos">
             <h2 className="contactTitle">{windowSize.innerWidth > responsiveWidth ? "Entre em contato conosco" : "Entre em contato"}</h2>
             <div className="iconInfos">
@@ -95,14 +105,13 @@ const ContactUs = () => {
             <div className="follow">
                 <h2 className="title">Nos siga</h2>
                 <div className="socialIcons">
-                    <div className="instagram">icon</div>
-                    <div className="facebook">icon</div>
-                    <div className="linkedin">icon</div>
+                    <SocialIcons />
                 </div>
             </div>
         </div>
         <div className="inputs">
             <form 
+                ref={formRef}
                 className="form"
                 onSubmit={(event) => onSubmit(event)}
             >
@@ -147,7 +156,7 @@ const ContactUs = () => {
                     loading={loading}
                     type="submit"
                     variant="contained"
-                    onClick={() => sendEmail({name: emailData.name, email: emailData.email, subject: emailData.subject, text: emailData.text})}
+                    onClick={() => {sendEmail({name: emailData.name, email: emailData.email, subject: emailData.subject, text: emailData.text})}}
                 >   
                     <span>Enviar mensagem</span>
                 </LoadingButton>

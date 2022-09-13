@@ -1,11 +1,6 @@
 @import 'src/theme/_theme.scss';
 
-body {
-  margin: 0;
-  .main {
-    .topBar {
-      height: 25px;
-      background-color: $PRIMARY_DARK;
-    }
-  }
+.main {
+  min-height: 100%;
+  background-color: $PRIMARY;
 }

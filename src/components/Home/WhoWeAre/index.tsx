@@ -1,10 +1,17 @@
-import React, {useEffect, useState} from "react";
+import React, {RefObject, useEffect, useState} from "react";
+import SocialIcons from "../../SocialIcons";
 import "./index.scss";
 
 var marianaProfile = require('../../../assets/mariana_profile.jpg');
 var arielProfile = require('../../../assets/ariel_profile.jpg');
 
-const WhoWeAre = () => {
+interface IWhoWeAreProps {
+  WhoWeAreRef: RefObject<HTMLDivElement>
+}
+
+const WhoWeAre = (props:IWhoWeAreProps) => {
+
+  const {WhoWeAreRef} = props;
 
   const [windowSize, setWindowSize] = useState(getWindowSize());
   const responsiveWidth = 1060;
@@ -29,7 +36,7 @@ const WhoWeAre = () => {
   return (
     <>
       {windowSize.innerWidth > responsiveWidth ?
-        <div className="WhoWeAre">
+        <div ref={WhoWeAreRef} className="WhoWeAre">
           <div className="leftContent">
               <h1 className="title">Quem somos</h1>
               <h3 className="description">A Pluralgae nasceu com o propósito de trazer saúde para o mundo com consciência socioambiental, oferecendo super alimentos a partir de processos carbono negativos e elevado controle de qualidade. <br/><br/> Fundada em 2017 pela Drª Mariana Fortes a partir do seu doutorado em microalgas na UFRJ, uniu-se ao sonho de fazer a diferença no mundo do Ariel Kozlowski, economista e empreendedor social.</h3>
@@ -53,7 +60,7 @@ const WhoWeAre = () => {
           </div>
         </div>
         :
-        <div className="WhoWeAre">
+        <div ref={WhoWeAreRef} className="WhoWeAre">
           <div className="leftContent">
             <h1 className="title">Quem somos</h1>
             <h3 className="description">A Pluralgae nasceu com o propósito de trazer saúde para o mundo com consciência socioambiental, oferecendo super alimentos a partir de processos carbono negativos e elevado controle de qualidade.</h3>
@@ -78,9 +85,7 @@ const WhoWeAre = () => {
           </div>
 
           <div className="socialIcons">
-              <div className="instagram">icon</div>
-              <div className="facebook">icon</div>
-              <div className="linkedin">icon</div>
+              <SocialIcons />
           </div>
         </div>
       }

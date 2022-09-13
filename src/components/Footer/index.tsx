@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import "./index.scss";
+import SocialIcons from "../SocialIcons";
 
 const Footer = () => {
 
@@ -31,9 +32,7 @@ const Footer = () => {
         </h4>
         {windowSize.innerWidth > responsiveWidth ? 
           <div className="socialIcons">
-              <div className="instagram">icon</div>
-              <div className="facebook">icon</div>
-              <div className="linkedin">icon</div>
+            <SocialIcons />
           </div>
           :
           <></>
