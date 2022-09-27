@@ -4,7 +4,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FaleConosco from "./pages/FaleConosco";
 import HeaderMenu from "./components/HeaderMenu";
 import Footer from "./components/Footer";
-import { RefObject, useRef } from "react";
+import { useRef, useState } from "react";
+import Login from "./components/Home/Login";
+import TopContent from "./components/TopContent";
 
 function App() {
 
@@ -12,9 +14,12 @@ function App() {
   const ContactUsRef = useRef<HTMLDivElement>(null);
   const WhoWeAreRef = useRef<HTMLDivElement>(null);
 
+  const [isOpenLoginModal, setIsOpenLoginModal] = useState<boolean>(false);
+
   return (
     <div className="App">
       <BrowserRouter>
+        <TopContent setIsOpenLoginModal={setIsOpenLoginModal}/>
         <HeaderMenu AdvantagesRef={AdvantagesRef} ContactUsRef={ContactUsRef} WhoWeAreRef={WhoWeAreRef} />
         <Routes>
           <Route element={
@@ -27,6 +32,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <Footer/>
+      <Login isOpenLoginModal={isOpenLoginModal} setIsOpenLoginModal={setIsOpenLoginModal}/>
     </div>
   );
 }

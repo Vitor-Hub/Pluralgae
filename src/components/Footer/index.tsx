@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import "./index.scss";
 import SocialIcons from "../SocialIcons";
+import { Box, Container, Typography } from "@mui/material";
 
 const Footer = () => {
 
@@ -25,20 +26,24 @@ const Footer = () => {
   }
 
   return (
-    <>
-      <footer className="Footer">
-        <h4 className="pluralgae">
-            © 2022 PLURALGAE - TODOS OS DIREITOS RESERVADOS
-        </h4>
-        {windowSize.innerWidth > responsiveWidth ? 
-          <div className="socialIcons">
-            <SocialIcons />
-          </div>
-          :
-          <></>
-        }
-      </footer>
-    </>
+    <Box
+      className="Footer"
+      component="footer"
+      sx={{
+        mt: 'auto'
+      }}
+    >
+      <h4 className="pluralgae">
+          © 2022 PLURALGAE - TODOS OS DIREITOS RESERVADOS
+      </h4>
+      {windowSize.innerWidth > responsiveWidth ? 
+        <div className="socialIcons">
+          <SocialIcons />
+        </div>
+        :
+        <></>
+      }
+    </Box>
   );
 };
 

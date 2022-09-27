@@ -1,0 +1,15 @@
+@import 'src/theme/_theme.scss';
+
+.TopContent {
+    background-color: $PRIMARY_DARK;
+    height: 25px;
+    display: flex;
+    justify-content: flex-end;
+    h5 {
+        font-size: $SMALL_SIZE;
+        font-family: 'OpenSans-Light', sans-serif;
+        color: $WHITE;
+        margin: 5px 25px 5px 0;
+        cursor: pointer;
+    }
+}
