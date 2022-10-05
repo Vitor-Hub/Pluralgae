@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import "./index.scss";
 import SocialIcons from "../SocialIcons";
-import { Box, Container, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 const Footer = () => {
 

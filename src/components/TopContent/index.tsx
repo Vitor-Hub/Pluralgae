@@ -1,17 +1,31 @@
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/auth";
+import { ModalControlContext } from "../../contexts/modals";
 import "./index.scss";
 
-interface ITopContent {
-    setIsOpenLoginModal: Function;
-}
+const TopContent = () => {
 
-const TopContent = (props: ITopContent) => {
+    const {signed, signOut} = useContext(AuthContext);
+    const {setIsOpenSignInModal, setIsOpenSignUpModal} = useContext(ModalControlContext);
 
-    const {setIsOpenLoginModal} = props;
+    const handleSignOut = () => {
+        signOut();
+    }
 
     return (
         <div className="TopContent">
-            <h5 onClick={() => setIsOpenLoginModal(true)}>Cadastre-se</h5>
-            <h5 onClick={() => setIsOpenLoginModal(true)}>Login</h5>
+            {signed ?
+                <>
+                    <h5>Profile</h5>
+                    <h5 onClick={handleSignOut}>Sair</h5>
+                </>
+                :
+                <>
+                    <h5 onClick={() => setIsOpenSignUpModal(true)}>Cadastre-se</h5>
+                    <h5 onClick={() => setIsOpenSignInModal(true)}>Login</h5>
+                </>
+            }
+            
         </div>
   );
 }

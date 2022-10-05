@@ -60,17 +60,15 @@ const ContactUs = (props: IContactUs) => {
         return {innerWidth, innerHeight};
     }
 
-    function onSubmit(event:any) {
+    function onSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        console.log("Submited: ", event);
     }
 
     async function sendEmail(data:ISendEmailData) {
         setLoading(true);
-        console.log("data: ", data);
+        
         await SendEmail(data)
-            .then((response: any) => {
-                console.log("response: ", response);
+            .then((response) => {
                 setIsEmailSent(EIsEmailSent.Sent);
             })
             .catch((e: Error) => {
