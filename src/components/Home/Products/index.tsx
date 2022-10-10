@@ -1,72 +1,79 @@
-import { Card, CardMedia, Slider } from "@mui/material";
-import React, { Component } from "react";
+import { Button, Card, CircularProgress } from "@mui/material";
+import React, { useEffect, useRef, useState } from "react";
+import { getProducts } from "../../../services/product.service";
+import IGetProducts from "../../../types/products.type";
 import "./index.scss";
 
-const SliderProps = {
-  zoomFactor: 30,
-  slideMargin: 10,
-  maxVisibleSlides: 5,
-  pageTransition: 500
-}
+var LeftArrow = require('../../../assets/left_arrow.svg');
+var RigthArrow = require('../../../assets/rigth_arrow.svg');
+var productImage = require('../../../assets/productImage.png');
 
 const Products = () => {
 
-  const productsMock = [
-    {
-      name: "name1",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae augue ante. Donec aliquet massa et ullamcorper vestibulum. Curabitur non mi vel enim imperdiet luctus. Mauris ultrices, urna sodales pharetra fermentum, velit ligula facilisis eros, non ultricies nibh est ullamcorper ante. Pellentesque orci sapien, aliquet eget mollis eget, cursus sed.",
-      price: "$5,99"
-    },
-    {
-      name: "name1",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae augue ante. Donec aliquet massa et ullamcorper vestibulum. Curabitur non mi vel enim imperdiet luctus. Mauris ultrices, urna sodales pharetra fermentum, velit ligula facilisis eros, non ultricies nibh est ullamcorper ante. Pellentesque orci sapien, aliquet eget mollis eget, cursus sed.",
-      price: "$5,99"
-    },
-    {
-      name: "name1",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae augue ante. Donec aliquet massa et ullamcorper vestibulum. Curabitur non mi vel enim imperdiet luctus. Mauris ultrices, urna sodales pharetra fermentum, velit ligula facilisis eros, non ultricies nibh est ullamcorper ante. Pellentesque orci sapien, aliquet eget mollis eget, cursus sed.",
-      price: "$5,99"
-    },
-    {
-      name: "name1",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae augue ante. Donec aliquet massa et ullamcorper vestibulum. Curabitur non mi vel enim imperdiet luctus. Mauris ultrices, urna sodales pharetra fermentum, velit ligula facilisis eros, non ultricies nibh est ullamcorper ante. Pellentesque orci sapien, aliquet eget mollis eget, cursus sed.",
-      price: "$5,99"
-    },
-    {
-      name: "name1",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae augue ante. Donec aliquet massa et ullamcorper vestibulum. Curabitur non mi vel enim imperdiet luctus. Mauris ultrices, urna sodales pharetra fermentum, velit ligula facilisis eros, non ultricies nibh est ullamcorper ante. Pellentesque orci sapien, aliquet eget mollis eget, cursus sed.",
-      price: "$5,99"
-    },
-    {
-      name: "name1",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae augue ante. Donec aliquet massa et ullamcorper vestibulum. Curabitur non mi vel enim imperdiet luctus. Mauris ultrices, urna sodales pharetra fermentum, velit ligula facilisis eros, non ultricies nibh est ullamcorper ante. Pellentesque orci sapien, aliquet eget mollis eget, cursus sed.",
-      price: "$5,99"
-    },
-    {
-      name: "name1",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae augue ante. Donec aliquet massa et ullamcorper vestibulum. Curabitur non mi vel enim imperdiet luctus. Mauris ultrices, urna sodales pharetra fermentum, velit ligula facilisis eros, non ultricies nibh est ullamcorper ante. Pellentesque orci sapien, aliquet eget mollis eget, cursus sed.",
-      price: "$5,99"
-    },
-    {
-      name: "name1",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae augue ante. Donec aliquet massa et ullamcorper vestibulum. Curabitur non mi vel enim imperdiet luctus. Mauris ultrices, urna sodales pharetra fermentum, velit ligula facilisis eros, non ultricies nibh est ullamcorper ante. Pellentesque orci sapien, aliquet eget mollis eget, cursus sed.",
-      price: "$5,99"
-    },
-  ]
+  const carousel = useRef<HTMLInputElement>(null);
+
+  const [productsData, setProductsData] = useState<IGetProducts[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    getProductsApi();
+  },[])
+
+  const getProductsApi = async() => {
+    setLoading(true);
+    await getProducts()
+      .then((response: any) => {
+          setProductsData(response.data);
+      })
+      .catch((e: Error) => {
+          console.error(e);
+      });
+    setLoading(false);
+  }
+
+  const handleLeftClick = (e:any) => {
+    e.preventDefault(); 
+    carousel.current!.scrollLeft -= carousel.current!.offsetWidth;
+  }
+
+  const handleRightClick = (e:any) => {
+    e.preventDefault(); 
+    carousel.current!.scrollLeft += carousel.current!.offsetWidth;
+  }
 
   return (
-    <>
-      <Slider>
-        <Component>
-          {productsMock && !!productsMock.length && productsMock.map((item, index) => {
-            <div>
-              <h5>{item.name}</h5>
-            </div>
-          }) 
-          }
-        </Component>
-      </Slider>
-    </>
+    <div className="Products">
+      <div className="productsList" ref={carousel}>
+        {!loading ? 
+          productsData && !!productsData.length && productsData.map((item) => {
+            const {name, price, id} = item;
+
+            return(
+              <div className="carousel" key={id}>
+                <Card>
+                  <img className="productImage" src={productImage} alt="product image" />
+                  <div className="productData">
+                    <h2>{name}</h2>
+                    <h2>R$: {price}</h2> 
+                    <Button className="buyProduct">Comprar</Button> 
+                  </div>
+                </Card>
+              </div>
+            )
+          })
+        :
+        <CircularProgress className="circularProgress" color="success" />
+      }
+      </div>
+      {productsData && !!productsData.length && productsData.length > 3 ?
+        <div className="buttons">
+          <img src={LeftArrow.default} alt="" className="leftButton" onClick={(e) => handleLeftClick(e)} />
+          <img src={RigthArrow.default} alt="" className="rightButton" onClick={(e) => handleRightClick(e)} />
+        </div>
+        :
+        <></>
+      }
+    </div>
   );
 };
 

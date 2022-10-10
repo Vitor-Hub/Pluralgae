@@ -68,7 +68,7 @@ const ContactUs = (props: IContactUs) => {
         setLoading(true);
         
         await SendEmail(data)
-            .then((response) => {
+            .then(() => {
                 setIsEmailSent(EIsEmailSent.Sent);
             })
             .catch((e: Error) => {

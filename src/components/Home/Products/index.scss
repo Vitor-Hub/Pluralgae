@@ -1,101 +1,57 @@
 @import 'src/theme/_theme.scss';
 
-.WhoWeAre {
-    background-color: $SECONDARY;
-    padding: 80px;
-    display: flex;
-    @media only screen and (max-width: 1060px) {
-        flex-direction: column;
-        padding: 60px;;
-    } 
-    .leftContent {
-        width: 50%;
-        @media only screen and (max-width: 1060px) {
-            width: 100%;
-        }
-        .title {
-            text-transform: uppercase;
-            font-family: 'OpenSans-ExtraBold', sans-serif;
-            font-size: $XLARGE_SIZE;
-            color: $PRIMARY_DARK;
-            letter-spacing: 2px;
-        }
-        .description{
-            font-family: 'OpenSans-Regular', sans-serif;
-            font-size: $BIG_SIZE;
-            color: $PRIMARY_DARK;
-            letter-spacing: 2px;
-            font-weight: $WEIGHT_BOLD;
-        }
-        .subDescription {
-            font-family: 'OpenSans-Bold', sans-serif;
-            font-size: $BIG_SIZE;
-            color: $PRIMARY_DARK;
-            letter-spacing: 2px;
-        }
-    }
-    .rightContent {
-        width: 50%;
+.Products {
+    position: relative;
+    padding: 50px;
+    .productsList{
         display: flex;
-        justify-content: center;
-        align-items: center;
-        @media only screen and (max-width: 1060px) {
-            width: 100%;
-        }
-        @media only screen and (max-width: 520px) {
-            flex-direction: column;
-        }
-        img {
-            height: 225px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-        .profile {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin-left: 50px;
-            @media only screen and (max-width: 520px) {
-                margin-left: 0;
-            }
-            .infos {
+        overflow: hidden;
+        max-width: 900px;
+        margin: 0 auto;
+        scroll-behavior: smooth;
+        .circularProgress {
+            margin: auto;
+        }        
+        .carousel {
+            padding: 25px;
+            margin: auto;
+            .productImage {
                 max-width: 180px;
-                text-align: center;
-                margin-top: 15px;
-                .name {
-                    font-family: 'OpenSans-Bold', sans-serif;
-                    font-size: $MEDIUM_SIZE;
-                    color: $PRIMARY_DARK;
-                    margin: 0;
+            }
+            .productData {
+                padding: 15px;
+                padding: 15px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .buyProduct {
+                    background-color: $PRIMARY;
+                    color: $WHITE;
+                    font-family: 'OpenSans-Regular', sans-serif;
                 }
-                .role {
+                h2 {
+                    color: $PRIMARY_DARK;
                     font-family: 'OpenSans-Regular', sans-serif;
                     font-size: $MEDIUM_SIZE;
-                    color: $PRIMARY_DARK;
-                    font-weight: $WEIGHT_BOLD;
-                    margin: 0;
                 }
             }
         }
     }
-    .socialIcons {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        margin-top: 25px;
-        div {
-            width: 60px;
-            height: 60px;
-            background-color:  $PRIMARY;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            color: $WHITE;
-            justify-content: center;
-            text-align: center;
-        }
+}
+
+.buttons {
+    .rightButton,.leftButton{
+        height: 25px;
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+    .leftButton {
+        left: 40px;
+    }
+    .rightButton {
+        right: 40px;
     }
 }
