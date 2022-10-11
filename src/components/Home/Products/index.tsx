@@ -1,4 +1,4 @@
-import { Button, Card, CircularProgress } from "@mui/material";
+import { Alert, AlertTitle, Button, Card, CircularProgress } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { getProducts } from "../../../services/product.service";
 import IGetProducts from "../../../types/products.type";
@@ -14,6 +14,7 @@ const Products = () => {
 
   const [productsData, setProductsData] = useState<IGetProducts[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     getProductsApi();
@@ -24,9 +25,11 @@ const Products = () => {
     await getProducts()
       .then((response: any) => {
           setProductsData(response.data);
+          setError(false);
       })
       .catch((e: Error) => {
           console.error(e);
+          setError(true);
       });
     setLoading(false);
   }
@@ -45,22 +48,27 @@ const Products = () => {
     <div className="Products">
       <div className="productsList" ref={carousel}>
         {!loading ? 
-          productsData && !!productsData.length && productsData.map((item) => {
-            const {name, price, id} = item;
+          !error ?
+            productsData && !!productsData.length && productsData.map((item) => {
+              const {name, price, id} = item;
 
-            return(
-              <div className="carousel" key={id}>
-                <Card>
-                  <img className="productImage" src={productImage} alt="product image" />
-                  <div className="productData">
-                    <h2>{name}</h2>
-                    <h2>R$: {price}</h2> 
-                    <Button className="buyProduct">Comprar</Button> 
-                  </div>
-                </Card>
-              </div>
-            )
-          })
+              return(
+                <div className="carousel" key={id}>
+                  <Card>
+                    <img className="productImage" src={productImage} alt="spirulina" />
+                    <div className="productData">
+                      <h2>{name}</h2>
+                      <h2>R$: {price}</h2> 
+                      <Button className="buyProduct">Comprar</Button> 
+                    </div>
+                  </Card>
+                </div>
+              )
+            })
+          :
+          <Alert className="AlertComponent" severity="error">
+              <AlertTitle>Erro ao carregar produtos</AlertTitle>
+          </Alert>
         :
         <CircularProgress className="circularProgress" color="success" />
       }

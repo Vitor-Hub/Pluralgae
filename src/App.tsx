@@ -1,7 +1,6 @@
 import "./App.scss";
 import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import FaleConosco from "./pages/FaleConosco";
 import HeaderMenu from "./components/HeaderMenu";
 import Footer from "./components/Footer";
 import { useRef } from "react";
@@ -10,6 +9,7 @@ import { AuthProvider } from "./contexts/auth";
 import { ModalControlProvider } from "./contexts/modals";
 import SignIn from "./components/Login/SignIn";
 import SignUp from "./components/Login/SignUp";
+import ConfigAccount from "./pages/ConfigAccount";
 
 function App() {
 
@@ -35,7 +35,7 @@ function App() {
                     ContactUsRef={ContactUsRef} 
                     WhoWeAreRef={WhoWeAreRef} 
                   />} path="" />
-                <Route element={<FaleConosco />} path="/FaleConosco" />
+                <Route element={<ConfigAccount />} path="/ConfigAccount" />
               </Routes>
             <SignIn/>
             <SignUp/>
