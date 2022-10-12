@@ -1,5 +1,6 @@
 import { Alert, AlertTitle, Button, Card, CircularProgress } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { getProducts } from "../../../services/product.service";
 import IGetProducts from "../../../types/products.type";
 import "./index.scss";
@@ -59,7 +60,7 @@ const Products = () => {
                     <div className="productData">
                       <h2>{name}</h2>
                       <h2>R$: {price}</h2> 
-                      <Button className="buyProduct">Comprar</Button> 
+                      <Link to="/checkout"><Button className="buyProduct">Comprar</Button></Link> 
                     </div>
                   </Card>
                 </div>

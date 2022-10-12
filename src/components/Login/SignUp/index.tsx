@@ -26,9 +26,7 @@ const SignUp = () => {
     });
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<boolean>(false);
-    const [passwordInvalid, setPasswordInvalid] = useState<boolean>(false);
-    const [phoneNumberInvalid, setPhoneNumberInvalid] = useState<boolean>(false);
-    const [emailNumberInvalid, setEmailNumberInvalid] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string>();
 
     const resetData = () => {
         setUserData({
@@ -41,9 +39,6 @@ const SignUp = () => {
             city: "", 
             state: ""
         })
-        setPasswordInvalid(false);
-        setPhoneNumberInvalid(false);
-        setEmailNumberInvalid(false);
         setError(false);
     }
 
@@ -59,8 +54,6 @@ const SignUp = () => {
     const handleSignUp = async () => {
         formRef?.current?.reportValidity();
         
-        console.log("handleSignUp: ", userData);
-        
         setIsLoading(true);
 
         if(validatePassword() &&
@@ -68,48 +61,38 @@ const SignUp = () => {
         validateEmail()) {
             await signUpService(userData)
             .then((response: any) => {
-                console.log(response);
                 setIsOpenSignUpModal(false);
                 setError(false);
             })
-            .catch((e: Error) => {
+            .catch((e) => {
                 console.error(e);
                 setError(true);
+                setErrorMessage(e.response.data.message);
             });
-        } else {
-            setError(true);
-        }
-
+        } 
         setIsLoading(false);
     }
 
     const validatePassword = () => {
-        if (userData.password.length >= 8 ) {
-            setPasswordInvalid(false);
+        if (userData.password == "" && userData.password.length >= 8 ) {
             return true
         } else {
-            setPasswordInvalid(true);
             return false
         }
     }
 
     const validatePhoneNumber = () => {
-        console.log(userData.phoneNumber.length)
-        if (userData.phoneNumber.length === 14) {
-            setPhoneNumberInvalid(false);
+        if (userData.phoneNumber == "" && userData.phoneNumber.length === 14) {
             return true
         } else {
-            setPhoneNumberInvalid(true);
             return false
         }
     }
 
     const validateEmail = () => {
-        if (validator.isEmail(userData.email)) {
-            setEmailNumberInvalid(false);
+        if (userData.email == "" && validator.isEmail(userData.email)) {
             return true
         } else {
-            setEmailNumberInvalid(true);
             return false
         }
     }
@@ -150,8 +133,7 @@ const SignUp = () => {
                                         label="Senha"
                                         variant="outlined"
                                         type="password"
-                                        error={passwordInvalid}
-                                        helperText={passwordInvalid ? "A senha deve ser maior ou igual a 8 caracteres" : ""}
+                                        error={validatePassword()}
                                         onChange={(e) => setUserData({...userData, password: e.currentTarget.value})}
                                     />
                                     <TextField  
@@ -162,8 +144,7 @@ const SignUp = () => {
                                         label="Email"
                                         variant="outlined"
                                         type="email"
-                                        error={emailNumberInvalid}
-                                        helperText={emailNumberInvalid ? "Formato de email inválido" : ""}
+                                        error={validateEmail()}
                                         onChange={(e) => setUserData({...userData, email: e.currentTarget.value})}
                                     />
                                     <PatternFormat 
@@ -174,7 +155,7 @@ const SignUp = () => {
                                         value={userData.phoneNumber}
                                         customInput={TextField}
                                         required
-                                        error={phoneNumberInvalid}
+                                        error={validatePhoneNumber()}
                                         variant="outlined"
                                         onChange={(e) => setUserData({...userData, phoneNumber: e.currentTarget.value.replace(/ /g, "")})}
                                     />
@@ -237,7 +218,7 @@ const SignUp = () => {
                     </div>
                     {error ?
                         <Alert className="AlertComponent" severity="error">
-                            <AlertTitle>Erro ao cadastrar usuário</AlertTitle>
+                            <AlertTitle>{errorMessage}</AlertTitle>
                         </Alert>
                         :
                         <></>

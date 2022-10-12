@@ -77,7 +77,6 @@ const ContactUs = (props: IContactUs) => {
             });
         setEmailData({name: "", email: "", subject: "", text: ""});
         setLoading(false);
-        setTimeout(() => setIsEmailSent(EIsEmailSent.Empty), 5000);
         formRef?.current?.reportValidity();
     }
 
@@ -146,6 +145,10 @@ const ContactUs = (props: IContactUs) => {
                     id="field"
                     onChange={(e) => setEmailData({...emailData, text: e.currentTarget.value})}
                     value={emailData.text}
+                    variant="standard"
+                    InputProps={{
+                        disableUnderline: true,
+                    }}
                     required
                     multiline
                 />

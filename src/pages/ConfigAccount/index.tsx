@@ -1,31 +1,73 @@
 import { LoadingButton } from "@mui/lab";
 import { Alert, AlertTitle, Card, TextField } from "@mui/material";
+import { SocketAddress } from "net";
 import React, { useContext, useEffect, useState } from "react";
 import { PatternFormat } from "react-number-format";
 import { AuthContext } from "../../contexts/auth";
+import { updateUserService } from "../../services/updateUser.service";
+import { IUser } from "../../types/user.type";
 import "./index.scss";
 
 var documentIcon = require('../../assets/documentIcon.svg');
+
+interface INewPassword {
+  password: string,
+  repeatPassword: string
+}
 
 const ConfigAccount = () => {
 
   const {user, signed} = useContext(AuthContext);
 
+  const [errorMessage, setErrorMessage] = useState<string>();
+  const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [updateUser, setUpdateUser] = useState<IUser>({
+    access_token: "",
+    address: {
+      address: "",
+      city: "",
+      state: "",
+      zipCode: ""
+    },
+    email: "",
+    id: "",
+    phoneNumber: "",
+    username: ""
+  });
+  const [newPassword, setNewPassword] = useState<INewPassword>({
+    repeatPassword: "",
+    password: ""
+  });
 
   useEffect(() => {
-    console.log("user: ", user)
-  },[user])
+    console.log("updateUser: ", updateUser);
+  },[updateUser])
+
+  useEffect(() => {
+    if (user) setUpdateUser(user);
+  },[user]);
 
   const validatePhoneNumber = () => {
-    //console.log(userData.phoneNumber.length)
-    // if (userData.phoneNumber.length === 14) {
-    //     setPhoneNumberInvalid(false);
-    //     return true
-    // } else {
-    //     setPhoneNumberInvalid(true);
-    //     return false
-    // }
+    if (user && user.phoneNumber.length === 14) {
+        return false
+    } else {
+        return true
+    }
+  }
+
+  const handleUpdateUser = async () => {
+    setLoading(true);
+    await updateUserService(updateUser)
+      .then((response: any) => {
+          setError(false);
+      })
+      .catch((e) => {
+          console.error(e);
+          setError(true);
+          setErrorMessage(e.response.data.message);
+      });
+    setLoading(false);
   }
 
   return (
@@ -44,7 +86,7 @@ const ConfigAccount = () => {
                     loading={loading}
                     type="submit"
                     variant="contained"
-                    //onClick={() => {sendEmail({name: emailData.name, email: emailData.email, subject: emailData.subject, text: emailData.text})}}
+                    onClick={() => handleUpdateUser()}
                 > 
                   Salvar 
                 </LoadingButton> 
@@ -57,40 +99,40 @@ const ConfigAccount = () => {
                     label="Nome Completo"
                     className="textField" 
                     id="name" 
-                    //onChange={(e) => setEmailData({...emailData, name: e.currentTarget.value})}
-                    //value={emailData.name}
+                    onChange={(e) => setUpdateUser({...updateUser, username: e.currentTarget.value})}
+                    value={updateUser.username}
                 />
                 <PatternFormat 
                     format="(##)#####-####"
                     id="phoneNumber" 
                     label="Celular" 
                     className="textField"
-                    //value={userData.phoneNumber}
+                    value={updateUser.phoneNumber}
                     customInput={TextField}
                     required
-                    //error={phoneNumberInvalid}
+                    error={validatePhoneNumber()}
                     variant="outlined"
-                    //onChange={(e) => setUserData({...userData, phoneNumber: e.currentTarget.value.replace(/ /g, "")})}
+                    onChange={(e) => setUpdateUser({...updateUser, phoneNumber: e.currentTarget.value.replace(/ /g, "")})}
                 />
                 <TextField  
                     className="textField" 
                     id="password"
-                    //value={userData.password}
+                    value={newPassword.password}
                     required
-                    label="Senha"
+                    label="Nova Senha"
                     variant="outlined"
                     type="password"
-                    //onChange={(e) => setUserData({...userData, password: e.currentTarget.value})}
+                    onChange={(e) => setNewPassword({...newPassword, password: e.currentTarget.value})}
                 />
                 <TextField  
                     className="textField" 
-                    id="password"
-                    //value={userData.password}
+                    id="repeatePassword"
+                    value={newPassword.repeatPassword}
                     required
-                    label="Nova senha"
+                    label="Confirme a senha"
                     variant="outlined"
                     type="password"
-                    //onChange={(e) => setUserData({...userData, password: e.currentTarget.value})}
+                    onChange={(e) => setNewPassword({...newPassword, repeatPassword: e.currentTarget.value})}
                 />
               </Card>
 
@@ -99,30 +141,30 @@ const ConfigAccount = () => {
                 <TextField 
                     label="Endereço"
                     className="textField" 
-                    id="name" 
-                    //onChange={(e) => setEmailData({...emailData, name: e.currentTarget.value})}
-                    //value={emailData.name}
+                    id="address" 
+                    onChange={(e) => setUpdateUser({...updateUser, address:{...updateUser.address, address: e.currentTarget.value}})}
+                    value={updateUser.address.address}
                 />
                 <TextField 
                     label="CEP"
                     className="textField" 
-                    id="name" 
-                    //onChange={(e) => setEmailData({...emailData, name: e.currentTarget.value})}
-                    //value={emailData.name}
+                    id="zipCode" 
+                    onChange={(e) => setUpdateUser({...updateUser, address:{...updateUser.address, zipCode: e.currentTarget.value}})}
+                    value={updateUser.address.zipCode}
                 />
                 <TextField 
                     label="Cidade"
                     className="textField" 
-                    id="name" 
-                    //onChange={(e) => setEmailData({...emailData, name: e.currentTarget.value})}
-                    //value={emailData.name}
+                    id="city" 
+                    onChange={(e) => setUpdateUser({...updateUser, address:{...updateUser.address, city: e.currentTarget.value}})}
+                    value={updateUser.address.city}
                 />
                 <TextField 
                     label="Estado"
                     className="textField" 
-                    id="name" 
-                    //onChange={(e) => setEmailData({...emailData, name: e.currentTarget.value})}
-                    //value={emailData.name}
+                    id="state" 
+                    onChange={(e) => setUpdateUser({...updateUser, address:{...updateUser.address, state: e.currentTarget.value}})}
+                    value={updateUser.address.state}
                 />
                 
               </Card>

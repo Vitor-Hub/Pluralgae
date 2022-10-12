@@ -10,12 +10,15 @@ import { ModalControlProvider } from "./contexts/modals";
 import SignIn from "./components/Login/SignIn";
 import SignUp from "./components/Login/SignUp";
 import ConfigAccount from "./pages/ConfigAccount";
+import Checkout from "./pages/Checkout";
 
 function App() {
 
   const AdvantagesRef = useRef<HTMLDivElement>(null);
   const ContactUsRef = useRef<HTMLDivElement>(null);
   const WhoWeAreRef = useRef<HTMLDivElement>(null);
+
+  const token = localStorage.getItem("token");
 
   return (
     <div className="App">
@@ -34,8 +37,9 @@ function App() {
                     AdvantagesRef={AdvantagesRef} 
                     ContactUsRef={ContactUsRef} 
                     WhoWeAreRef={WhoWeAreRef} 
-                  />} path="" />
-                <Route element={<ConfigAccount />} path="/ConfigAccount" />
+                  />} path=""/>
+                <Route element={<ConfigAccount />} path="/configAccount" />
+                <Route element={<Checkout />} path="/checkout" />
               </Routes>
             <SignIn/>
             <SignUp/>

@@ -22,9 +22,9 @@ const TopContent = () => {
                 <div className="logged">
                     <h5>Olá, Vitor</h5>
                     <div className="actions">
-                        <h5><Link to="/ConfigAccount">Minha conta</Link></h5>
+                        <h5><Link to="/configAccount">Minha conta</Link></h5>
                         <h5 className="pipe">&nbsp;|&nbsp;</h5>
-                        <h5 onClick={handleSignOut}>Sair</h5>   
+                        <h5 onClick={handleSignOut}><Link to="">Sair</Link></h5>   
                     </div>
                 </div>
                 :

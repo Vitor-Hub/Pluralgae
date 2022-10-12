@@ -66,7 +66,7 @@ const SignIn = () => {
                                 id="user"
                                 value={userData.username}
                                 required
-                                label="Usuário"
+                                label="E-mail"
                                 variant="outlined"
                                 onChange={(e) => setUserData({...userData, username: e.currentTarget.value})}
                             />
