@@ -51,18 +51,20 @@ const Products = () => {
         {!loading ? 
           !error ?
             productsData && !!productsData.length && productsData.map((item) => {
-              const {name, price, id} = item;
-
+              const {name, price, id, description} = item;
               return(
                 <div className="carousel" key={id}>
-                  <Card>
-                    <img className="productImage" src={productImage} alt="spirulina" />
+                  <img className="productImage" src={productImage} alt="spirulina" />
+                  <div className="infos">
+                    <div className="description">
+                      <h2>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</h2>
+                    </div>
                     <div className="productData">
                       <h2>{name}</h2>
                       <h2>R$: {price}</h2> 
                       <Link to="/checkout"><Button className="buyProduct">Comprar</Button></Link> 
                     </div>
-                  </Card>
+                  </div>
                 </div>
               )
             })

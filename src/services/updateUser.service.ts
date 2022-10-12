@@ -1,6 +1,17 @@
 import http from "../http-commom";
-import { IUser } from "../types/user.type";
 
-export const updateUserService = (data: IUser) => {
-    return http.put<IUser>(`/user/${data.id}`, data);
+interface IUpdateUser {
+    access_token: string,
+    address: string,
+    city: string,
+    state: string,
+    zipCode: string,
+    email: string,
+    id: string,
+    phoneNumber: string,
+    username: string
+  }
+
+export const updateUserService = (data: IUpdateUser) => {
+    return http.put<IUpdateUser>(`/user/${data.id}`, data);
 }

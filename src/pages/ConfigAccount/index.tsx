@@ -15,6 +15,18 @@ interface INewPassword {
   repeatPassword: string
 }
 
+interface IUpdateUser {
+  access_token: string,
+  address: string,
+  city: string,
+  state: string,
+  zipCode: string,
+  email: string,
+  id: string,
+  phoneNumber: string,
+  username: string
+}
+
 const ConfigAccount = () => {
 
   const {user, signed} = useContext(AuthContext);
@@ -22,14 +34,12 @@ const ConfigAccount = () => {
   const [errorMessage, setErrorMessage] = useState<string>();
   const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const [updateUser, setUpdateUser] = useState<IUser>({
+  const [updateUser, setUpdateUser] = useState<IUpdateUser>({
     access_token: "",
-    address: {
-      address: "",
-      city: "",
-      state: "",
-      zipCode: ""
-    },
+    address: "",
+    city: "",
+    state: "",
+    zipCode: "",
     email: "",
     id: "",
     phoneNumber: "",
@@ -45,7 +55,7 @@ const ConfigAccount = () => {
   },[updateUser])
 
   useEffect(() => {
-    if (user) setUpdateUser(user);
+    if (user) setUpdateUser({...user, city: user.address.city, address: user.address.address, state: user.address.state, zipCode: user.address.zipCode});
   },[user]);
 
   const validatePhoneNumber = () => {
@@ -142,29 +152,29 @@ const ConfigAccount = () => {
                     label="Endereço"
                     className="textField" 
                     id="address" 
-                    onChange={(e) => setUpdateUser({...updateUser, address:{...updateUser.address, address: e.currentTarget.value}})}
-                    value={updateUser.address.address}
+                    onChange={(e) => setUpdateUser({...updateUser, address: e.currentTarget.value})}
+                    value={updateUser.address}
                 />
                 <TextField 
                     label="CEP"
                     className="textField" 
                     id="zipCode" 
-                    onChange={(e) => setUpdateUser({...updateUser, address:{...updateUser.address, zipCode: e.currentTarget.value}})}
-                    value={updateUser.address.zipCode}
+                    onChange={(e) => setUpdateUser({...updateUser, zipCode: e.currentTarget.value})}
+                    value={updateUser.zipCode}
                 />
                 <TextField 
                     label="Cidade"
                     className="textField" 
                     id="city" 
-                    onChange={(e) => setUpdateUser({...updateUser, address:{...updateUser.address, city: e.currentTarget.value}})}
-                    value={updateUser.address.city}
+                    onChange={(e) => setUpdateUser({...updateUser, city: e.currentTarget.value})}
+                    value={updateUser.city}
                 />
                 <TextField 
                     label="Estado"
                     className="textField" 
                     id="state" 
-                    onChange={(e) => setUpdateUser({...updateUser, address:{...updateUser.address, state: e.currentTarget.value}})}
-                    value={updateUser.address.state}
+                    onChange={(e) => setUpdateUser({...updateUser, state: e.currentTarget.value})}
+                    value={updateUser.state}
                 />
                 
               </Card>

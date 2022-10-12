@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import React from "react";
 import "./index.scss";
 
-var addressIcon = require('../../assets/addressIcon.svg');
 var checkoutIcon = require('../../assets/checkoutIcon.svg');
 
 const Checkout = () => {
