@@ -42,8 +42,9 @@
     .menus {
         display: flex;
         justify-content: space-around;
-        width: 50%;
+        width: 40%;
         align-items: center;
+        margin-right: 50px;
         @media only screen and (max-width: 1060px) {
             width: 100%;
         }

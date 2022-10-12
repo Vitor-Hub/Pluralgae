@@ -58,9 +58,6 @@ const HeaderMenu = (props:IHeaderMenuProps) => {
 
             <div className="menus">
               {renderMenus()}
-              <div className="cart">
-                <img src={iconCart} alt="cart icon" />
-              </div>
             </div>
           </div>
           :
@@ -68,9 +65,6 @@ const HeaderMenu = (props:IHeaderMenuProps) => {
             <div className="top">
               <div className="logo">
               <Link target="_self" to="/"><img src={Logo} alt="Logo" /></Link>
-              </div>
-              <div className="cart">
-                  <img src={iconCart} alt="cart icon" />
               </div>
             </div>
             
