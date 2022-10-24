@@ -3,9 +3,8 @@ import { useContext } from "react";
 import { Link } from 'react-router-dom';
 import { AuthContext } from "../../contexts/auth";
 import { ModalControlContext } from "../../contexts/modals";
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import "./index.scss";
-
-var userIcon = require('../../assets/userIcon.svg');
 
 const TopContent = () => {
 
@@ -29,7 +28,7 @@ const TopContent = () => {
                 </div>
                 :
                 <div className="loginUser">
-                    <img src={userIcon.default} alt="profile" />
+                    <AccountBoxIcon/>
                     <div className="infos">
                         <h5 onClick={() => setIsOpenSignUpModal(true)}>Cadastre-se</h5>
                         <h5 onClick={() => setIsOpenSignInModal(true)}>Login</h5>

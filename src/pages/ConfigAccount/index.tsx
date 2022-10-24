@@ -1,14 +1,11 @@
 import { LoadingButton } from "@mui/lab";
 import { Alert, AlertTitle, Card, TextField } from "@mui/material";
-import { SocketAddress } from "net";
 import React, { useContext, useEffect, useState } from "react";
+import ContactPageIcon from '@mui/icons-material/ContactPage';
 import { PatternFormat } from "react-number-format";
 import { AuthContext } from "../../contexts/auth";
 import { updateUserService } from "../../services/updateUser.service";
-import { IUser } from "../../types/user.type";
 import "./index.scss";
-
-var documentIcon = require('../../assets/documentIcon.svg');
 
 interface INewPassword {
   password: string,
@@ -87,7 +84,7 @@ const ConfigAccount = () => {
           <>
             <div className="top">
               <div className="title">
-                <img src={documentIcon.default} alt="Icone" />
+                <ContactPageIcon/>
                 <h2>Meus Dados</h2>
               </div>
               <div className="button">

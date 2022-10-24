@@ -1,7 +1,6 @@
 @import 'src/theme/_theme.scss';
 
 .ConfigAccount {
-    height: 100%;
     display: flex;
     flex-direction: column;
     padding: 70px;
@@ -43,12 +42,12 @@
             display: flex;
             align-items: center;
             width: 600px;
+            svg {
+                color: $PRIMARY;
+            }
             @media only screen and (max-width: 540px) {
                 width: auto;
             } 
-            img {
-                width: 20px;
-            }
             h2 {
                 font-family: 'OpenSans-SemiBold', sans-serif;
                 color: $PRIMARY_DARK;
@@ -68,7 +67,7 @@
             .saveButton {
                 width: 150px;
                 height: 35px;
-                background-color: $PRIMARY_DARK;
+                background-color: $PRIMARY;
             }
         }
     }

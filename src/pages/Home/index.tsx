@@ -2,7 +2,6 @@ import React, { RefObject } from "react";
 import Advantages from "../../components/Home/Advantages";
 import Banner from "../../components/Home/Banner";
 import ContactUs from "../../components/Home/ContactUs";
-import Products from "../../components/Home/Products";
 import WhoWeAre from "../../components/Home/WhoWeAre";
 import "./index.scss";
 
@@ -22,7 +21,6 @@ const Home = (props:IHomeProps) => {
     <>
       <div className="Home">
         <Banner/>
-        <Products/>
         <ContactUs ContactUsRef={ContactUsRef}/>
         <Advantages AdvantagesRef={AdvantagesRef}/>
         <WhoWeAre WhoWeAreRef={WhoWeAreRef}/>

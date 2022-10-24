@@ -1,7 +1,6 @@
 @import 'src/theme/_theme.scss';
 
 .Checkout {
-    height: 100%;
     display: flex;
     flex-direction: column;
     padding: 70px;
@@ -13,12 +12,12 @@
         display: flex;
         align-items: center;
         width: 600px;
+        svg {
+            color: $PRIMARY;
+        }
         @media only screen and (max-width: 540px) {
             width: auto;
         } 
-        img {
-            width: 25px;
-        }
         h2 {
             font-family: 'OpenSans-SemiBold', sans-serif;
             color: $PRIMARY_DARK;
@@ -28,28 +27,33 @@
         }
     }
     .leftCards {
-        .basicData {
+        .addressData {
             padding: 25px;
             display: flex;
             flex-direction: column;
             background-color: rgb(250, 250, 251);
             margin-top: 50px;
-            h3 {
+            .title {
                 font-family: 'OpenSans-SemiBold', sans-serif;
                 color: $PRIMARY_DARK;
                 font-size: $BIG_SIZE;
                 text-transform: uppercase;
-            }
-            h4 {
-                font-family: 'OpenSans-Light', sans-serif;
-                font-size: $SMALL_SIZE;
-                margin: 5px 0;
             }
             .address {
                 padding: 10px 20px;
                 background-color: $WHITE;
                 border-radius: 3px;
                 border-left: 2px solid $PRIMARY_DARK;
+                h4 {
+                    font-family: 'OpenSans-Light', sans-serif;
+                    font-size: $SMALL_SIZE;
+                    margin: 5px 0;
+                    color: $PRIMARY_DARK;
+                }
+                .name {
+                    font-size: $MEDIUM_SIZE;
+                    font-family: 'OpenSans-SemiBOld', sans-serif;
+                }
                 .edit {
                     display: flex;
                     justify-content: flex-end;
@@ -60,6 +64,130 @@
                         font-size: $MEDIUM_SIZE;
                         text-transform: uppercase;
                         text-decoration: none;
+                    }
+                }
+            }
+        }
+        .productData {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(250, 250, 251);
+            margin-top: 50px;
+            .title {
+                font-family: 'OpenSans-SemiBold', sans-serif;
+                color: $PRIMARY_DARK;
+                font-size: $BIG_SIZE;
+                text-transform: uppercase;
+                margin-bottom: 0;
+            }
+            .products {
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+                border-radius: 4px;
+                margin-top: 25px;
+                padding: 15px;
+                background: white;
+                box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+                .productImage {
+                    img {
+                        max-height: 80px;
+                        object-fit: cover;
+                    }
+                }
+                .productInfos {
+                    width: 50%;
+                    margin: 0 15px 15px 15px;
+                    .productTitle {
+                        font-family: 'OpenSans-Bold', sans-serif;
+                        font-size: $MEDIUM_SIZE;
+                        margin: 0;
+                        color: $PRIMARY;
+                    }
+                    .creditInfo {
+                        margin-top: 15px;
+                        h4 {
+                            font-family: 'OpenSans-Light', sans-serif;
+                            font-size: $SMALL_SIZE;
+                            margin: 0;
+                            color: $PRIMARY_DARK;
+                            opacity: 0.6;
+                        }
+                    }
+                }
+                .productQuantity {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    .quantTitle {
+                        font-family: 'OpenSans-Light', sans-serif;
+                        font-size: $MEDIUM_SIZE;
+                        margin: 0;
+                        color: $PRIMARY_DARK;
+                        opacity: 0.7;
+                    }
+                    .setQuant {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 5px 0;
+                        max-height: 40px;
+                        svg {
+                            width: 30px;
+                            height: 30px;
+                            color: $PRIMARY;
+                        }
+                        .showQuant {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            h4 {
+                                font-family: 'OpenSans-SemiBold', sans-serif;
+                                font-size: $MEDIUM_SIZE;
+                                color: $PRIMARY_DARK;
+                                opacity: 0.8;
+                            }
+                        }
+                        button {
+                            background: none;
+                            border: none;
+                            cursor: pointer;
+                            display: flex;
+                        }
+                    }
+                    .remove {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        svg {
+                            color: $RED;
+                            width: 15px;
+                        }
+                        h4 {
+                            font-family: 'OpenSans-SemiBold', sans-serif;
+                            font-size: $SMALL_SIZE;
+                            margin: 0;
+                            color: $RED;
+                        }
+                    }
+                }
+                .productPrice {
+                    .priceTitle {
+                        font-family: 'OpenSans-Light', sans-serif;
+                        font-size: $MEDIUM_SIZE;
+                        margin: 0;
+                        color: $PRIMARY_DARK;
+                        opacity: 0.7;
+                    }
+                    .price {
+                        font-family: 'OpenSans-Bold', sans-serif;
+                        font-size: $LARGE_SIZE;
+                        color: $PRIMARY;
+                        margin-top: 5px;
                     }
                 }
             }

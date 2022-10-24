@@ -2,7 +2,6 @@ import React, {RefObject, useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import "./index.scss";
 
-var iconCart = require('../../assets/icon_cart.png');
 var Logo = require('../../assets/logo.png');
 
 interface IHeaderMenuProps {
@@ -41,7 +40,7 @@ const HeaderMenu = (props:IHeaderMenuProps) => {
         <span className="link"><h5 onClick={() => executeScroll(AdvantagesRef)}>Spirulina</h5></span>
         <span className="link"><h5 onClick={() => executeScroll(ContactUsRef)}>Fale Conosco</h5></span>
         <span className="link"><h5 onClick={() => executeScroll(WhoWeAreRef)}>Quem somos</h5></span>
-        <span className="link"><h5 onClick={() => {}}>Comprar</h5></span>
+        <Link to="/checkout" className="link"><span><h5 onClick={() => {}}>Comprar</h5></span></Link>
       </>
     )
   }
