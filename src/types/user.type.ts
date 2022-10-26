@@ -3,12 +3,10 @@ interface IUser {
     username: string,
     email: string,
     phoneNumber: string,
-    address: {
-        address: string,
-        zipCode: string,
-        city: string,
-        state: string
-    },
+    address: string,
+    zipCode: string,
+    city: string,
+    state: string
     id: string
 }
 

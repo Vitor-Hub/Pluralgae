@@ -1,7 +1,6 @@
 import http from "../http-commom";
 
 interface IUpdateUser {
-    access_token: string,
     address: string,
     city: string,
     state: string,

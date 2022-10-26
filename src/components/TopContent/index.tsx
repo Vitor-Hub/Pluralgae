@@ -19,7 +19,7 @@ const TopContent = () => {
         <div className="TopContent">
             {signed ?
                 <div className="logged">
-                    <h5>Olá, Vitor</h5>
+                    <h5>Olá, {user?.username}</h5>
                     <div className="actions">
                         <h5><Link to="/configAccount">Minha conta</Link></h5>
                         <h5 className="pipe">&nbsp;|&nbsp;</h5>

@@ -12,6 +12,7 @@ interface IAuthContext{
     signOut:() => void;
     user: IUser | null;
     error: boolean;
+    setUser: Function;
 }
 
 interface IProps {
@@ -38,12 +39,12 @@ export const AuthProvider: React.FC<IProps> = ({children}) => {
     
     await auth.signInService(data)
       .then((response: any) => {
-          setUser(response.data);
+          let data = {...response.data, city: response.data.address.city, address: response.data.address.address, state: response.data.address.state, zipCode: response.data.address.zipCode};
+          setUser(data);
           setError(false);
           setIsOpenSignInModal(false);
           localStorage.setItem("token", response.data.access_token);
-          localStorage.setItem("user", JSON.stringify(response.data));
-          http.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`
+          localStorage.setItem("user", JSON.stringify(data));
       })
       .catch((e: Error) => {
           console.error(e);
@@ -59,7 +60,7 @@ export const AuthProvider: React.FC<IProps> = ({children}) => {
   return(
       <AuthContext.Provider 
         value={{ 
-          signed: !!user, user, signIn, signOut, error
+          signed: !!user, user, signIn, signOut, error, setUser
         }}
       >
           {children}

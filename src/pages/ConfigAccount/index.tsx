@@ -6,32 +6,21 @@ import { PatternFormat } from "react-number-format";
 import { AuthContext } from "../../contexts/auth";
 import { updateUserService } from "../../services/updateUser.service";
 import "./index.scss";
+import { IUser } from "../../types/user.type";
 
 interface INewPassword {
   password: string,
   repeatPassword: string
 }
 
-interface IUpdateUser {
-  access_token: string,
-  address: string,
-  city: string,
-  state: string,
-  zipCode: string,
-  email: string,
-  id: string,
-  phoneNumber: string,
-  username: string
-}
-
 const ConfigAccount = () => {
 
-  const {user, signed} = useContext(AuthContext);
+  const {user, signed, setUser} = useContext(AuthContext);
 
   const [errorMessage, setErrorMessage] = useState<string>();
   const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const [updateUser, setUpdateUser] = useState<IUpdateUser>({
+  const [updateUser, setUpdateUser] = useState<IUser>({
     access_token: "",
     address: "",
     city: "",
@@ -48,11 +37,9 @@ const ConfigAccount = () => {
   });
 
   useEffect(() => {
-    console.log("updateUser: ", updateUser);
-  },[updateUser])
-
-  useEffect(() => {
-    if (user) setUpdateUser({...user, city: user.address.city, address: user.address.address, state: user.address.state, zipCode: user.address.zipCode});
+    if (user) {
+      setUpdateUser({...user});
+    }
   },[user]);
 
   const validatePhoneNumber = () => {
@@ -64,10 +51,15 @@ const ConfigAccount = () => {
   }
 
   const handleUpdateUser = async () => {
+    const {access_token, ...rest} = updateUser;
+    console.log("rest: ", rest);
+
     setLoading(true);
-    await updateUserService(updateUser)
-      .then((response: any) => {
+    await updateUserService(rest)
+      .then(() => {
           setError(false);
+          setNewGlobalUser();
+          //window.location.href = "";
       })
       .catch((e) => {
           console.error(e);
@@ -75,6 +67,15 @@ const ConfigAccount = () => {
           setErrorMessage(e.response.data.message);
       });
     setLoading(false);
+  }
+
+  const setNewGlobalUser = () => {
+    const storagedToken = localStorage.getItem("token");
+
+    localStorage.setItem("user", JSON.stringify({...updateUser, access_token: storagedToken}));
+
+    setUser({...updateUser, access_token: storagedToken});
+    
   }
 
   return (
@@ -99,6 +100,13 @@ const ConfigAccount = () => {
                 </LoadingButton> 
               </div>
             </div>
+            {error ?
+              <Alert className="AlertComponent" severity="error">
+                <AlertTitle>{errorMessage}</AlertTitle>
+              </Alert>
+              :
+              <></>
+            }
             <div className="cards">
               <Card className="basicData">
                 <h3>Dados básicos</h3>
@@ -178,9 +186,7 @@ const ConfigAccount = () => {
             </div>
           </>
           :
-          <Alert className="AlertComponent" severity="error">
-              <AlertTitle>Você deve estar logado!</AlertTitle>
-          </Alert>
+          <></>
         }
       </div>
     </>

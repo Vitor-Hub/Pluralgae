@@ -1,6 +1,6 @@
 import { LoadingButton } from "@mui/lab";
 import { Alert, AlertTitle, Box, Modal, TextField } from "@mui/material";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import validator from 'validator';
 import { PatternFormat } from 'react-number-format';
 import { ModalControlContext } from "../../../contexts/modals";
@@ -53,25 +53,27 @@ const SignUp = () => {
 
     const handleSignUp = async () => {
         formRef?.current?.reportValidity();
+        console.log("teste")
         
         setIsLoading(true);
 
-        if(validatePassword() &&
-        validatePhoneNumber() &&
-        validateEmail()) {
-            await signUpService(userData)
-            .then((response: any) => {
-                setIsOpenSignUpModal(false);
-                setError(false);
-            })
-            .catch((e) => {
-                console.error(e);
-                setError(true);
-                setErrorMessage(e.response.data.message);
-            });
-        } 
+        await signUpService(userData)
+        .then((response: any) => {
+            setIsOpenSignUpModal(false);
+            setError(false);
+        })
+        .catch((e) => {
+            console.error(e);
+            setError(true);
+            setErrorMessage(e.response.data.message);
+        });
+        
         setIsLoading(false);
     }
+
+    useEffect(() => {
+        console.log(isLoading)
+    },[isLoading]);
 
     const validatePassword = () => {
         if (userData.password == "" && userData.password.length >= 8 ) {
