@@ -61,10 +61,15 @@
             width: 600px;
             display: flex;
             justify-content: flex-end;
+            position: relative;
             @media only screen and (max-width: 540px) {
                 width: auto;
                 margin-top: 25px;
             } 
+            .SuccessComponent {
+                position: absolute;
+                top: 60px;
+            }
             .saveButton {
                 width: 150px;
                 height: 35px;

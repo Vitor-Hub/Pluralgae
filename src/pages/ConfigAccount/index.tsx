@@ -13,12 +13,18 @@ interface INewPassword {
   repeatPassword: string
 }
 
+interface IUpdateUser extends IUser {
+  password: string,
+  repeatPassword: string
+}
+
 const ConfigAccount = () => {
 
   const {user, signed, setUser} = useContext(AuthContext);
 
   const [errorMessage, setErrorMessage] = useState<string>();
   const [error, setError] = useState<boolean>(false);
+  const [saved, setSaved] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [updateUser, setUpdateUser] = useState<IUser>({
     access_token: "",
@@ -59,23 +65,29 @@ const ConfigAccount = () => {
       .then(() => {
           setError(false);
           setNewGlobalUser();
+          setSaved(true);
           //window.location.href = "";
       })
       .catch((e) => {
           console.error(e);
           setError(true);
           setErrorMessage(e.response.data.message);
+          setSaved(false);
       });
     setLoading(false);
   }
 
   const setNewGlobalUser = () => {
     const storagedToken = localStorage.getItem("token");
-
     localStorage.setItem("user", JSON.stringify({...updateUser, access_token: storagedToken}));
-
     setUser({...updateUser, access_token: storagedToken});
-    
+  }
+
+  const verifyNewPassword = () => {
+    if(newPassword.password != "" && newPassword.repeatPassword != "" 
+    && newPassword.password.length >= 8 && newPassword.repeatPassword.length >= 8) {
+      setUpdateUser({...updateUser, })
+    }
   }
 
   return (
@@ -98,6 +110,13 @@ const ConfigAccount = () => {
                 > 
                   Salvar 
                 </LoadingButton> 
+                {saved ? 
+                  <Alert className="SuccessComponent" severity="success">
+                    <AlertTitle>Salvo!</AlertTitle>
+                  </Alert>
+                  :
+                  <></>
+                }
               </div>
             </div>
             {error ?
