@@ -7,12 +7,14 @@ import { ModalControlContext } from "../../../contexts/modals";
 import { signUpService } from "../../../services/signup.service";
 import { ISignUp } from "../../../types/signup.type";
 import "./index.scss";
+import { AuthContext } from "../../../contexts/auth";
 
 const SignUp = () => {
 
     const formRef = useRef<HTMLFormElement>(null);
     
     const {isOpenSignUpModal, setIsOpenSignUpModal} = useContext(ModalControlContext);
+    const {signIn} = useContext(AuthContext);
 
     const [userData, setUserData] = useState<ISignUp>({
         username: "",
@@ -53,20 +55,24 @@ const SignUp = () => {
 
     const handleSignUp = async () => {
         formRef?.current?.reportValidity();
-        console.log("teste")
-        
         setIsLoading(true);
 
-        await signUpService(userData)
-        .then((response: any) => {
-            setIsOpenSignUpModal(false);
-            setError(false);
-        })
-        .catch((e) => {
-            console.error(e);
-            setError(true);
-            setErrorMessage(e.response.data.message);
-        });
+        if (verifyEmptyInputs()) {
+            await signUpService(userData)
+            .then((response: any) => {
+                setIsOpenSignUpModal(false);
+                setError(false);
+                signIn({
+                    username: userData?.email,
+                    password: userData?.password
+                });
+            })
+            .catch((e) => {
+                console.error(e);
+                setError(true);
+                setErrorMessage(e.response.data.message);
+            });
+        }
         
         setIsLoading(false);
     }
@@ -76,26 +82,36 @@ const SignUp = () => {
     },[isLoading]);
 
     const validatePassword = () => {
-        if (userData.password == "" && userData.password.length >= 8 ) {
-            return true
-        } else {
+        if (userData?.password === '' || userData?.password.length >= 8 ) {
             return false
+        } else {
+            return true
         }
     }
 
     const validatePhoneNumber = () => {
-        if (userData.phoneNumber == "" && userData.phoneNumber.length === 14) {
-            return true
-        } else {
+        if (userData?.phoneNumber === '' || userData?.phoneNumber.length === 14) {
             return false
+        } else {
+            return true
         }
     }
 
     const validateEmail = () => {
-        if (userData.email == "" && validator.isEmail(userData.email)) {
-            return true
-        } else {
+        if (userData?.email === '' || validator.isEmail(userData?.email)) {
             return false
+        } else {
+            return true
+        }
+    }
+
+    const verifyEmptyInputs = () => {
+        if(userData?.email === '' || userData?.address === '' || userData?.password === '' || userData?.city === '', userData?.phoneNumber === '' ||
+        userData?.state === '' || userData?.username === '' || userData?.zipCode === '') {
+            setErrorMessage("Preencha todos os campos!")
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -121,7 +137,7 @@ const SignUp = () => {
                                     <TextField  
                                         className="textField" 
                                         id="user"
-                                        value={userData.username}
+                                        value={userData?.username}
                                         required
                                         label="Usuário"
                                         variant="outlined"
@@ -130,18 +146,19 @@ const SignUp = () => {
                                     <TextField  
                                         className="textField" 
                                         id="password"
-                                        value={userData.password}
+                                        value={userData?.password}
                                         required
                                         label="Senha"
                                         variant="outlined"
                                         type="password"
+                                        helperText={validatePassword() ? "A senha precisa ter mais que 8 caracteres" : ""}
                                         error={validatePassword()}
                                         onChange={(e) => setUserData({...userData, password: e.currentTarget.value})}
                                     />
                                     <TextField  
                                         className="textField" 
                                         id="e-mail"
-                                        value={userData.email}
+                                        value={userData?.email}
                                         required
                                         label="Email"
                                         variant="outlined"
@@ -154,7 +171,7 @@ const SignUp = () => {
                                         id="phoneNumber" 
                                         label="Celular" 
                                         className="textField"
-                                        value={userData.phoneNumber}
+                                        value={userData?.phoneNumber}
                                         customInput={TextField}
                                         required
                                         error={validatePhoneNumber()}
@@ -167,7 +184,7 @@ const SignUp = () => {
                                     <TextField  
                                         className="textField" 
                                         id="street"
-                                        value={userData.address}
+                                        value={userData?.address}
                                         required
                                         label="Endereço"
                                         variant="outlined"
@@ -180,7 +197,7 @@ const SignUp = () => {
                                         label="CEP" 
                                         required
                                         className="textField"
-                                        value={userData.zipCode}
+                                        value={userData?.zipCode}
                                         variant="outlined"
                                         customInput={TextField}
                                         onChange={(e) => setUserData({...userData, zipCode: e.currentTarget.value})}
@@ -188,7 +205,7 @@ const SignUp = () => {
                                     <TextField  
                                         className="textField" 
                                         id="city"
-                                        value={userData.city}
+                                        value={userData?.city}
                                         required
                                         label="Cidade"
                                         variant="outlined"
@@ -198,7 +215,7 @@ const SignUp = () => {
                                     <TextField  
                                         className="textField" 
                                         id="state"
-                                        value={userData.state}
+                                        value={userData?.state}
                                         required
                                         label="Estado"
                                         variant="outlined"
