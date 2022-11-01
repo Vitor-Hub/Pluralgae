@@ -28,8 +28,12 @@
     }
     .cards {
         display: flex;
+        @media only screen and (max-width: 1220px) {
+            flex-wrap: wrap;
+        } 
     }
     .leftCards {
+        width: 100%;
         .addressData {
             padding: 25px;
             display: flex;
@@ -111,6 +115,7 @@
                         font-size: $MEDIUM_SIZE;
                         margin: 0;
                         color: $PRIMARY_DARK;
+                        word-wrap: break-word;
                     }
                     .creditInfo {
                         margin-top: 15px;
@@ -163,36 +168,26 @@
                             display: flex;
                         }
                     }
-                    .remove {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        cursor: pointer;
-                        svg {
-                            color: $RED;
-                            width: 15px;
-                        }
-                        h4 {
-                            font-family: 'OpenSans-SemiBold', sans-serif;
-                            font-size: $SMALL_SIZE;
-                            margin: 0;
-                            color: $RED;
-                        }
-                    }
                 }
                 .productPrice {
+                    width: 15%;
+                    @media only screen and (max-width: 540px) {
+                        width: auto;
+                    } 
                     .priceTitle {
                         font-family: 'OpenSans-Light', sans-serif;
                         font-size: $MEDIUM_SIZE;
                         margin: 0;
                         color: $PRIMARY_DARK;
                         opacity: 0.7;
+                        word-break: break-all;
                     }
                     .price {
                         font-family: 'OpenSans-Bold', sans-serif;
                         font-size: $LARGE_SIZE;
                         color: $PRIMARY;
                         margin-top: 5px;
+                        white-space: nowrap;
                     }
                 }
             }
@@ -201,6 +196,11 @@
     .rightCards {
         margin-left: 50px;
         max-width: 400px;
+        width: 100%;
+        @media only screen and (max-width: 1220px) {
+            margin-left: 0;
+            max-width: 100%;
+        } 
         .checkoutCard {
             padding: 25px;
             display: flex;
