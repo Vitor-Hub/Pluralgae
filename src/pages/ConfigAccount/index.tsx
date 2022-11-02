@@ -6,15 +6,11 @@ import { PatternFormat } from "react-number-format";
 import { AuthContext } from "../../contexts/auth";
 import { updateUserService } from "../../services/updateUser.service";
 import "./index.scss";
-import { IUser } from "../../types/user.type";
+import { IUpdateUser } from "../../types/updateUser.type";
 
 interface INewPassword {
   password: string,
   repeatPassword: string
-}
-
-interface IUpdateUser extends IUser {
-  password?: string;
 }
 
 const ConfigAccount = () => {
@@ -22,8 +18,8 @@ const ConfigAccount = () => {
   const {user, signed, setUser} = useContext(AuthContext);
 
   const formRef = useRef<HTMLFormElement>(null);
-  const [errorMessage, setErrorMessage] = useState<string>();
-  const [error, setError] = useState<boolean>(false);
+  const [alertMessage, setAlertMessage] = useState<string>();
+  const [alert, setAlert] = useState<boolean>(false);
   const [saved, setSaved] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [updateUser, setUpdateUser] = useState<IUpdateUser>({
@@ -60,10 +56,6 @@ const ConfigAccount = () => {
     event.preventDefault();
   }
 
-  useEffect(() => {
-    console.log("updateUser: ", updateUser);
-  },[updateUser]);
-
   const handleUpdateUser = async () => {
     formRef?.current?.reportValidity();
     const {access_token, ...rest} = updateUser;
@@ -71,17 +63,17 @@ const ConfigAccount = () => {
     if (!verifyPasswordEqual()) setUpdateUser({...updateUser, password: newPassword.password});
     setLoading(true);
 
-    await updateUserService(rest)
+    await updateUserService(rest, access_token)
       .then(() => {
-          setError(false);
-          setNewGlobalUser();
+          setAlert(true);
           setSaved(true);
+          setAlertMessage("Atualizado com sucesso!");
+          setNewGlobalUser();
       })
-      .catch((e) => {
+      .catch((e: any) => {
           console.error(e);
-          setError(true);
-          setErrorMessage(e.response.data.message);
-          setSaved(false);
+          setAlert(true);
+          setAlertMessage(e.response.data.message);
       });
     setLoading(false);
   }
@@ -109,8 +101,19 @@ const ConfigAccount = () => {
     }
   }
 
+  useEffect(() => {
+    console.log("updateUser: ", updateUser);
+  },[updateUser]);
+
   return (
     <>
+      {alert ?
+        <Alert className="AlertComponent" severity={saved ? "success" : "error"}>
+          <AlertTitle>{alertMessage}</AlertTitle>
+        </Alert>
+        :
+        <></>
+      }
       <div className="ConfigAccount">
         {signed ?
           <>
@@ -129,22 +132,8 @@ const ConfigAccount = () => {
                 > 
                   Salvar 
                 </LoadingButton> 
-                {saved ? 
-                  <Alert className="SuccessComponent" severity="success">
-                    <AlertTitle>Salvo!</AlertTitle>
-                  </Alert>
-                  :
-                  <></>
-                }
               </div>
             </div>
-            {error ?
-              <Alert className="AlertComponent" severity="error">
-                <AlertTitle>{errorMessage}</AlertTitle>
-              </Alert>
-              :
-              <></>
-            }
             <div className="cards">
               <form 
                 ref={formRef}
@@ -160,7 +149,8 @@ const ConfigAccount = () => {
                         onChange={(e) => setUpdateUser({...updateUser, username: e.currentTarget.value})}
                         value={updateUser?.username}
                         required
-                    />
+                        variant="outlined"
+                        />
                     <PatternFormat 
                         format="(##)#####-####"
                         id="phoneNumber" 
@@ -201,7 +191,7 @@ const ConfigAccount = () => {
                           }
                         }
                     />
-                  </Card>
+                </Card>
 
                 <Card className="basicData">
                   <h3>Endereços</h3>
@@ -213,13 +203,16 @@ const ConfigAccount = () => {
                       value={updateUser?.address}
                       required
                       />
-                  <TextField 
-                      label="CEP"
-                      className="textField" 
-                      id="zipCode" 
-                      onChange={(e) => setUpdateUser({...updateUser, zipCode: e.currentTarget.value})}
-                      value={updateUser?.zipCode}
-                      required
+                  <PatternFormat 
+                    format="########" 
+                    id="zipCode"
+                    label="CEP" 
+                    required
+                    className="textField"
+                    value={updateUser?.zipCode}
+                    variant="outlined"
+                    customInput={TextField}
+                    onChange={(e) => setUpdateUser({...updateUser, zipCode: e.currentTarget.value})}
                   />
                   <TextField 
                       label="Cidade"

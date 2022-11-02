@@ -77,10 +77,6 @@ const SignUp = () => {
         setIsLoading(false);
     }
 
-    useEffect(() => {
-        console.log(isLoading)
-    },[isLoading]);
-
     const validatePassword = () => {
         if (userData?.password === '' || userData?.password.length >= 8 ) {
             return false

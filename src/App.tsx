@@ -11,6 +11,7 @@ import SignIn from "./components/Login/SignIn";
 import SignUp from "./components/Login/SignUp";
 import ConfigAccount from "./pages/ConfigAccount";
 import Checkout from "./pages/Checkout";
+import MyOders from "./pages/MyOders";
 
 function App() {
 
@@ -38,8 +39,9 @@ function App() {
                     ContactUsRef={ContactUsRef} 
                     WhoWeAreRef={WhoWeAreRef} 
                   />} path=""/>
-                <Route element={<ConfigAccount />} path="/configAccount" />
+                <Route element={<ConfigAccount />} path="/configaccount" />
                 <Route element={<Checkout />} path="/checkout" />
+                <Route element={<MyOders />} path="/myoders" />
               </Routes>
             <SignIn/>
             <SignUp/>

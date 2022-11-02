@@ -6,7 +6,7 @@ interface IUser {
     address: string,
     zipCode: string,
     city: string,
-    state: string
+    state: string,
     id: string
 }
 

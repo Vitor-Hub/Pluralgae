@@ -1,16 +1,10 @@
-import http from "../http-commom";
+import api from "../http-commom";
+import { IUpdateUser } from "../types/updateUser.type";
 
-interface IUpdateUser {
-    address: string,
-    city: string,
-    state: string,
-    zipCode: string,
-    email: string,
-    id: string,
-    phoneNumber: string,
-    username: string
-  }
-
-export const updateUserService = (data: IUpdateUser) => {
-    return http.put<IUpdateUser>(`/user/${data.id}`, data);
+export const updateUserService = (data: any, token: string | undefined) => {
+    return api.put<IUpdateUser>(`/user/${data.id}`, data, {
+        headers: {
+            Authorization: "Bearer " + token
+        }
+    });
 }

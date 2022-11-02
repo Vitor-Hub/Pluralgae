@@ -1,0 +1,134 @@
+@import 'src/theme/_theme.scss';
+
+.MyOders {
+    margin: 0;
+    padding: 70px;
+    .topContent {
+        display: flex;
+        justify-content: space-between;
+        .changeData {
+            a {
+                text-decoration: none;
+            }
+            .button {
+                background-color: $PRIMARY;
+            }
+            .buttonLabel {
+                font-family: 'OpenSans-SemiBold', sans-serif;
+                color: $WHITE;
+                font-size: $BIG_SIZE;
+                text-transform: uppercase;
+                margin-left: 10px;
+            }
+        }
+        .title {
+            display: flex;
+            align-items: center;
+            svg {
+                color: $PRIMARY;
+            }
+            @media only screen and (max-width: 540px) {
+                width: auto;
+            } 
+            h2 {
+                font-family: 'OpenSans-SemiBold', sans-serif;
+                color: $PRIMARY_DARK;
+                font-size: $LARGE_SIZE;
+                text-transform: uppercase;
+                margin: 0 0 0 5px;
+            }
+        }
+    }
+    .welcome {
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(250, 250, 251);
+        margin-top: 50px;
+        .userName {
+            font-family: 'OpenSans-SemiBold', sans-serif;
+            color: $PRIMARY_DARK;
+            font-size: $LARGE_SIZE;
+            text-transform: uppercase;
+            margin: 0 0 0 5px;
+        }
+        .userEmail {
+            display: flex;
+            align-items: center;
+            margin: 0 0 0 5px;
+            h4 {
+                font-family: 'OpenSans-Light', sans-serif;
+                font-size: $SMALL_SIZE;
+                margin: 0 0 0 5px;
+                color: $PRIMARY_DARK;
+                opacity: 0.6;
+            }
+            svg {
+                color: $PRIMARY;
+                width: $BIG_SIZE;
+            }
+        }
+    }
+    .cardOder {
+        margin-top: 50px;
+        .circular {
+            width: 100%;
+            margin: 50px auto;
+            display: flex;
+            justify-content: space-around;
+            svg {
+                color: $PRIMARY;
+            }
+        }
+        .title {
+            font-family: 'OpenSans-SemiBold', sans-serif;
+            color: $PRIMARY_DARK;
+            font-size: $BIG_SIZE;
+            text-transform: uppercase;
+            margin: 0;
+        }
+        .oders {
+            .cardOrders {
+                padding: 25px;
+                display: flex;
+                flex-direction: column;
+                background-color: rgb(250, 250, 251);
+                margin-top: 15px;
+                .topInfo {
+                    display: flex;
+                    justify-content: space-between;
+                }
+                .bottomInfo {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 50px;
+                    .address {
+                        h4 {
+                            margin: 5px 0;
+                        }
+                    }
+                }
+                .bottomInfo, .topInfo {
+                    > div {
+                        width: 100%;
+                    }
+                }
+                h4 {
+                    font-family: 'OpenSans-Bold', sans-serif;
+                    font-size: $MEDIUM_SIZE;
+                    margin: 0;
+                    color: $PRIMARY;
+                    word-wrap: break-word;
+                    margin-top: 25px;
+                }
+                h3 {
+                    font-family: 'OpenSans-SemiBold', sans-serif;
+                    font-size: $MEDIUM_SIZE;
+                    margin: 0;
+                    color: $PRIMARY_DARK;
+                    margin-bottom: 25px;
+                }
+            }
+        }
+    }
+}

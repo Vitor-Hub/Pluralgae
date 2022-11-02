@@ -1,6 +1,4 @@
-import { application } from 'express';
 import React, {createContext, useContext, useEffect, useState} from 'react';
-import http from '../http-commom';
 import * as auth from '../services/auth.service';
 import {ISignIn} from '../types/auth.type';
 import { IUser } from '../types/user.type';

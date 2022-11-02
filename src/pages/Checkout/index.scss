@@ -205,69 +205,125 @@
             margin-left: 0;
             max-width: 100%;
         } 
-        .checkoutCard {
+    }
+}
+
+.checkoutCard {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(250, 250, 251);
+    margin-top: 50px;
+    .resume {
+        border-radius: 4px;
+        padding: 15px;
+        background: white;
+        hr {
+            width: 100%;
+            background: rgb(222, 224, 228);
+            opacity: 0.3;
+        }
+        h4 {
+            font-family: 'OpenSans-Light', sans-serif;
+            font-size: $MEDIUM_SIZE;
+            margin: 5px 0;
+            color: $GRAY;
+        }
+        > div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            .value {
+                color: $PRIMARY_DARK;
+            }
+        }
+        .total {
+            padding: 10px;
+            flex-direction: column;
+            .totalInfos {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                .totalValue {
+                    font-family: 'OpenSans-Bold', sans-serif;
+                    font-size: $XLARGE_SIZE;
+                    margin: 5px 0;
+                    color: $PRIMARY;
+                }
+            }
+            h5 {
+                font-family: 'OpenSans-Light', sans-serif;
+                font-size: $SMALL_SIZE;
+                margin: 5px 0;
+                color: $GRAY;
+                margin: 0 0 0 auto;
+            }
+        }
+    }
+    .title {
+        font-family: 'OpenSans-SemiBold', sans-serif;
+        color: $PRIMARY_DARK;
+        font-size: $BIG_SIZE;
+        text-transform: uppercase;
+    }
+    .button {
+        background-color: $PRIMARY;
+        margin: 20px auto;
+        width: 80%;
+    }
+}
+
+.Payment {
+    padding: 70px;
+    > svg {
+        color: $PRIMARY_DARK;
+        cursor: pointer;
+    }
+    .title {
+        display: flex;
+        align-items: center;
+        width: 600px;
+        svg {
+            color: $PRIMARY;
+        }
+        @media only screen and (max-width: 540px) {
+            width: auto;
+        } 
+        h2 {
+            font-family: 'OpenSans-SemiBold', sans-serif;
+            color: $PRIMARY_DARK;
+            font-size: $LARGE_SIZE;
+            text-transform: uppercase;
+            margin: 0 0 0 5px;
+        }
+    }
+    .leftCard {
+        width: 100%;
+        .paymentData {
             padding: 25px;
             display: flex;
             flex-direction: column;
             background-color: rgb(250, 250, 251);
             margin-top: 50px;
-            .resume {
-                border-radius: 4px;
-                padding: 15px;
-                background: white;
-                hr {
-                    width: 100%;
-                    background: rgb(222, 224, 228);
-                    opacity: 0.3;
-                }
-                h4 {
-                    font-family: 'OpenSans-Light', sans-serif;
-                    font-size: $MEDIUM_SIZE;
-                    margin: 5px 0;
-                    color: $GRAY;
-                }
-                > div {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    padding: 0 10px;
-                    .value {
-                        color: $PRIMARY_DARK;
-                    }
-                }
-                .total {
-                    padding: 10px;
-                    flex-direction: column;
-                    .totalInfos {
-                        display: flex;
-                        justify-content: space-between;
-                        width: 100%;
-                        .totalValue {
-                            font-family: 'OpenSans-Bold', sans-serif;
-                            font-size: $XLARGE_SIZE;
-                            margin: 5px 0;
-                            color: $PRIMARY;
-                        }
-                    }
-                    h5 {
-                        font-family: 'OpenSans-Light', sans-serif;
-                        font-size: $SMALL_SIZE;
-                        margin: 5px 0;
-                        color: $GRAY;
-                        margin: 0 0 0 auto;
-                    }
+            .textField {
+                margin: 15px 0;
+                width: 100%;
+                background-color: $WHITE;
+            }
+            .select {
+                margin: 15px 0;
+                width: 100%;
+                .selectField{
+                    background-color: $WHITE;
                 }
             }
-            .title {
-                font-family: 'OpenSans-SemiBold', sans-serif;
-                color: $PRIMARY_DARK;
-                font-size: $BIG_SIZE;
-                text-transform: uppercase;
-            }
-            .button {
-                background-color: $PRIMARY;
-                margin: 20px auto;
-                width: 80%;
+            .info {
+                display: flex;
+                justify-content: space-between;
+                .textField {
+                    width: 45%;
+                }
             }
         }
     }
