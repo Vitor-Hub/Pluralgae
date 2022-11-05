@@ -1,5 +1,5 @@
 import React, {RefObject, useEffect, useState} from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./index.scss";
 
 var Logo = require('../../assets/logo.png');
@@ -16,6 +16,8 @@ const HeaderMenu = (props:IHeaderMenuProps) => {
 
   const [windowSize, setWindowSize] = useState(getWindowSize());
   const responsiveWidth = 1060;
+
+  const location = useLocation();
 
   useEffect(() => {
     function handleWindowResize() {
@@ -37,10 +39,16 @@ const HeaderMenu = (props:IHeaderMenuProps) => {
   function renderMenus() {
     return(
       <>
-        <span className="link"><h5 onClick={() => executeScroll(AdvantagesRef)}>Spirulina</h5></span>
-        <span className="link"><h5 onClick={() => executeScroll(ContactUsRef)}>Fale Conosco</h5></span>
-        <span className="link"><h5 onClick={() => executeScroll(WhoWeAreRef)}>Quem somos</h5></span>
-        <Link to="/checkout" className="link"><span><h5 onClick={() => {}}>Comprar</h5></span></Link>
+        {location.pathname === "/" ? 
+          <>
+            <Link to="/" className="link"><h5 onClick={() => executeScroll(AdvantagesRef)}>Spirulina</h5></Link>
+            <Link to="/" className="link"><h5 onClick={() => executeScroll(ContactUsRef)}>Fale Conosco</h5></Link>
+            <Link to="/" className="link"><h5 onClick={() => executeScroll(WhoWeAreRef)}>Quem somos</h5></Link>
+          </>
+          :
+          <></>
+        }
+        <Link to="/checkout" className={location.pathname === "/" ? "link" : "buy"}><span><h5 onClick={() => {}}>Comprar</h5></span></Link>
       </>
     )
   }

@@ -11,7 +11,7 @@
         padding-left: 80px;
         display: inline-block;
         margin-bottom: 50px;
-        @media only screen and (max-width: 750px) {
+        @media only screen and (max-width: 790px) {
             margin: 50px auto 0;
             text-align: center;
             padding: 0 25px;
@@ -41,7 +41,11 @@
                 padding-left: 80px;
                 flex-direction: column;
                 @media only screen and (max-width: 1300px) {
-                   padding: 40px;
+                    padding: 40px;
+                }
+                @media only screen and (max-width: 790px) {
+                    justify-content: center;
+                    align-items: center;
                 }
                 img {
                     width: 110px;
@@ -86,7 +90,7 @@
             position: absolute;
             right: 0;
             z-index: -1;
-            @media only screen and (max-width: 750px) {
+            @media only screen and (max-width: 790px) {
                 display: none;
             }
         }

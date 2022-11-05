@@ -58,9 +58,11 @@ const ConfigAccount = () => {
 
   const handleUpdateUser = async () => {
     formRef?.current?.reportValidity();
-    const {access_token, ...rest} = updateUser;
+    let {access_token, ...rest} = updateUser;
 
-    if (!verifyPasswordEqual()) setUpdateUser({...updateUser, password: newPassword.password});
+    if (!verifyPasswordEqual()) {
+      rest = {...rest, password: newPassword.password};
+    }
     setLoading(true);
 
     await updateUserService(rest, access_token)
@@ -73,6 +75,7 @@ const ConfigAccount = () => {
       .catch((e: any) => {
           console.error(e);
           setAlert(true);
+          setSaved(false);
           setAlertMessage(e.response.data.message);
       });
     setLoading(false);
@@ -93,17 +96,13 @@ const ConfigAccount = () => {
   }
   
   const validatePassword = () => {
-    if (newPassword?.password.length >= 8 && newPassword?.repeatPassword.length >= 8) {
+    if (newPassword?.password == "" || newPassword?.repeatPassword == "" || (newPassword?.password.length >= 8 && newPassword?.repeatPassword.length >= 8)) {
       return false
     } 
     else {
       return true
     }
   }
-
-  useEffect(() => {
-    console.log("updateUser: ", updateUser);
-  },[updateUser]);
 
   return (
     <>
@@ -167,7 +166,7 @@ const ConfigAccount = () => {
                         className="textField" 
                         id="password"
                         value={newPassword?.password}
-                        helperText= {newPassword?.password.length >= 8 ? "" : "A senha precisa ter mais que 8 caracteres"}
+                        helperText= {verifyPasswordEqual() ? "A senha precisa ser igual e ter mais que 8 caracteres" : ""}
                         label="Nova Senha"
                         variant="outlined"
                         type="password"
@@ -183,7 +182,7 @@ const ConfigAccount = () => {
                         value={newPassword?.repeatPassword}
                         label="Confirme a senha"
                         variant="outlined"
-                        helperText= {newPassword?.repeatPassword.length >= 8  ? "" : "A senha precisa ter mais que 8 caracteres"}
+                        helperText= {verifyPasswordEqual()  ? "A senha precisa ser igual e ter mais que 8 caracteres" : ""}
                         type="password"
                         error={verifyPasswordEqual()}
                         onChange={(e) => {
