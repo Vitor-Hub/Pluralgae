@@ -4,11 +4,13 @@
     display: flex;
     flex-direction: column;
     padding: 70px;
-    height: 100px;
     @media only screen and (max-width: 540px) {
         padding: 25px;
         margin-bottom: 70px;
     } 
+    > .title {
+        height: 100px;
+    }
     .title {
         display: flex;
         align-items: center;
@@ -176,7 +178,6 @@
                     }
                 }
                 .productPrice {
-                    width: 15%;
                     @media only screen and (max-width: 540px) {
                         width: auto;
                     } 
