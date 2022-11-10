@@ -13,6 +13,11 @@
         align-items: center;
         justify-content: space-around;
         flex-wrap: wrap;
+        flex-direction: column;
+        .newPassword {
+            display: flex;
+            flex-direction: column;
+        }
         .basicData {
             padding: 25px;
             width: 600px;
@@ -33,7 +38,7 @@
     }
     .top {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
         margin-bottom: 25px;
         @media only screen and (max-width: 540px) {
@@ -43,6 +48,7 @@
             display: flex;
             align-items: center;
             width: 600px;
+            height: 100px;
             svg {
                 color: $PRIMARY;
             }

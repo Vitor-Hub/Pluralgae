@@ -3,6 +3,10 @@
 .MyOders {
     margin: 0;
     padding: 70px;
+    .cards {
+        max-width: 650px;
+        margin: 0 auto;
+    }
     .topContent {
         display: flex;
         justify-content: space-between;
@@ -96,6 +100,13 @@
             margin: 0;
         }
         .oders {
+            .noOders {
+                display: flex;
+                justify-content: center;
+                h3 {
+                    color: $PRIMARY;
+                }
+            }
             .topInfo {
                 display: flex;
                 justify-content: space-between;

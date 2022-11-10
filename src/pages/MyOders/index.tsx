@@ -23,12 +23,13 @@ const MyOders = () => {
     if (user) {
       await getOders(user.id, user.access_token)
         .then((response: any) => {
+          setError(false);
           setOders(response.data);
         })
         .catch((e) => {
-            console.error(e);
-            setError(true);
-            setErrorMessage(e.response.data.message);
+          console.error(e);
+          setError(true);
+          setErrorMessage(e.response.data.message);
         });
     }
     setLoading(false);
@@ -163,6 +164,13 @@ const MyOders = () => {
                     </AccordionDetails>
                   </Accordion>
                 ))}
+                {!!oders.length ?
+                    <></>
+                    :
+                    <div className="noOders">
+                      <h3>Sem pedidos ainda!</h3>
+                    </div>
+                }
               </div>
             }
           </div>

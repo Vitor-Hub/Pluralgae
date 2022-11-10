@@ -20,11 +20,15 @@ const SignUp = () => {
         username: "",
         password: "",
         email: "",
-        address: "",
+        street: "",
         phoneNumber: "",
         zipCode: "",
         city: "", 
-        state: ""
+        state: "",
+        district: "",
+        birthdate: "",
+        number: "",
+        document: ""
     });
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<boolean>(false);
@@ -35,11 +39,15 @@ const SignUp = () => {
             username: "",
             password: "",
             email: "",
-            address: "",
             phoneNumber: "",
             zipCode: "",
             city: "", 
-            state: ""
+            state: "",
+            street: "",
+            district: "",
+            birthdate: "",
+            number: "",
+            document: ""
         })
         setError(false);
     }
@@ -56,10 +64,12 @@ const SignUp = () => {
     const handleSignUp = async () => {
         formRef?.current?.reportValidity();
         setIsLoading(true);
-
-        if (verifyEmptyInputs()) {
-            await signUpService(userData)
-            .then((response: any) => {
+        if (!verifyEmptyInputs()) {
+            let data = {...userData};
+            data.birthdate = formatDate(data.birthdate);
+            data.phoneNumber = "+55" + data.phoneNumber.replace(/[()-]/g, "");
+            await signUpService(data)
+            .then(() => {
                 setIsOpenSignUpModal(false);
                 setError(false);
                 signIn({
@@ -70,12 +80,24 @@ const SignUp = () => {
             .catch((e) => {
                 console.error(e);
                 setError(true);
-                setErrorMessage(e.response.data.message);
+                if(e.response.data.message == 'Esse endereço de email já está em uso') {
+                    setErrorMessage(e.response.data.message);
+                } else {
+                    setErrorMessage("Revise os dados!");
+                }
             });
+        } else {
+            setError(true);
+            setErrorMessage("Preencha todos os campos!");
         }
         
+        setUserData(userData);
         setIsLoading(false);
     }
+
+    useEffect(() => {
+        console.log(userData)
+    },[userData])
 
     const validatePassword = () => {
         if (userData?.password === '' || userData?.password.length >= 8 ) {
@@ -102,13 +124,33 @@ const SignUp = () => {
     }
 
     const verifyEmptyInputs = () => {
-        if(userData?.email === '' || userData?.address === '' || userData?.password === '' || userData?.city === '', userData?.phoneNumber === '' ||
-        userData?.state === '' || userData?.username === '' || userData?.zipCode === '') {
-            setErrorMessage("Preencha todos os campos!")
+        return !!Object.values(userData).filter((item) => item === "").length;
+    }
+
+    const validateBirthdate = () => {
+        const today = new Date();
+        const date = new Date(formatDate(userData?.birthdate));
+
+        if(date < today) {
             return false;
         } else {
             return true;
         }
+    }
+
+    const formatDate = (date: string) => {
+        var dia  = date.split("/")[0];
+        var mes  = date.split("/")[1];
+        var ano  = date.split("/")[2];
+        
+        const dateFormated = ano + '-' + ("0"+mes).slice(-2) + '-' + ("0"+dia).slice(-2);
+        return dateFormated;
+    }
+
+    const convertBrithdateBack = (date: string) => {
+    const [year, month, day] = date.split('-');
+    const result = [day, month, year].join('/');
+    return result;
     }
 
     return (
@@ -135,7 +177,8 @@ const SignUp = () => {
                                         id="user"
                                         value={userData?.username}
                                         required
-                                        label="Usuário"
+                                        label="Nome completo"
+                                        type="text"
                                         variant="outlined"
                                         onChange={(e) => setUserData({...userData, username: e.currentTarget.value})}
                                     />
@@ -158,7 +201,7 @@ const SignUp = () => {
                                         required
                                         label="Email"
                                         variant="outlined"
-                                        type="email"
+                                        type="text"
                                         error={validateEmail()}
                                         onChange={(e) => setUserData({...userData, email: e.currentTarget.value})}
                                     />
@@ -174,18 +217,41 @@ const SignUp = () => {
                                         variant="outlined"
                                         onChange={(e) => setUserData({...userData, phoneNumber: e.currentTarget.value.replace(/ /g, "")})}
                                     />
+                                    <PatternFormat 
+                                        format="##/##/####"
+                                        id="birthdate" 
+                                        label="Data de nascimento" 
+                                        className="textField"
+                                        value={userData?.birthdate}
+                                        customInput={TextField}
+                                        required
+                                        error={validateBirthdate()}
+                                        variant="outlined"
+                                        onChange={(e) => setUserData({...userData, birthdate: e.currentTarget.value})}
+                                    />
+                                    <TextField  
+                                        className="textField" 
+                                        id="district"
+                                        value={userData?.district}
+                                        required
+                                        label="Bairro"
+                                        variant="outlined"
+                                        type="text"
+                                        onChange={(e) => setUserData({...userData, district: e.currentTarget.value})}
+                                    />
+                                    
                                 </div>
 
                                 <div className="rightContent">
                                     <TextField  
                                         className="textField" 
                                         id="street"
-                                        value={userData?.address}
+                                        value={userData?.street}
                                         required
-                                        label="Endereço"
+                                        label="Rua"
                                         variant="outlined"
-                                        type="street"
-                                        onChange={(e) => setUserData({...userData, address: e.currentTarget.value})}
+                                        type="text"
+                                        onChange={(e) => setUserData({...userData, street: e.currentTarget.value})}
                                     />
                                     <PatternFormat 
                                         format="########" 
@@ -205,7 +271,7 @@ const SignUp = () => {
                                         required
                                         label="Cidade"
                                         variant="outlined"
-                                        type="city"
+                                        type="text"
                                         onChange={(e) => setUserData({...userData, city: e.currentTarget.value})}
                                     />
                                     <TextField  
@@ -215,12 +281,31 @@ const SignUp = () => {
                                         required
                                         label="Estado"
                                         variant="outlined"
-                                        type="state"
+                                        type="text"
                                         onChange={(e) => setUserData({...userData, state: e.currentTarget.value})}
+                                    />
+                                    <TextField  
+                                        className="textField" 
+                                        id="number"
+                                        value={userData?.number}
+                                        required
+                                        label="Número da residência"
+                                        variant="outlined"
+                                        type="text"
+                                        onChange={(e) => setUserData({...userData, number: e.currentTarget.value})}
+                                    />
+                                    <TextField  
+                                        className="textField" 
+                                        id="document"
+                                        value={userData?.document}
+                                        required
+                                        label="CPF"
+                                        variant="outlined"
+                                        type="text"
+                                        onChange={(e) => setUserData({...userData, document: e.currentTarget.value.replace(/\D/g,'')})}
                                     />
                                 </div>
                             </div>
-
                             <LoadingButton 
                                 className="button" 
                                 variant="contained"
