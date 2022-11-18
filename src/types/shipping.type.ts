@@ -1,8 +1,8 @@
 interface IPostShipping {
-    items: {
-        id?: string,
-        quantity?: number
-    }[],
+    items: [{
+        id: string,
+        quantity: number
+    }] | [],
     cep?: string
 }
 
