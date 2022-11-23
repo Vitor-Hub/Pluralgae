@@ -1,4 +1,4 @@
-import { Alert, AlertTitle, Card, CircularProgress, FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, TextField } from "@mui/material";
+import { Card, CircularProgress, FormControl, FormControlLabel, FormLabel, InputLabel, MenuItem, Radio, RadioGroup, Select, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import PaymentIcon from '@mui/icons-material/Payment';
@@ -16,7 +16,7 @@ import { getProducts } from "../../services/product.service";
 import { AuthContext } from "../../contexts/auth";
 import { IFinalPayment } from "../../types/checkout.type";
 import { checkoutService } from "../../services/checkout.service";
-import { setDefaultResultOrder } from "dns";
+import AlertComponent from "../../components/AletComponent";
 
 var productImage = require('../../assets/productImage.png');
 
@@ -81,6 +81,7 @@ const Checkout = () => {
   }
 
   const handlePayment = async () => {
+    formRef?.current?.reportValidity();
     setIsLoading(true);
     if (user) {
       var data = {} as IFinalPayment;
@@ -94,7 +95,7 @@ const Checkout = () => {
           code: shippingCheckoutData.code
         }
       }
-      await checkoutService(data)
+      await checkoutService(data, user.access_token)
         .then(() => {
           setError(true);
           setErrorMessage("Pedido Realisado!");
@@ -105,7 +106,6 @@ const Checkout = () => {
           setError(true);
           setErrorMessage(e.response.data.message);
         });
-      console.log("data: ", data);
     }
     setIsLoading(false);
   }
@@ -146,7 +146,6 @@ const Checkout = () => {
         if(result && !!result.length) response.data.map((item:IGetProducts, index:number) => {
           result[index].quantity = 0;
         })
-        result = result;
         setProductInfo(response.data);
       })
       .catch((e) => {
@@ -186,6 +185,7 @@ const Checkout = () => {
   useEffect(() => {
     calcProductsValue();
     addShippingItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[productInfo]);
 
   useEffect(() => {
@@ -198,6 +198,7 @@ const Checkout = () => {
 
   useEffect(() => {
     calcProductsValue();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[shippingCheckoutData]);
 
   const sumNumber = (i: number) => {
@@ -259,17 +260,17 @@ const Checkout = () => {
         <LoadingButton 
             className="button" 
             variant="contained"
-            onClick={changeView == View.Checkout ? handleCheckout : handlePayment}
+            onClick={changeView === View.Checkout ? handleCheckout : handlePayment}
             loading={isLoading}
         >
-            {changeView == View.Checkout ? "Ir para o pagamento" : "Pagar"}
+            {changeView === View.Checkout ? "Ir para o pagamento" : "Pagar"}
         </LoadingButton>
         {isShippingLoading ?
           <div className="circular">
             <CircularProgress color="success" />
           </div>
           :
-          changeView == View.Checkout && shippingPostData.items && !!shippingPostData.items.length ?
+          changeView === View.Checkout && shippingPostData.items && !!shippingPostData.items.length ?
             <FormControl>
               <FormLabel id="radio-buttons">Frete</FormLabel>
                 <RadioGroup
@@ -295,13 +296,11 @@ const Checkout = () => {
   return (
     <>
       {error ?
-        <Alert className="AlertComponent" severity="error">
-          <AlertTitle>{errorMessage}</AlertTitle>
-        </Alert>
+        <AlertComponent type="error">{errorMessage}</AlertComponent>
         :
         <></>
       }
-      {changeView == View.Checkout ?
+      {changeView === View.Checkout ?
         <div className="Checkout">
           <div className="title">
             <ShoppingCartCheckoutIcon/>
@@ -466,7 +465,7 @@ const Checkout = () => {
                       labelId="paymentId"
                       id="select"
                       value={cardData?.paymentMethod}
-                      label="Forma de pagamento"
+                      label="Parcelas"
                       className="selectField"
                       onChange={(e) => setCardData({...cardData, paymentMethod: e.target.value})}
                     >

@@ -9,6 +9,7 @@ import { getOders } from "../../services/oders.service";
 import { AuthContext } from "../../contexts/auth";
 import { Link } from "react-router-dom";
 import IOders from "../../types/oders.type";
+import AlertComponent from "../../components/AletComponent";
 
 const MyOders = () => {
 
@@ -56,9 +57,7 @@ const MyOders = () => {
   return (
     <>
       {error ? 
-        <Alert className="AlertComponent" severity="error">
-            <AlertTitle>{errorMessage}</AlertTitle>
-        </Alert>
+        <AlertComponent type="error">{errorMessage}</AlertComponent>
         :
         <></>
       }

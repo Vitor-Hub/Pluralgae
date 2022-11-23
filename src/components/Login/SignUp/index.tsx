@@ -1,5 +1,5 @@
 import { LoadingButton } from "@mui/lab";
-import { Alert, AlertTitle, Box, Modal, TextField } from "@mui/material";
+import { Box, Modal, TextField } from "@mui/material";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import validator from 'validator';
 import { PatternFormat } from 'react-number-format';
@@ -8,6 +8,7 @@ import { signUpService } from "../../../services/signup.service";
 import { ISignUp } from "../../../types/signup.type";
 import "./index.scss";
 import { AuthContext } from "../../../contexts/auth";
+import AlertComponent from "../../AletComponent";
 
 const SignUp = () => {
 
@@ -95,10 +96,6 @@ const SignUp = () => {
         setIsLoading(false);
     }
 
-    useEffect(() => {
-        console.log(userData)
-    },[userData])
-
     const validatePassword = () => {
         if (userData?.password === '' || userData?.password.length >= 8 ) {
             return false
@@ -145,12 +142,6 @@ const SignUp = () => {
         
         const dateFormated = ano + '-' + ("0"+mes).slice(-2) + '-' + ("0"+dia).slice(-2);
         return dateFormated;
-    }
-
-    const convertBrithdateBack = (date: string) => {
-    const [year, month, day] = date.split('-');
-    const result = [day, month, year].join('/');
-    return result;
     }
 
     return (
@@ -317,9 +308,7 @@ const SignUp = () => {
                         </form>
                     </div>
                     {error ?
-                        <Alert className="AlertComponent" severity="error">
-                            <AlertTitle>{errorMessage}</AlertTitle>
-                        </Alert>
+                        <AlertComponent type="error">{errorMessage}</AlertComponent>
                         :
                         <></>
                     }

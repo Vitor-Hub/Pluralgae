@@ -20,6 +20,23 @@
         font-size: $EXTRALARGE_SIZE;
     }
     .inputs {
+        .forgotLabel {
+            cursor: pointer;
+        }
+        .AlertComponent {
+            position: inherit;
+            width: auto;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            .buttonBack {
+                margin: 20px auto 0;
+                background-color: $PRIMARY_DARK;
+                width: 124px;
+            }
+        }
         form {
             display: flex;
             flex-direction: column;
@@ -28,8 +45,9 @@
                 margin: 10px 0;
             }
             .button{
-                margin-top: 20px;
+                margin: 20px auto 0;
                 background-color: $PRIMARY;
+                width: 124px;
             }
         }
         h5{
