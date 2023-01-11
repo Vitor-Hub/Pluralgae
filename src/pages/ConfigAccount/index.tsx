@@ -45,7 +45,6 @@ const ConfigAccount = () => {
 
   useEffect(() => {
     if (user) {
-      console.log("ENTROU")
       setUpdateUser({
         access_token: user.access_token,
         street: user.address.street,
@@ -89,7 +88,6 @@ const ConfigAccount = () => {
     if (!verifyEmptyInputs(rest)) {
       await updateUserService(rest, access_token)
       .then(() => {
-          console.log("rest: ", rest)
           setAlert(true);
           setSaved(true);
           setAlertMessage("Atualizado com sucesso!");
@@ -133,7 +131,6 @@ const ConfigAccount = () => {
       id: updateUser.id,
       birthdate: formatDate(updateUser.birthdate)
     }
-    console.log("data: ", data)
     localStorage.setItem("user", JSON.stringify({...data}));
     setUser({...data});
   }

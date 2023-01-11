@@ -77,7 +77,7 @@ const SignIn = () => {
         let data = {... userRecovery};
         setIsLoading(true);
         data.birthdate = formatDate(userRecovery?.birthdate);
-        console.log("data: ", data);
+        
         await recoveryAccountService(data)
             .then(() => {
                 setForgotPassword(false);
@@ -93,7 +93,6 @@ const SignIn = () => {
     document.addEventListener("keypress", (e) => {
         if( e.key == 'Enter' ){
             handleSignIn();
-            console.log("enter")
         }
     });
       

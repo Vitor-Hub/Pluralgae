@@ -99,7 +99,6 @@ const Checkout = () => {
         .then(() => {
           setError(true);
           setErrorMessage("Pedido Realisado!");
-            console.log("data: ", data);
           })
         .catch((e) => {
           console.error(e);
