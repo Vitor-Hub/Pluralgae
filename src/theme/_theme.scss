@@ -1,14 +1,14 @@
-$PRIMARY:#00A87E;
+$PRIMARY: #00a87e;
 $PRIMARY_DARK: #023827;
 $PRIMARY_DARK_ALT: #023728;
-$SECONDARY: #93C242;
-$PRIMARY_TEXT_COLOR: #88C654;
+$SECONDARY: #93c242;
+$PRIMARY_TEXT_COLOR: #88c654;
 $PRIMARY_DARK_TEXT_COLOR: #023827;
-$SECONDARY_TEXT_COLOR: #013B2A;
-$LIGH_COLOR: #D3D3D3;
-$GRAY: #7F858D;
-$RED: #E72626;
-$WHITE: #FFFFFF;
+$SECONDARY_TEXT_COLOR: #013b2a;
+$LIGH_COLOR: #d3d3d3;
+$GRAY: #7f858d;
+$RED: #e72626;
+$WHITE: #ffffff;
 
 $SMALL_SIZE: 12px;
 $MEDIUM_SIZE: 14px;
@@ -22,26 +22,26 @@ $WEIGHT_BOLD: 500;
 $WEIGHT_XBOLD: 600;
 
 @font-face {
-    font-family: "OpenSans-Light";
-    src: url('fonts/OpenSans-Light.ttf') format('truetype');
+  font-family: "OpenSans-Light";
+  src: url("fonts/OpenSans-Light.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: "OpenSans-ExtraBold";
-    src: url('fonts/OpenSans-ExtraBold.ttf') format('truetype');
+  font-family: "OpenSans-ExtraBold";
+  src: url("fonts/OpenSans-ExtraBold.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: "OpenSans-Bold";
-    src: url('fonts/OpenSans-Bold.ttf') format('truetype');
+  font-family: "OpenSans-Bold";
+  src: url("fonts/OpenSans-Bold.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: "OpenSans-SemiBold";
-    src: url('fonts/OpenSans-SemiBold.ttf') format('truetype');
+  font-family: "OpenSans-SemiBold";
+  src: url("fonts/OpenSans-SemiBold.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: "OpenSans-Regular";
-    src: url('fonts/OpenSans-Regular.ttf') format('truetype');
+  font-family: "OpenSans-Regular";
+  src: url("fonts/OpenSans-Regular.ttf") format("truetype");
 }

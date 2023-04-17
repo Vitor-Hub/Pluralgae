@@ -14,17 +14,16 @@ import Checkout from "./pages/Checkout";
 import MyOders from "./pages/MyOders";
 
 function App() {
-
-  const {setUser} = useContext(AuthContext);
+  const { setUser } = useContext(AuthContext);
 
   const AdvantagesRef = useRef<HTMLDivElement>(null);
   const ContactUsRef = useRef<HTMLDivElement>(null);
   const WhoWeAreRef = useRef<HTMLDivElement>(null);
 
-  window.onbeforeunload = function() {
+  window.onbeforeunload = function () {
     localStorage.clear();
     setUser(null);
-    return '';
+    return "";
   };
 
   return (
@@ -32,29 +31,33 @@ function App() {
       <BrowserRouter>
         <ModalControlProvider>
           <AuthProvider>
-            <TopContent/>
+            <TopContent />
             <HeaderMenu
               AdvantagesRef={AdvantagesRef}
               ContactUsRef={ContactUsRef}
               WhoWeAreRef={WhoWeAreRef}
             />
-              <Routes>
-                <Route element={
+            <Routes>
+              <Route
+                element={
                   <Home
                     AdvantagesRef={AdvantagesRef}
                     ContactUsRef={ContactUsRef}
                     WhoWeAreRef={WhoWeAreRef}
-                  />} path=""/>
-                <Route element={<ConfigAccount />} path="/configaccount" />
-                <Route element={<Checkout />} path="/checkout" />
-                <Route element={<MyOders />} path="/myoders" />
-              </Routes>
-            <SignIn/>
-            <SignUp/>
+                  />
+                }
+                path=""
+              />
+              <Route element={<ConfigAccount />} path="/configaccount" />
+              <Route element={<Checkout />} path="/checkout" />
+              <Route element={<MyOders />} path="/myoders" />
+            </Routes>
+            <SignIn />
+            <SignUp />
           </AuthProvider>
         </ModalControlProvider>
       </BrowserRouter>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

@@ -1,28 +1,27 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 import SocialIcons from "../SocialIcons";
 import { Box } from "@mui/material";
 
 const Footer = () => {
-
   const [windowSize, setWindowSize] = useState(getWindowSize());
   const responsiveWidth = 1060;
 
   useEffect(() => {
-      function handleWindowResize() {
+    function handleWindowResize() {
       setWindowSize(getWindowSize());
-      }
+    }
 
-      window.addEventListener('resize', handleWindowResize);
+    window.addEventListener("resize", handleWindowResize);
 
-      return () => {
-      window.removeEventListener('resize', handleWindowResize);
-      };
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
   }, []);
 
   function getWindowSize() {
-      const {innerWidth, innerHeight} = window;
-      return {innerWidth, innerHeight};
+    const { innerWidth, innerHeight } = window;
+    return { innerWidth, innerHeight };
   }
 
   return (
@@ -30,19 +29,19 @@ const Footer = () => {
       className="Footer"
       component="footer"
       sx={{
-        mt: 'auto'
+        mt: "auto",
       }}
     >
       <h4 className="pluralgae">
-          © 2022 PLURALGAE - TODOS OS DIREITOS RESERVADOS
+        © 2022 PLURALGAE - TODOS OS DIREITOS RESERVADOS
       </h4>
-      {windowSize.innerWidth > responsiveWidth ? 
+      {windowSize.innerWidth > responsiveWidth ? (
         <div className="socialIcons">
           <SocialIcons />
         </div>
-        :
+      ) : (
         <></>
-      }
+      )}
     </Box>
   );
 };

@@ -1,5 +1,5 @@
 enum GlobalEnum {
-    GetWidth = "GetWidth"
+  GetWidth = "GetWidth",
 }
 
 export default GlobalEnum;

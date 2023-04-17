@@ -1,8 +1,6 @@
 interface ISignIn {
-    username: string;
-    password: string;
+  username: string;
+  password: string;
 }
 
-export type {
-    ISignIn
-}
+export type { ISignIn };

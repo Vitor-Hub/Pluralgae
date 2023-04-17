@@ -1,7 +1,7 @@
 import { LoadingButton } from "@mui/lab";
 import { Alert, AlertTitle, Card, TextField } from "@mui/material";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import ContactPageIcon from '@mui/icons-material/ContactPage';
+import ContactPageIcon from "@mui/icons-material/ContactPage";
 import { PatternFormat } from "react-number-format";
 import { AuthContext } from "../../contexts/auth";
 import { updateUserService } from "../../services/updateUser.service";
@@ -10,13 +10,12 @@ import { IUpdateUser } from "../../types/updateUser.type";
 import validator from "validator";
 
 interface INewPassword {
-  password: string,
-  repeatPassword: string
+  password: string;
+  repeatPassword: string;
 }
 
 const ConfigAccount = () => {
-
-  const {user, signed, setUser} = useContext(AuthContext);
+  const { user, signed, setUser } = useContext(AuthContext);
 
   const formRef = useRef<HTMLFormElement>(null);
   const [alertMessage, setAlertMessage] = useState<string>();
@@ -36,11 +35,11 @@ const ConfigAccount = () => {
     phoneNumber: "",
     username: "",
     birthdate: "",
-    document: ""
+    document: "",
   });
   const [newPassword, setNewPassword] = useState<INewPassword>({
     repeatPassword: "",
-    password: ""
+    password: "",
   });
 
   useEffect(() => {
@@ -58,18 +57,18 @@ const ConfigAccount = () => {
         phoneNumber: user.phoneNumber.replace(/[+55]/g, ""),
         username: user.username,
         birthdate: convertBrithdateBack(user.birthdate),
-        document: user.document
-    });
+        document: user.document,
+      });
     }
-  },[user]);
+  }, [user]);
 
   const validatePhoneNumber = () => {
     if (updateUser?.phoneNumber.length === 11) {
-        return false
+      return false;
     } else {
-        return true
+      return true;
     }
-  }
+  };
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -77,17 +76,17 @@ const ConfigAccount = () => {
 
   const handleUpdateUser = async () => {
     formRef?.current?.reportValidity();
-    let {access_token, ...rest} = updateUser;
+    let { access_token, ...rest } = updateUser;
 
     if (!verifyPasswordEqual()) {
-      rest = {...rest, password: newPassword.password};
+      rest = { ...rest, password: newPassword.password };
     }
     setLoading(true);
     rest.birthdate = formatDate(rest.birthdate);
     rest.phoneNumber = "+55" + rest.phoneNumber.replace(/[()-]/g, "");
     if (!verifyEmptyInputs(rest)) {
       await updateUserService(rest, access_token)
-      .then(() => {
+        .then(() => {
           setAlert(true);
           setSaved(true);
           setAlertMessage("Atualizado com sucesso!");
@@ -104,13 +103,13 @@ const ConfigAccount = () => {
       setAlertMessage("Dados necessários do usuário não podem ficar vazios!");
     }
     setLoading(false);
-  }
+  };
 
   const convertBrithdateBack = (date: string) => {
-    const [year, month, day] = date.split('-');
-    const result = [day, month, year].join('/');
+    const [year, month, day] = date.split("-");
+    const result = [day, month, year].join("/");
     return result;
-  }
+  };
 
   const setNewGlobalUser = () => {
     const storagedToken = localStorage.getItem("token");
@@ -126,238 +125,312 @@ const ConfigAccount = () => {
         district: updateUser.district,
         zipCode: updateUser.zipCode,
         city: updateUser.city,
-        state: updateUser.state
+        state: updateUser.state,
       },
       id: updateUser.id,
-      birthdate: formatDate(updateUser.birthdate)
-    }
-    localStorage.setItem("user", JSON.stringify({...data}));
-    setUser({...data});
-  }
+      birthdate: formatDate(updateUser.birthdate),
+    };
+    localStorage.setItem("user", JSON.stringify({ ...data }));
+    setUser({ ...data });
+  };
 
   const verifyPasswordEqual = () => {
-    if(newPassword?.password !== newPassword?.repeatPassword) {
+    if (newPassword?.password !== newPassword?.repeatPassword) {
       return true;
     } else {
       return validatePassword();
     }
-  }
-  
+  };
+
   const validatePassword = () => {
-    if (newPassword?.password.length >= 8 && newPassword?.repeatPassword.length >= 8) {
-      return false
-    } 
-    else {
-      return true
+    if (
+      newPassword?.password.length >= 8 &&
+      newPassword?.repeatPassword.length >= 8
+    ) {
+      return false;
+    } else {
+      return true;
     }
-  }
+  };
 
   const validateBirthdate = () => {
     const today = new Date();
     const date = new Date(formatDate(updateUser?.birthdate));
 
-    if(date < today) {
-        return false;
+    if (date < today) {
+      return false;
     } else {
-        return true;
+      return true;
     }
-  }
+  };
 
   const verifyEmptyInputs = (data: any) => {
     return !!Object.values(data).filter((item) => item === "").length;
-  }
+  };
 
   const formatDate = (date: string) => {
-    var dia  = date.split("/")[0];
-    var mes  = date.split("/")[1];
-    var ano  = date.split("/")[2];
+    var dia = date.split("/")[0];
+    var mes = date.split("/")[1];
+    var ano = date.split("/")[2];
 
-    const dateFormated = ano + '-' + ("0"+mes).slice(-2) + '-' + ("0"+dia).slice(-2);
+    const dateFormated =
+      ano + "-" + ("0" + mes).slice(-2) + "-" + ("0" + dia).slice(-2);
     return dateFormated;
-  }
+  };
 
   const validateEmail = () => {
-    if (updateUser?.email === '' || validator.isEmail(updateUser?.email)) {
-        return false
+    if (updateUser?.email === "" || validator.isEmail(updateUser?.email)) {
+      return false;
     } else {
-        return true
+      return true;
     }
-  }
+  };
 
   return (
     <>
-      {alert ?
-        <Alert className="AlertComponent" severity={saved ? "success" : "error"}>
+      {alert ? (
+        <Alert
+          className="AlertComponent"
+          severity={saved ? "success" : "error"}
+        >
           <AlertTitle>{alertMessage}</AlertTitle>
         </Alert>
-        :
+      ) : (
         <></>
-      }
+      )}
       <div className="ConfigAccount">
-        {signed ?
-          <form 
+        {signed ? (
+          <form
             ref={formRef}
             className="form"
             onSubmit={(event) => onSubmit(event)}
           >
             <div className="top">
               <div className="title">
-                <ContactPageIcon/>
+                <ContactPageIcon />
                 <h2>Meus Dados</h2>
               </div>
               <div className="button">
-                <LoadingButton 
-                    className="saveButton"
-                    loading={loading}
-                    type="submit"
-                    variant="contained"
-                    onClick={() => handleUpdateUser()}
-                > 
-                  Salvar 
-                </LoadingButton> 
+                <LoadingButton
+                  className="saveButton"
+                  loading={loading}
+                  type="submit"
+                  variant="contained"
+                  onClick={() => handleUpdateUser()}
+                >
+                  Salvar
+                </LoadingButton>
               </div>
             </div>
             <div className="cards">
               <Card className="basicData">
                 <h3>Dados básicos</h3>
-                  <TextField
-                    label="Nome Completo"
-                    className="textField" 
-                    id="name" 
-                    onChange={(e) => setUpdateUser({...updateUser, username: e.currentTarget.value})}
-                    value={updateUser?.username}
-                    required
-                    variant="outlined"
-                  />
-                  <TextField
-                    label="E-mail"
-                    className="textField" 
-                    id="email" 
-                    onChange={(e) => setUpdateUser({...updateUser, email: e.currentTarget.value})}
-                    value={updateUser?.email}
-                    error={validateEmail()}
-                    required
-                    variant="outlined"
-                  />
-                  <PatternFormat 
-                    format="(##)#####-####"
-                    id="phoneNumber" 
-                    label="Celular" 
-                    className="textField"
-                    value={updateUser?.phoneNumber}
-                    customInput={TextField}
-                    required
-                    error={validatePhoneNumber()}
-                    variant="outlined"
-                      onChange={(e) => setUpdateUser({...updateUser, phoneNumber: e.currentTarget.value.replace(/ /g, "")})}
-                  />
-                  <PatternFormat 
-                    format="##/##/####"
-                    id="birthdate" 
-                    label="Data de nascimento" 
-                    className="textField"
-                    value={updateUser?.birthdate}
-                    customInput={TextField}
-                    required
-                    error={validateBirthdate()}
-                    variant="outlined"
-                    onChange={(e) => setUpdateUser({...updateUser, birthdate: e.currentTarget.value})}
-                  />
-                  <TextField 
-                    label="CPF"
-                    className="textField" 
-                    id="document" 
-                    onChange={(e) => setUpdateUser({...updateUser, document: e.currentTarget.value.replace(/\D/g,'')})}
-                    value={updateUser?.document}
-                    required
-                  />
+                <TextField
+                  label="Nome Completo"
+                  className="textField"
+                  id="name"
+                  onChange={(e) =>
+                    setUpdateUser({
+                      ...updateUser,
+                      username: e.currentTarget.value,
+                    })
+                  }
+                  value={updateUser?.username}
+                  required
+                  variant="outlined"
+                />
+                <TextField
+                  label="E-mail"
+                  className="textField"
+                  id="email"
+                  onChange={(e) =>
+                    setUpdateUser({
+                      ...updateUser,
+                      email: e.currentTarget.value,
+                    })
+                  }
+                  value={updateUser?.email}
+                  error={validateEmail()}
+                  required
+                  variant="outlined"
+                />
+                <PatternFormat
+                  format="(##)#####-####"
+                  id="phoneNumber"
+                  label="Celular"
+                  className="textField"
+                  value={updateUser?.phoneNumber}
+                  customInput={TextField}
+                  required
+                  error={validatePhoneNumber()}
+                  variant="outlined"
+                  onChange={(e) =>
+                    setUpdateUser({
+                      ...updateUser,
+                      phoneNumber: e.currentTarget.value.replace(/ /g, ""),
+                    })
+                  }
+                />
+                <PatternFormat
+                  format="##/##/####"
+                  id="birthdate"
+                  label="Data de nascimento"
+                  className="textField"
+                  value={updateUser?.birthdate}
+                  customInput={TextField}
+                  required
+                  error={validateBirthdate()}
+                  variant="outlined"
+                  onChange={(e) =>
+                    setUpdateUser({
+                      ...updateUser,
+                      birthdate: e.currentTarget.value,
+                    })
+                  }
+                />
+                <TextField
+                  label="CPF"
+                  className="textField"
+                  id="document"
+                  onChange={(e) =>
+                    setUpdateUser({
+                      ...updateUser,
+                      document: e.currentTarget.value.replace(/\D/g, ""),
+                    })
+                  }
+                  value={updateUser?.document}
+                  required
+                />
               </Card>
 
               <Card className="basicData">
                 <h3>Trocar Senha</h3>
                 <div className="newPassword">
-                    <TextField  
-                      className="textField" 
-                      id="password"
-                      value={newPassword?.password}
-                      helperText= {newPassword?.password !== "" && verifyPasswordEqual() ? "A senha precisa ser igual e ter mais que 8 caracteres" : ""}
-                      label="Nova Senha"
-                      variant="outlined"
-                      type="password"
-                      error={newPassword?.password !== "" && verifyPasswordEqual()}
-                      onChange={(e) => {
-                          setNewPassword({...newPassword, password: e.currentTarget.value})
-                        }
-                      }
-                    />
-                    <TextField  
-                      className="textField" 
-                      id="repeatePassword"
-                      value={newPassword?.repeatPassword}
-                      label="Confirme a senha"
-                      variant="outlined"
-                      helperText= {newPassword?.repeatPassword !== "" && verifyPasswordEqual()  ? "A senha precisa ser igual e ter mais que 8 caracteres" : ""}
-                      type="password"
-                      error={newPassword?.repeatPassword !== "" && verifyPasswordEqual()}
-                      onChange={(e) => {
-                          setNewPassword({...newPassword, repeatPassword: e.currentTarget.value})
-                        }
-                      }
-                    />
-                  </div>
+                  <TextField
+                    className="textField"
+                    id="password"
+                    value={newPassword?.password}
+                    helperText={
+                      newPassword?.password !== "" && verifyPasswordEqual()
+                        ? "A senha precisa ser igual e ter mais que 8 caracteres"
+                        : ""
+                    }
+                    label="Nova Senha"
+                    variant="outlined"
+                    type="password"
+                    error={
+                      newPassword?.password !== "" && verifyPasswordEqual()
+                    }
+                    onChange={(e) => {
+                      setNewPassword({
+                        ...newPassword,
+                        password: e.currentTarget.value,
+                      });
+                    }}
+                  />
+                  <TextField
+                    className="textField"
+                    id="repeatePassword"
+                    value={newPassword?.repeatPassword}
+                    label="Confirme a senha"
+                    variant="outlined"
+                    helperText={
+                      newPassword?.repeatPassword !== "" &&
+                      verifyPasswordEqual()
+                        ? "A senha precisa ser igual e ter mais que 8 caracteres"
+                        : ""
+                    }
+                    type="password"
+                    error={
+                      newPassword?.repeatPassword !== "" &&
+                      verifyPasswordEqual()
+                    }
+                    onChange={(e) => {
+                      setNewPassword({
+                        ...newPassword,
+                        repeatPassword: e.currentTarget.value,
+                      });
+                    }}
+                  />
+                </div>
               </Card>
 
               <Card className="basicData">
                 <h3>Endereços</h3>
-                <TextField 
+                <TextField
                   label="Rua"
-                  className="textField" 
-                  id="address" 
-                  onChange={(e) => setUpdateUser({...updateUser, street: e.currentTarget.value})}
+                  className="textField"
+                  id="address"
+                  onChange={(e) =>
+                    setUpdateUser({
+                      ...updateUser,
+                      street: e.currentTarget.value,
+                    })
+                  }
                   value={updateUser?.street}
                   required
                 />
-                <PatternFormat 
-                  format="########" 
+                <PatternFormat
+                  format="########"
                   id="zipCode"
-                  label="CEP" 
+                  label="CEP"
                   required
                   className="textField"
                   value={updateUser?.zipCode}
                   variant="outlined"
                   customInput={TextField}
-                  onChange={(e) => setUpdateUser({...updateUser, zipCode: e.currentTarget.value})}
+                  onChange={(e) =>
+                    setUpdateUser({
+                      ...updateUser,
+                      zipCode: e.currentTarget.value,
+                    })
+                  }
                 />
-                <TextField 
+                <TextField
                   label="Cidade"
-                  className="textField" 
-                  id="city" 
-                  onChange={(e) => setUpdateUser({...updateUser, city: e.currentTarget.value})}
+                  className="textField"
+                  id="city"
+                  onChange={(e) =>
+                    setUpdateUser({
+                      ...updateUser,
+                      city: e.currentTarget.value,
+                    })
+                  }
                   value={updateUser?.city}
                   required
                 />
-                <TextField 
+                <TextField
                   label="Estado"
-                  className="textField" 
-                  id="state" 
-                  onChange={(e) => setUpdateUser({...updateUser, state: e.currentTarget.value})}
+                  className="textField"
+                  id="state"
+                  onChange={(e) =>
+                    setUpdateUser({
+                      ...updateUser,
+                      state: e.currentTarget.value,
+                    })
+                  }
                   value={updateUser?.state}
                   required
                 />
-                <TextField 
+                <TextField
                   label="Número da residência"
-                  className="textField" 
-                  id="number" 
-                  onChange={(e) => setUpdateUser({...updateUser, number: e.currentTarget.value})}
+                  className="textField"
+                  id="number"
+                  onChange={(e) =>
+                    setUpdateUser({
+                      ...updateUser,
+                      number: e.currentTarget.value,
+                    })
+                  }
                   value={updateUser?.number}
                   required
                 />
               </Card>
             </div>
           </form>
-          :
+        ) : (
           <></>
-        }
+        )}
       </div>
     </>
   );

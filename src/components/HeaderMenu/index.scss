@@ -1,99 +1,99 @@
-@import 'src/theme/_theme.scss';
+@import "src/theme/_theme.scss";
 
 .HeaderMenu {
-    display: flex;
-    border-bottom: 1px solid rgba(2, 55, 40, 0.15);
-    justify-content: space-between;
-    padding: 10px 0;
-    @media only screen and (max-width: 1060px) {
-        flex-direction: column;
-       .buy {
-        margin: auto;
-       }
-    }
+  display: flex;
+  border-bottom: 1px solid rgba(2, 55, 40, 0.15);
+  justify-content: space-between;
+  padding: 10px 0;
+  @media only screen and (max-width: 1060px) {
+    flex-direction: column;
     .buy {
-        margin-left: auto;
-        text-decoration: none;
-        h5 {
-            text-transform: uppercase;
-            font-family: 'OpenSans-Light', sans-serif;
-            font-size: $SMALL_SIZE;
-            color: $SECONDARY_TEXT_COLOR;
-            white-space: nowrap;
-            cursor: pointer;
-            letter-spacing: 2px;
-            @media only screen and (max-width: 1060px) {
-                font-size: 16px;
-            }
-        }
+      margin: auto;
     }
-    hr {
-        background-color: $PRIMARY_DARK_ALT;
-        width: 95%;
-        height: 1px;
-        opacity: 15%;
+  }
+  .buy {
+    margin-left: auto;
+    text-decoration: none;
+    h5 {
+      text-transform: uppercase;
+      font-family: "OpenSans-Light", sans-serif;
+      font-size: $SMALL_SIZE;
+      color: $SECONDARY_TEXT_COLOR;
+      white-space: nowrap;
+      cursor: pointer;
+      letter-spacing: 2px;
+      @media only screen and (max-width: 1060px) {
+        font-size: 16px;
+      }
     }
-    .top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        .logo {
-            width: auto;
-            @media only screen and (max-width: 1060px) {
-                margin: auto;
-            }
-        }
-        .cart {
-            margin-right: 85px;
-            @media only screen and (max-width: 1060px) {
-                margin-right: 15px;
-            }
-        }
-    } 
+  }
+  hr {
+    background-color: $PRIMARY_DARK_ALT;
+    width: 95%;
+    height: 1px;
+    opacity: 15%;
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     .logo {
-        width: 50%;
-        margin-left: 45px;
+      width: auto;
+      @media only screen and (max-width: 1060px) {
+        margin: auto;
+      }
+    }
+    .cart {
+      margin-right: 85px;
+      @media only screen and (max-width: 1060px) {
+        margin-right: 15px;
+      }
+    }
+  }
+  .logo {
+    width: 50%;
+    margin-left: 45px;
+    cursor: pointer;
+    @media only screen and (max-width: 1060px) {
+      margin-left: 15px;
+    }
+    img {
+      width: 120px;
+    }
+  }
+  .menus {
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+    align-items: center;
+    margin-right: 50px;
+    @media only screen and (max-width: 1060px) {
+      width: 100%;
+    }
+    @media only screen and (max-width: 720px) {
+      flex-direction: column;
+    }
+    .link {
+      text-decoration: none;
+      h5 {
+        text-transform: uppercase;
+        font-family: "OpenSans-Light", sans-serif;
+        font-size: $SMALL_SIZE;
+        color: $SECONDARY_TEXT_COLOR;
+        white-space: nowrap;
         cursor: pointer;
+        letter-spacing: 2px;
         @media only screen and (max-width: 1060px) {
-            margin-left: 15px;
+          font-size: 16px;
         }
-        img {
-            width: 120px;
-        }
+      }
     }
-    .menus {
-        display: flex;
-        justify-content: space-around;
-        width: 40%;
-        align-items: center;
-        margin-right: 50px;
-        @media only screen and (max-width: 1060px) {
-            width: 100%;
-        }
-        @media only screen and (max-width: 720px) {
-            flex-direction: column;
-        } 
-        .link {
-            text-decoration: none;
-            h5 {
-                text-transform: uppercase;
-                font-family: 'OpenSans-Light', sans-serif;
-                font-size: $SMALL_SIZE;
-                color: $SECONDARY_TEXT_COLOR;
-                white-space: nowrap;
-                cursor: pointer;
-                letter-spacing: 2px;
-                @media only screen and (max-width: 1060px) {
-                    font-size: 16px;
-                }
-            }
-        }
-        .cart {
-            margin: 0 25px 0 45px;
-            cursor: pointer;
-            img {
-                width: 50px;
-            }
-        }
+    .cart {
+      margin: 0 25px 0 45px;
+      cursor: pointer;
+      img {
+        width: 50px;
+      }
     }
+  }
 }

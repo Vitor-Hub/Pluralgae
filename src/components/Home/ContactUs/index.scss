@@ -1,165 +1,168 @@
-@import 'src/theme/_theme.scss';
+@import "src/theme/_theme.scss";
 
-.ContactUs{
-    background-color: $PRIMARY;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 80px;
+.ContactUs {
+  background-color: $PRIMARY;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 80px;
+  @media only screen and (max-width: 1060px) {
+    flex-direction: column;
+    position: relative;
+    padding: 50px 50px 160px 50px;
+  }
+  .infos {
+    width: 50%;
     @media only screen and (max-width: 1060px) {
-        flex-direction: column;
-        position: relative;
-        padding: 50px 50px 160px 50px;
-    }  
-    .infos {
-        width: 50%;
-        @media only screen and (max-width: 1060px) {
-            width: 100%;
-        }  
-        h2{
-            color: $PRIMARY_DARK;
-            text-transform: uppercase;
-            font-family: 'OpenSans-ExtraBold', sans-serif;
-            font-size: $XLARGE_SIZE;
-            letter-spacing: 2px;
-            margin: 0;
-            white-space: nowrap;
-        }
-        .contactTitle {
-            @media only screen and (max-width: 1060px) {
-                text-align: center;
-                white-space: break-spaces;
-            } 
-        }
-        .iconInfos{
-            display: flex;
-            flex-direction: column;
-            margin: 40px 0;
-            img {
-                width: 35px;
-                height: 35px;
-                margin-left: -6px;
-            }
-            div {
-                display: flex;
-                align-items: center;
-                @media only screen and (max-width: 1060px) {
-                    margin: 0 auto;
-                    min-width: 408px;
-                }
-                @media only screen and (max-width: 720px) {
-                    min-width: 315px;
-                } 
-                h3 {
-                    color: $WHITE;
-                    font-family: 'OpenSans-Bold', sans-serif;
-                    font-size: $LARGE_SIZE;
-                    letter-spacing: 2px;
-                    margin: 8px;
-                }
-            }
-        }
-        .follow {
-            display: flex;
-            align-items: center;
-            @media only screen and (max-width: 1060px) {
-                position: absolute;
-                bottom: 10px;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            }    
-            @media only screen and (max-width: 720px) {
-                flex-direction: column;
-                bottom: -25px;
-            }    
-            .socialIcons {
-                display: flex;
-                align-items: center;
-                margin-left: 35px;
-                @media only screen and (max-width: 720px) {
-                    margin-left: 0;
-                }
-                a {
-                    display: flex;
-                    align-items: center;
-                    svg {
-                        cursor: pointer;
-                        margin: 0 6px;
-                        color: $PRIMARY_DARK;
-                    }
-                }
-            }
-        }
+      width: 100%;
     }
-    .inputs {
-        width: 50%;
+    h2 {
+      color: $PRIMARY_DARK;
+      text-transform: uppercase;
+      font-family: "OpenSans-ExtraBold", sans-serif;
+      font-size: $XLARGE_SIZE;
+      letter-spacing: 2px;
+      margin: 0;
+      white-space: nowrap;
+    }
+    .contactTitle {
+      @media only screen and (max-width: 1060px) {
+        text-align: center;
+        white-space: break-spaces;
+      }
+    }
+    .iconInfos {
+      display: flex;
+      flex-direction: column;
+      margin: 40px 0;
+      img {
+        width: 35px;
+        height: 35px;
+        margin-left: -6px;
+      }
+      div {
         display: flex;
-        justify-content: center;
+        align-items: center;
         @media only screen and (max-width: 1060px) {
-            width: 100%;
-        } 
-        .form {
-            display: flex;
-            flex-direction: column;
-            width: 60%;
-            position: relative;
-            @media only screen and (max-width: 720px) {
-                width: 80%;
-            } 
-            .textField {
-                margin-top: 10px;
-                input {
-                    padding-left: 10px;
-                    background-color: $WHITE;
-                    border-radius: 14px;
-                    border-width: 2px;
-                    border-color: $PRIMARY_DARK;
-                    height: 30px;
-                    margin-top: 0;
-                }
-            }
-            .areaField {
-                margin-top: 5px;
-                border-radius: 14px;
-                background-color: $WHITE;
-                border-radius: 14px;
-                border-width: 2px;
-                border-color: $PRIMARY_DARK;
-                >div {
-                    border-radius: 14px;
-                    align-items: baseline;
-                    min-height: 80px;
-                }
-                input {
-                    margin-top: 0;
-                }
-            }
-            label,input, .areaField {
-                margin-top: 8px;
-            }
-            label,.sendMessage {
-                font-family: 'OpenSans-SemiBold', sans-serif;
-                font-size: $MEDIUM_SIZE;
-            }
-            .sendMessage {
-                background-color: $PRIMARY_DARK;
-                width: 170px;
-                height: 30px;
-                text-transform: inherit;
-                font-family: 'OpenSans-SemiBold', sans-serif;
-                font-size: $SMALL_SIZE;
-                letter-spacing: 2px;
-                margin: 15px 0 15px auto;
-                >div {
-                    color: $WHITE;
-                }
-            }
-            .AlertComponent {
-                position: absolute;
-                bottom: -50px;
-            }
-            .Loading {
-                margin: 10px 30px 10px auto;
-            }
+          margin: 0 auto;
+          min-width: 408px;
         }
+        @media only screen and (max-width: 720px) {
+          min-width: 315px;
+        }
+        h3 {
+          color: $WHITE;
+          font-family: "OpenSans-Bold", sans-serif;
+          font-size: $LARGE_SIZE;
+          letter-spacing: 2px;
+          margin: 8px;
+        }
+      }
     }
+    .follow {
+      display: flex;
+      align-items: center;
+      @media only screen and (max-width: 1060px) {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      @media only screen and (max-width: 720px) {
+        flex-direction: column;
+        bottom: -25px;
+      }
+      .socialIcons {
+        display: flex;
+        align-items: center;
+        margin-left: 35px;
+        @media only screen and (max-width: 720px) {
+          margin-left: 0;
+        }
+        a {
+          display: flex;
+          align-items: center;
+          svg {
+            cursor: pointer;
+            margin: 0 6px;
+            color: $PRIMARY_DARK;
+          }
+        }
+      }
+    }
+  }
+  .inputs {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    @media only screen and (max-width: 1060px) {
+      width: 100%;
+    }
+    .form {
+      display: flex;
+      flex-direction: column;
+      width: 60%;
+      position: relative;
+      @media only screen and (max-width: 720px) {
+        width: 80%;
+      }
+      .textField {
+        margin-top: 10px;
+        input {
+          padding-left: 10px;
+          background-color: $WHITE;
+          border-radius: 14px;
+          border-width: 2px;
+          border-color: $PRIMARY_DARK;
+          height: 30px;
+          margin-top: 0;
+        }
+      }
+      .areaField {
+        margin-top: 5px;
+        border-radius: 14px;
+        background-color: $WHITE;
+        border-radius: 14px;
+        border-width: 2px;
+        border-color: $PRIMARY_DARK;
+        > div {
+          border-radius: 14px;
+          align-items: baseline;
+          min-height: 80px;
+        }
+        input {
+          margin-top: 0;
+        }
+      }
+      label,
+      input,
+      .areaField {
+        margin-top: 8px;
+      }
+      label,
+      .sendMessage {
+        font-family: "OpenSans-SemiBold", sans-serif;
+        font-size: $MEDIUM_SIZE;
+      }
+      .sendMessage {
+        background-color: $PRIMARY_DARK;
+        width: 170px;
+        height: 30px;
+        text-transform: inherit;
+        font-family: "OpenSans-SemiBold", sans-serif;
+        font-size: $SMALL_SIZE;
+        letter-spacing: 2px;
+        margin: 15px 0 15px auto;
+        > div {
+          color: $WHITE;
+        }
+      }
+      .AlertComponent {
+        position: absolute;
+        bottom: -50px;
+      }
+      .Loading {
+        margin: 10px 30px 10px auto;
+      }
+    }
+  }
 }

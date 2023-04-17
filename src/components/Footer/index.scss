@@ -1,37 +1,37 @@
-@import 'src/theme/_theme.scss';
+@import "src/theme/_theme.scss";
 
 .Footer {
-    background-color: $PRIMARY_DARK;
+  background-color: $PRIMARY_DARK;
+  display: flex;
+  padding: 10px 80px;
+  justify-content: space-between;
+  margin-top: auto;
+  @media only screen and (max-width: 1060px) {
+    justify-content: center;
+  }
+  .pluralgae {
+    font-family: "OpenSans-Regular", sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: $WHITE;
+    font-size: $SMALL_SIZE;
+    font-weight: $WEIGHT_LIGHT;
+    margin: 0;
     display: flex;
-    padding: 10px 80px;
-    justify-content: space-between;
-    margin-top: auto;
-    @media only screen and (max-width: 1060px) {
-        justify-content: center;
-    } 
-    .pluralgae {
-        font-family: 'OpenSans-Regular', sans-serif;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: $WHITE;
-        font-size: $SMALL_SIZE;
-        font-weight: $WEIGHT_LIGHT;
-        margin: 0;
-        display: flex;
-        align-items: center;
+    align-items: center;
+  }
+  .socialIcons {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    a {
+      display: flex;
+      align-items: center;
+      svg {
+        cursor: pointer;
+        margin: 0 6px;
+        color: $PRIMARY;
+      }
     }
-    .socialIcons {
-        display: flex;
-        align-items: center;
-        margin-right: 20px;
-        a {
-            display: flex;
-            align-items: center;
-            svg {
-                cursor: pointer;
-                margin: 0 6px;
-                color: $PRIMARY;
-            }
-        }
-    }
+  }
 }
