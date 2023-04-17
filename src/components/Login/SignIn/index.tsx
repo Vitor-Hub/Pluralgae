@@ -1,12 +1,5 @@
 import { LoadingButton } from "@mui/lab";
-import {
-  Alert,
-  AlertTitle,
-  Box,
-  Button,
-  Modal,
-  TextField,
-} from "@mui/material";
+import { Box, Button, Modal, TextField } from "@mui/material";
 import React, { useContext, useRef, useState } from "react";
 import { PatternFormat } from "react-number-format";
 import { AuthContext } from "../../../contexts/auth";
@@ -25,7 +18,6 @@ const SignIn = () => {
   const { signIn, error } = useContext(AuthContext);
   const [forgotPassword, setForgotPassword] = useState<boolean>(false);
   const [recoveryError, setRecoveryError] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<String>("");
   const [userData, setUserData] = useState<ISignIn>({
     username: "",
     password: "",
@@ -99,7 +91,7 @@ const SignIn = () => {
   };
 
   document.addEventListener("keypress", (e) => {
-    if (e.key == "Enter") {
+    if (e.key === "Enter") {
       handleSignIn();
     }
   });

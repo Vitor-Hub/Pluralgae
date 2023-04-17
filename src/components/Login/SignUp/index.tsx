@@ -1,6 +1,6 @@
 import { LoadingButton } from "@mui/lab";
 import { Box, Modal, TextField } from "@mui/material";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import validator from "validator";
 import { PatternFormat } from "react-number-format";
 import { ModalControlContext } from "../../../contexts/modals";
@@ -82,7 +82,7 @@ const SignUp = () => {
           console.error(e);
           setError(true);
           if (
-            e.response.data.message == "Esse endereço de email já está em uso"
+            e.response.data.message === "Esse endereço de email já está em uso"
           ) {
             setErrorMessage(e.response.data.message);
           } else {

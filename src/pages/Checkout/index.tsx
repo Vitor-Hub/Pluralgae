@@ -159,10 +159,12 @@ const Checkout = () => {
       .then((response: any) => {
         setError(false);
         let result: IGetProducts[] = response.data;
-        if (result && !!result.length)
+        if (result && !!result.length) {
           response.data.map((item: IGetProducts, index: number) => {
             result[index].quantity = 0;
+            return item;
           });
+        }
         setProductInfo(response.data);
       })
       .catch((e) => {
@@ -242,6 +244,7 @@ const Checkout = () => {
     let value = 0;
     productInfo.map((item) => {
       value = value + item.price * item.quantity;
+      return null;
     });
     setTotalProductValue(value);
     setTotalValue(shippingCheckoutData.price + value);

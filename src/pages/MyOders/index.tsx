@@ -2,8 +2,6 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Alert,
-  AlertTitle,
   Button,
   Card,
   CircularProgress,
@@ -55,15 +53,16 @@ const MyOders = () => {
   const convertData = (date: string): string => {
     var dt = new Date(date),
       dia = dt.getDate().toString(),
-      diaF = dia.length == 1 ? "0" + dia : dia,
+      diaF = dia.length === 1 ? "0" + dia : dia,
       mes = (dt.getMonth() + 1).toString(),
-      mesF = mes.length == 1 ? "0" + mes : mes,
+      mesF = mes.length === 1 ? "0" + mes : mes,
       anoF = dt.getFullYear();
     return diaF + "/" + mesF + "/" + anoF;
   };
 
   useEffect(() => {
     getUserOders();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   return (

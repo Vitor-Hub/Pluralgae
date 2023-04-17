@@ -1,9 +1,9 @@
 import "./App.scss";
 import Home from "./pages/Home";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HeaderMenu from "./components/HeaderMenu";
 import Footer from "./components/Footer";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useRef } from "react";
 import TopContent from "./components/TopContent";
 import { AuthContext, AuthProvider } from "./contexts/auth";
 import { ModalControlProvider } from "./contexts/modals";
