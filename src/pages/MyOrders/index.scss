@@ -1,6 +1,6 @@
 @import "src/theme/_theme.scss";
 
-.MyOders {
+.MyOrders {
   margin: 0;
   padding: 70px;
   .cards {
@@ -81,8 +81,13 @@
       }
     }
   }
-  .cardOder {
+  .cardOrder {
     margin-top: 50px;
+    @media only screen and (max-width: 610px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     .circular {
       width: 100%;
       margin: 50px auto;
@@ -99,8 +104,8 @@
       text-transform: uppercase;
       margin: 0;
     }
-    .oders {
-      .noOders {
+    .orders {
+      .noorders {
         display: flex;
         justify-content: center;
         h3 {

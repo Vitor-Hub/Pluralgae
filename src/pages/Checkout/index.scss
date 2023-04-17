@@ -292,6 +292,9 @@
 
 .Payment {
   padding: 70px;
+  @media only screen and (max-width: 610px) {
+    padding: 20px;
+  }
   > svg {
     color: $PRIMARY_DARK;
     cursor: pointer;

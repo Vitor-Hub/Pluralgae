@@ -1,4 +1,4 @@
-export default interface IOders {
+export default interface IOrders {
   id: string;
   purchaseDate: string;
   status: string;

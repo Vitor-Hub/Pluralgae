@@ -13,26 +13,26 @@ import EmailIcon from "@mui/icons-material/Email";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import "./index.scss";
-import { getOders } from "../../services/oders.service";
+import { getOrders } from "../../services/orders.service";
 import { AuthContext } from "../../contexts/auth";
 import { Link } from "react-router-dom";
-import IOders from "../../types/oders.type";
+import IOrders from "../../types/orders.type";
 import AlertComponent from "../../components/AletComponent";
 
-const MyOders = () => {
+const MyOrders = () => {
   const { user } = useContext(AuthContext);
   const [error, setError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [oders, setOders] = useState<IOders[]>([]);
+  const [orders, setOrders] = useState<IOrders[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const getUserOders = async () => {
+  const getUserOrders = async () => {
     setLoading(true);
     if (user) {
-      await getOders(user.id, user.access_token)
+      await getOrders(user.id, user.access_token)
         .then((response: any) => {
           setError(false);
-          setOders(response.data);
+          setOrders(response.data);
         })
         .catch((e) => {
           console.error(e);
@@ -61,7 +61,7 @@ const MyOders = () => {
   };
 
   useEffect(() => {
-    getUserOders();
+    getUserOrders();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
@@ -72,7 +72,7 @@ const MyOders = () => {
       ) : (
         <></>
       )}
-      <div className="MyOders">
+      <div className="MyOrders">
         <div className="topContent">
           <div className="title">
             <ShoppingBasketIcon />
@@ -95,17 +95,17 @@ const MyOders = () => {
               <h4>{user?.email}</h4>
             </div>
           </Card>
-          <div className="cardOder">
+          <div className="cardOrder">
             <h3 className="title">Meus pedidos</h3>
             {loading ? (
               <div className="circular">
                 <CircularProgress color="success" />
               </div>
             ) : (
-              <div className="oders">
-                {oders &&
-                  !!oders.length &&
-                  oders.map((item, index) => (
+              <div className="orders">
+                {orders &&
+                  !!orders.length &&
+                  orders.map((item, index) => (
                     <Accordion key={index}>
                       <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
@@ -151,7 +151,7 @@ const MyOders = () => {
                       </AccordionSummary>
                       <AccordionDetails>
                         <Typography component={"span"}>
-                          <div className="oderDetails">
+                          <div className="orderDetails">
                             {item.items &&
                               !!item.items.length &&
                               item.items.map((i, ind) => (
@@ -183,10 +183,10 @@ const MyOders = () => {
                       </AccordionDetails>
                     </Accordion>
                   ))}
-                {!!oders.length ? (
+                {!!orders.length ? (
                   <></>
                 ) : (
-                  <div className="noOders">
+                  <div className="noorders">
                     <h3>Sem pedidos ainda!</h3>
                   </div>
                 )}
@@ -199,4 +199,4 @@ const MyOders = () => {
   );
 };
 
-export default MyOders;
+export default MyOrders;

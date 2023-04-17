@@ -11,7 +11,7 @@ import SignIn from "./components/Login/SignIn";
 import SignUp from "./components/Login/SignUp";
 import ConfigAccount from "./pages/ConfigAccount";
 import Checkout from "./pages/Checkout";
-import MyOders from "./pages/MyOders";
+import MyOders from "./pages/MyOrders";
 
 function App() {
   const { setUser } = useContext(AuthContext);
