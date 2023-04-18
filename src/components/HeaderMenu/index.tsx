@@ -2,6 +2,7 @@ import React, { RefObject, useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./index.scss";
 import { AuthContext } from "../../contexts/auth";
+import { ModalControlContext } from "../../contexts/modals";
 
 var Logo = require("../../assets/logo.png");
 
@@ -13,6 +14,7 @@ interface IHeaderMenuProps {
 
 const HeaderMenu = (props: IHeaderMenuProps) => {
   const { WhoWeAreRef, AdvantagesRef, ContactUsRef } = props;
+  const { setIsOpenSignInModal } = useContext(ModalControlContext);
   const { signed } = useContext(AuthContext);
 
   const [windowSize, setWindowSize] = useState(getWindowSize());
@@ -60,7 +62,13 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
           className={location.pathname === "/" ? "link" : "buy"}
         >
           <span>
-            <h5 onClick={() => {}}>Comprar</h5>
+            <h5
+              onClick={() => {
+                !signed && setIsOpenSignInModal(true);
+              }}
+            >
+              Comprar
+            </h5>
           </span>
         </Link>
       </>
