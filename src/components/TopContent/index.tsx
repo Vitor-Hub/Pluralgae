@@ -28,6 +28,10 @@ const TopContent = () => {
             <h5 onClick={handleSignOut}>
               <Link to="">Sair</Link>
             </h5>
+            <h5 className="pipe">&nbsp;|&nbsp;</h5>
+            <h5 onClick={handleSignOut}>
+              <Link to="/admin">Admin</Link>
+            </h5>
           </div>
         </div>
       ) : (
