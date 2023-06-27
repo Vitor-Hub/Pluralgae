@@ -1,12 +1,16 @@
 import { Card, TextField } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import React, { useContext, useEffect, useRef, useState } from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
 import "./index.scss";
 import { AuthContext } from "../../contexts/auth";
 import AlertComponent from "../../components/AletComponent";
 import { IRegisterProducts } from "../../types/registerProduct.type";
 import { registerProductService } from "../../services/registerProduct.service";
 import { uploadImageService } from "../../services/uploadImage.service";
+import { getProducts } from "../../services/product.service";
+import IGetProducts from "../../types/products.type";
+import { deleteProductService } from "../../services/deleteProduct.service";
 
 const Admin = () => {
   const { user } = useContext(AuthContext);
@@ -16,6 +20,7 @@ const Admin = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [message, setMessage] = useState<string>("");
+  const [productInfo, setProductInfo] = useState<IGetProducts[]>([]);
   const [registerProduct, setRegisterProduct] = useState<IRegisterProducts>({
     name: "",
     description: "",
@@ -29,6 +34,32 @@ const Admin = () => {
     width: 0,
     imagePath: "",
   });
+
+  useEffect(() => {
+    GetProducts();
+  }, []);
+
+  const GetProducts = async () => {
+    setIsLoading(true);
+    await getProducts()
+      .then((response: any) => {
+        setError(false);
+        let result: IGetProducts[] = response.data;
+        if (result && !!result.length) {
+          response.data.map((item: IGetProducts, index: number) => {
+            result[index].quantity = 0;
+            return item;
+          });
+        }
+        setProductInfo(response.data);
+      })
+      .catch((e) => {
+        console.error(e);
+        setError(true);
+        setErrorMessage(e.response.data.message);
+      });
+    setIsLoading(false);
+  };
 
   const handleRegisterProduct = async () => {
     formRef?.current?.reportValidity();
@@ -62,6 +93,7 @@ const Admin = () => {
         });
     }
     setIsLoading(false);
+    GetProducts();
   };
 
   useEffect(() => {
@@ -83,6 +115,27 @@ const Admin = () => {
         setError(true);
       });
     setIsLoading(false);
+  };
+
+  const convertNumber = (price: number) => {
+    return price?.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+  };
+
+  const handleDeleteProduct = async (productId: string | undefined) => {
+    if (productId && user) {
+      await deleteProductService(productId, user?.access_token)
+        .then(() => {
+          GetProducts();
+        })
+        .catch((e: any) => {
+          console.error(e);
+          setErrorMessage(e.response.data.message);
+          setError(true);
+        });
+    }
   };
 
   return (
@@ -284,6 +337,34 @@ const Admin = () => {
               Cadastrar
             </LoadingButton>
             <h3>{message}</h3>
+          </Card>
+          <Card className="productData">
+            <h3 className="title">Produto e Frete</h3>
+            {productInfo.map((item, index) => {
+              return (
+                <div key={item.id} className="products">
+                  <div className="productImage">
+                    <img src={item.imagePath} alt="spirulina" />
+                  </div>
+                  <div className="productInfos">
+                    <h3 className="productTitle">{item.name}</h3>
+                    <div className="creditInfo">
+                      <h4 className="credit">{item.description}</h4>
+                    </div>
+                  </div>
+                  <div className="productPrice">
+                    <h4 className="priceTitle">Preço à vista:</h4>
+                    <h3 className="price">{`${convertNumber(item.price)}`}</h3>
+                  </div>
+                  <div
+                    className="delete"
+                    onClick={() => handleDeleteProduct(item.id)}
+                  >
+                    <DeleteIcon className="deleteIcon" />
+                  </div>
+                </div>
+              );
+            })}
           </Card>
         </div>
       </div>
