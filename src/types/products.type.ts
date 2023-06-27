@@ -4,4 +4,5 @@ export default interface IGetProducts {
   description: string;
   price: number;
   quantity: number;
+  imagePath: string;
 }

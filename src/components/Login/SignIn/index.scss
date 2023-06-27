@@ -49,6 +49,12 @@
         background-color: $PRIMARY;
         width: 124px;
       }
+      .dimensions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+      }
     }
     h5 {
       text-align: center;

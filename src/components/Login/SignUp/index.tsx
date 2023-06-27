@@ -172,7 +172,7 @@ const SignUp = () => {
                     value={userData?.username}
                     required
                     label="Nome completo"
-                    type="text"
+                    type="name"
                     variant="outlined"
                     onChange={(e) =>
                       setUserData({

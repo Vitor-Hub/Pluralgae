@@ -30,8 +30,6 @@ import { IFinalPayment } from "../../types/checkout.type";
 import { checkoutService } from "../../services/checkout.service";
 import AlertComponent from "../../components/AletComponent";
 
-var productImage = require("../../assets/productImage.png");
-
 interface ICreditCard {
   paymentMethod: string;
   cardNumber: string;
@@ -385,7 +383,7 @@ const Checkout = () => {
                     return (
                       <div key={index} className="products">
                         <div className="productImage">
-                          <img src={productImage} alt="spirulina" />
+                          <img src={item.imagePath} alt="spirulina" />
                         </div>
                         <div className="productInfos">
                           <h3 className="productTitle">{item.name}</h3>
