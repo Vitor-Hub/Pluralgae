@@ -1,7 +1,6 @@
 import { Card, TextField } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import DeleteIcon from "@mui/icons-material/Delete";
 import "./index.scss";
 import { AuthContext } from "../../contexts/auth";
 import AlertComponent from "../../components/AletComponent";
@@ -11,6 +10,8 @@ import { uploadImageService } from "../../services/uploadImage.service";
 import { getProducts } from "../../services/product.service";
 import IGetProducts from "../../types/products.type";
 import { deleteProductService } from "../../services/deleteProduct.service";
+
+const API_URL = "http://161.35.132.93:8080/";
 
 const Admin = () => {
   const { user } = useContext(AuthContext);
@@ -96,17 +97,12 @@ const Admin = () => {
     GetProducts();
   };
 
-  useEffect(() => {
-    console.log("registerProduct: ", registerProduct);
-  }, [registerProduct]);
-
   const handleImageUpload = async (event: any) => {
     setIsLoading(true);
     const file = event.target.files[0];
     await uploadImageService(file, user?.access_token)
       .then((response: any) => {
         setSelectedImage(file);
-        console.log("response: ", response.data);
         setRegisterProduct({ ...registerProduct, imagePath: response.data });
       })
       .catch((e: any) => {
@@ -125,6 +121,7 @@ const Admin = () => {
   };
 
   const handleDeleteProduct = async (productId: string | undefined) => {
+    setIsLoading(true);
     if (productId && user) {
       await deleteProductService(productId, user?.access_token)
         .then(() => {
@@ -136,6 +133,7 @@ const Admin = () => {
           setError(true);
         });
     }
+    setIsLoading(false);
   };
 
   return (
@@ -340,11 +338,11 @@ const Admin = () => {
           </Card>
           <Card className="productData">
             <h3 className="title">Produto e Frete</h3>
-            {productInfo.map((item, index) => {
+            {productInfo.map((item) => {
               return (
                 <div key={item.id} className="products">
                   <div className="productImage">
-                    <img src={item.imagePath} alt="spirulina" />
+                    <img src={`${API_URL}${item.imagePath}`} alt="spirulina" />
                   </div>
                   <div className="productInfos">
                     <h3 className="productTitle">{item.name}</h3>
@@ -356,12 +354,14 @@ const Admin = () => {
                     <h4 className="priceTitle">Preço à vista:</h4>
                     <h3 className="price">{`${convertNumber(item.price)}`}</h3>
                   </div>
-                  <div
+                  <LoadingButton
+                    variant="contained"
                     className="delete"
                     onClick={() => handleDeleteProduct(item.id)}
+                    loading={isLoading}
                   >
-                    <DeleteIcon className="deleteIcon" />
-                  </div>
+                    Apagar
+                  </LoadingButton>
                 </div>
               );
             })}

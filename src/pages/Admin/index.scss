@@ -5,6 +5,7 @@
   padding: 70px;
   .cards {
     margin: 0 auto;
+    max-width: 650px;
     .productData {
       padding: 25px;
       display: flex;
@@ -58,10 +59,8 @@
           }
         }
         .delete {
-          .deleteIcon {
-            color: $PRIMARY_DARK;
-            cursor: pointer;
-          }
+          background-color: $PRIMARY_DARK;
+          cursor: pointer;
         }
         .productPrice {
           min-width: 102px;
