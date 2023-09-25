@@ -11,6 +11,7 @@ interface ISignUp {
   district: string;
   birthdate: string;
   document: string;
+  admin:boolean
 }
 
 export type { ISignUp };

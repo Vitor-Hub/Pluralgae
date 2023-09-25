@@ -12,17 +12,15 @@ import SignUp from "./components/Login/SignUp";
 import ConfigAccount from "./pages/ConfigAccount";
 import Checkout from "./pages/Checkout";
 import MyOders from "./pages/MyOrders";
+import Admin from "./pages/Admin";
 
 function App() {
-  const { setUser } = useContext(AuthContext);
-
   const AdvantagesRef = useRef<HTMLDivElement>(null);
   const ContactUsRef = useRef<HTMLDivElement>(null);
   const WhoWeAreRef = useRef<HTMLDivElement>(null);
 
   window.onbeforeunload = function () {
     localStorage.clear();
-    setUser(null);
     return "";
   };
 
@@ -51,6 +49,7 @@ function App() {
               <Route element={<ConfigAccount />} path="/configaccount" />
               <Route element={<Checkout />} path="/checkout" />
               <Route element={<MyOders />} path="/myoders" />
+              <Route element={<Admin />} path="/admin" />
             </Routes>
             <SignIn />
             <SignUp />

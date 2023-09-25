@@ -30,6 +30,7 @@ const SignUp = () => {
     birthdate: "",
     number: "",
     document: "",
+    admin:false
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
@@ -49,6 +50,7 @@ const SignUp = () => {
       birthdate: "",
       number: "",
       document: "",
+      admin:false
     });
     setError(false);
   };
@@ -172,7 +174,7 @@ const SignUp = () => {
                     value={userData?.username}
                     required
                     label="Nome completo"
-                    type="text"
+                    type="name"
                     variant="outlined"
                     onChange={(e) =>
                       setUserData({

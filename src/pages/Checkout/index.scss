@@ -179,6 +179,7 @@
           }
         }
         .productPrice {
+          min-width: 102px;
           @media only screen and (max-width: 540px) {
             width: auto;
           }

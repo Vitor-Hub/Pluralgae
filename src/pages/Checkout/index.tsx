@@ -30,7 +30,7 @@ import { IFinalPayment } from "../../types/checkout.type";
 import { checkoutService } from "../../services/checkout.service";
 import AlertComponent from "../../components/AletComponent";
 
-var productImage = require("../../assets/productImage.png");
+const API_URL = "http://161.35.132.93:8080/";
 
 interface ICreditCard {
   paymentMethod: string;
@@ -385,7 +385,10 @@ const Checkout = () => {
                     return (
                       <div key={index} className="products">
                         <div className="productImage">
-                          <img src={productImage} alt="spirulina" />
+                          <img
+                            src={`${API_URL}${item.imagePath}`}
+                            alt="spirulina"
+                          />
                         </div>
                         <div className="productInfos">
                           <h3 className="productTitle">{item.name}</h3>
