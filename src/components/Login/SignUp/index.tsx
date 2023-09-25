@@ -30,6 +30,7 @@ const SignUp = () => {
     birthdate: "",
     number: "",
     document: "",
+    admin:false
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
@@ -49,6 +50,7 @@ const SignUp = () => {
       birthdate: "",
       number: "",
       document: "",
+      admin:false
     });
     setError(false);
   };

@@ -15,15 +15,12 @@ import MyOders from "./pages/MyOrders";
 import Admin from "./pages/Admin";
 
 function App() {
-  const { setUser } = useContext(AuthContext);
-
   const AdvantagesRef = useRef<HTMLDivElement>(null);
   const ContactUsRef = useRef<HTMLDivElement>(null);
   const WhoWeAreRef = useRef<HTMLDivElement>(null);
 
   window.onbeforeunload = function () {
     localStorage.clear();
-    setUser(null);
     return "";
   };
 

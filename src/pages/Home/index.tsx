@@ -1,4 +1,4 @@
-import React, { RefObject } from "react";
+import React, { RefObject, useEffect } from "react";
 import Advantages from "../../components/Home/Advantages";
 import Banner from "../../components/Home/Banner";
 import ContactUs from "../../components/Home/ContactUs";
