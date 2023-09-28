@@ -32,9 +32,12 @@ const Footer = () => {
         mt: "auto",
       }}
     >
-      <h4 className="pluralgae">
-        © 2022 PLURALGAE - TODOS OS DIREITOS RESERVADOS
-      </h4>
+      <div className="infos">
+        <h4 className="pluralgae">
+          © 2022 PLURALGAE - TODOS OS DIREITOS RESERVADOS
+        </h4>
+        <h4>Desenvolvedores: Vitor Pereira e Leandro Trindade</h4>
+      </div>
       {windowSize.innerWidth > responsiveWidth ? (
         <div className="socialIcons">
           <SocialIcons />

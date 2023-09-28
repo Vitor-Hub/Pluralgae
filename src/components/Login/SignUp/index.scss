@@ -14,10 +14,15 @@
   align-items: center;
   justify-content: flex-start;
   width: fit-content;
+  max-height: 80vh;
+  min-width: 50vh;
+  overflow-y: scroll;
+  outline: none;
 
   @media only screen and (max-width: 650px) {
-    max-height: 600px;
-    overflow: scroll;
+    max-width: 400px;
+    overflow-y: auto;
+    max-height: unset;
   }
 
   .AlertComponent {
@@ -37,29 +42,19 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
+        h2 {
+          font-family: "OpenSans-SemiBold", sans-serif;
+          text-align: center;
+          color: $PRIMARY;
+          font-size: $BIG_SIZE;
+        }
         @media only screen and (max-width: 650px) {
           flex-direction: column;
         }
-
-        .leftContent {
+        .topContent,.bottomContent {
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          margin: 10px;
-          @media only screen and (max-width: 650px) {
-            margin-bottom: 0;
-          }
-        }
-        .rightContent {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          margin: 10px;
-          @media only screen and (max-width: 650px) {
-            margin-top: 0;
-          }
         }
       }
       .textField {
@@ -69,6 +64,7 @@
       }
       .button {
         background-color: $PRIMARY;
+        margin: 23px 0;
       }
     }
     h5 {

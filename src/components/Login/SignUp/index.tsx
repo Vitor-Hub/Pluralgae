@@ -167,7 +167,8 @@ const SignUp = () => {
               onSubmit={(event) => onSubmit(event)}
             >
               <div className="mainContent">
-                <div className="leftContent">
+                <div className="topContent">
+                  <h2>Informações Pessoais</h2>
                   <TextField
                     className="textField"
                     id="user"
@@ -180,27 +181,6 @@ const SignUp = () => {
                       setUserData({
                         ...userData,
                         username: e.currentTarget.value,
-                      })
-                    }
-                  />
-                  <TextField
-                    className="textField"
-                    id="password"
-                    value={userData?.password}
-                    required
-                    label="Senha"
-                    variant="outlined"
-                    type="password"
-                    helperText={
-                      validatePassword()
-                        ? "A senha precisa ter mais que 8 caracteres"
-                        : ""
-                    }
-                    error={validatePassword()}
-                    onChange={(e) =>
-                      setUserData({
-                        ...userData,
-                        password: e.currentTarget.value,
                       })
                     }
                   />
@@ -253,37 +233,22 @@ const SignUp = () => {
                   />
                   <TextField
                     className="textField"
-                    id="district"
-                    value={userData?.district}
+                    id="document"
+                    value={userData?.document}
                     required
-                    label="Bairro"
+                    label="CPF"
                     variant="outlined"
                     type="text"
                     onChange={(e) =>
                       setUserData({
                         ...userData,
-                        district: e.currentTarget.value,
+                        document: e.currentTarget.value.replace(/\D/g, ""),
                       })
                     }
                   />
                 </div>
-
-                <div className="rightContent">
-                  <TextField
-                    className="textField"
-                    id="street"
-                    value={userData?.street}
-                    required
-                    label="Rua"
-                    variant="outlined"
-                    type="text"
-                    onChange={(e) =>
-                      setUserData({
-                        ...userData,
-                        street: e.currentTarget.value,
-                      })
-                    }
-                  />
+                <div className="bottomContent">
+                  <h2>Endereço</h2>
                   <PatternFormat
                     format="########"
                     id="zipCode"
@@ -297,6 +262,36 @@ const SignUp = () => {
                       setUserData({
                         ...userData,
                         zipCode: e.currentTarget.value,
+                      })
+                    }
+                  />
+                  <TextField
+                    className="textField"
+                    id="district"
+                    value={userData?.district}
+                    required
+                    label="Bairro"
+                    variant="outlined"
+                    type="text"
+                    onChange={(e) =>
+                      setUserData({
+                        ...userData,
+                        district: e.currentTarget.value,
+                      })
+                    }
+                  />
+                  <TextField
+                    className="textField"
+                    id="street"
+                    value={userData?.street}
+                    required
+                    label="Rua"
+                    variant="outlined"
+                    type="text"
+                    onChange={(e) =>
+                      setUserData({
+                        ...userData,
+                        street: e.currentTarget.value,
                       })
                     }
                   />
@@ -339,31 +334,38 @@ const SignUp = () => {
                       })
                     }
                   />
-                  <TextField
-                    className="textField"
-                    id="document"
-                    value={userData?.document}
-                    required
-                    label="CPF"
-                    variant="outlined"
-                    type="text"
-                    onChange={(e) =>
-                      setUserData({
-                        ...userData,
-                        document: e.currentTarget.value.replace(/\D/g, ""),
-                      })
-                    }
-                  />
                 </div>
+                <h2>Crie uma senha</h2>
+                <TextField
+                  className="textField"
+                  id="password"
+                  value={userData?.password}
+                  required
+                  label="Senha"
+                  variant="outlined"
+                  type="password"
+                  helperText={
+                    validatePassword()
+                      ? "A senha precisa ter mais que 8 caracteres"
+                      : ""
+                  }
+                  error={validatePassword()}
+                  onChange={(e) =>
+                    setUserData({
+                      ...userData,
+                      password: e.currentTarget.value,
+                    })
+                  }
+                />
+                <LoadingButton
+                  className="button"
+                  variant="contained"
+                  onClick={handleSignUp}
+                  loading={isLoading}
+                >
+                  Cadastre-se
+                </LoadingButton>
               </div>
-              <LoadingButton
-                className="button"
-                variant="contained"
-                onClick={handleSignUp}
-                loading={isLoading}
-              >
-                SignUp
-              </LoadingButton>
             </form>
           </div>
           {error ? (

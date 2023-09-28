@@ -9,16 +9,29 @@
   @media only screen and (max-width: 1060px) {
     justify-content: center;
   }
-  .pluralgae {
-    font-family: "OpenSans-Regular", sans-serif;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: $WHITE;
-    font-size: $SMALL_SIZE;
-    font-weight: $WEIGHT_LIGHT;
-    margin: 0;
-    display: flex;
-    align-items: center;
+  .infos {
+    .pluralgae {
+      font-family: "OpenSans-Regular", sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: $WHITE;
+      font-size: $SMALL_SIZE;
+      font-weight: $WEIGHT_LIGHT;
+      margin: 0;
+      display: flex;
+      align-items: center;
+    }
+    h4{
+      font-family: "OpenSans-Regular", sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: $WHITE;
+      font-size: $EXTRASMALL_SIZE;
+      font-weight: $WEIGHT_LIGHT;
+      margin: 0;
+      display: flex;
+      align-items: center;
+    }
   }
   .socialIcons {
     display: flex;
