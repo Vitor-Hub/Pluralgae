@@ -14,7 +14,7 @@ interface IUser {
   };
   id: string;
   birthdate: string;
-  admin:boolean
+  admin: boolean;
 }
 
 export type { IUser };
