@@ -44,14 +44,14 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
       <>
         {location.pathname === "/" ? (
           <>
-            <Link to="/" className="link">
-              <h5 onClick={() => executeScroll(AdvantagesRef)}>Spirulina</h5>
+            <Link to="/" className="link" onClick={() => executeScroll(AdvantagesRef)}>
+              <h5>Spirulina</h5>
             </Link>
-            <Link to="/" className="link">
-              <h5 onClick={() => executeScroll(ContactUsRef)}>Fale Conosco</h5>
+            <Link to="/" className="link" onClick={() => executeScroll(ContactUsRef)}>
+              <h5>Fale Conosco</h5>
             </Link>
-            <Link to="/" className="link">
-              <h5 onClick={() => executeScroll(WhoWeAreRef)}>Quem somos</h5>
+            <Link to="/" className="link" onClick={() => executeScroll(WhoWeAreRef)}>
+              <h5>Quem somos</h5>
             </Link>
           </>
         ) : (
