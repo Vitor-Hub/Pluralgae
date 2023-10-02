@@ -10,8 +10,7 @@ import { uploadImageService } from "../../services/uploadImage.service";
 import { getProducts } from "../../services/product.service";
 import IGetProducts from "../../types/products.type";
 import { deleteProductService } from "../../services/deleteProduct.service";
-
-const API_URL = "http://161.35.132.93:8080/";
+import api from '../../http-commom';
 
 const Admin = () => {
   const { user } = useContext(AuthContext);
@@ -342,7 +341,7 @@ const Admin = () => {
               return (
                 <div key={item.id} className="products">
                   <div className="productImage">
-                    <img src={`${API_URL}${item.imagePath}`} alt="spirulina" />
+                    <img src={`${api.defaults.baseURL}${item.imagePath}`} alt="spirulina" />
                   </div>
                   <div className="productInfos">
                     <h3 className="productTitle">{item.name}</h3>
