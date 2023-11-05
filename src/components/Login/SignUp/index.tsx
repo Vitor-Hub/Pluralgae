@@ -21,14 +21,8 @@ const SignUp = () => {
     username: "",
     password: "",
     email: "",
-    street: "",
     phoneNumber: "",
-    zipCode: "",
-    city: "",
-    state: "",
-    district: "",
     birthdate: "",
-    number: "",
     document: "",
     admin: false,
   });
@@ -42,13 +36,7 @@ const SignUp = () => {
       password: "",
       email: "",
       phoneNumber: "",
-      zipCode: "",
-      city: "",
-      state: "",
-      street: "",
-      district: "",
       birthdate: "",
-      number: "",
       document: "",
       admin: false,
     });
@@ -125,6 +113,7 @@ const SignUp = () => {
   };
 
   const verifyEmptyInputs = () => {
+    console.log("userData", userData)
     return !!Object.values(userData).filter((item) => item === "").length;
   };
 
@@ -168,7 +157,6 @@ const SignUp = () => {
             >
               <div className="mainContent">
                 <div className="topContent">
-                  <h2>Informações Pessoais</h2>
                   <TextField
                     className="textField"
                     id="user"
@@ -236,7 +224,7 @@ const SignUp = () => {
                     id="document"
                     value={userData?.document}
                     required
-                    label="CPF"
+                    label="document"
                     variant="outlined"
                     type="text"
                     onChange={(e) =>
@@ -247,95 +235,6 @@ const SignUp = () => {
                     }
                   />
                 </div>
-                <div className="bottomContent">
-                  <h2>Endereço</h2>
-                  <PatternFormat
-                    format="########"
-                    id="zipCode"
-                    label="CEP"
-                    required
-                    className="textField"
-                    value={userData?.zipCode}
-                    variant="outlined"
-                    customInput={TextField}
-                    onChange={(e) =>
-                      setUserData({
-                        ...userData,
-                        zipCode: e.currentTarget.value,
-                      })
-                    }
-                  />
-                  <TextField
-                    className="textField"
-                    id="district"
-                    value={userData?.district}
-                    required
-                    label="Bairro"
-                    variant="outlined"
-                    type="text"
-                    onChange={(e) =>
-                      setUserData({
-                        ...userData,
-                        district: e.currentTarget.value,
-                      })
-                    }
-                  />
-                  <TextField
-                    className="textField"
-                    id="street"
-                    value={userData?.street}
-                    required
-                    label="Rua"
-                    variant="outlined"
-                    type="text"
-                    onChange={(e) =>
-                      setUserData({
-                        ...userData,
-                        street: e.currentTarget.value,
-                      })
-                    }
-                  />
-                  <TextField
-                    className="textField"
-                    id="city"
-                    value={userData?.city}
-                    required
-                    label="Cidade"
-                    variant="outlined"
-                    type="text"
-                    onChange={(e) =>
-                      setUserData({ ...userData, city: e.currentTarget.value })
-                    }
-                  />
-                  <TextField
-                    className="textField"
-                    id="state"
-                    value={userData?.state}
-                    required
-                    label="Estado"
-                    variant="outlined"
-                    type="text"
-                    onChange={(e) =>
-                      setUserData({ ...userData, state: e.currentTarget.value })
-                    }
-                  />
-                  <TextField
-                    className="textField"
-                    id="number"
-                    value={userData?.number}
-                    required
-                    label="Número da residência"
-                    variant="outlined"
-                    type="text"
-                    onChange={(e) =>
-                      setUserData({
-                        ...userData,
-                        number: e.currentTarget.value,
-                      })
-                    }
-                  />
-                </div>
-                <h2>Crie uma senha</h2>
                 <TextField
                   className="textField"
                   id="password"

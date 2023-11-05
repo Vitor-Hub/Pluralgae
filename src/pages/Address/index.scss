@@ -1,0 +1,93 @@
+@import "src/theme/_theme.scss";
+
+.Address {
+  margin: 0;
+  padding: 70px;
+
+  .topContent {
+    display: flex;
+    justify-content: space-between;
+    @media only screen and (max-width: 610px) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .title {
+        margin-bottom: 20px;
+      }
+    }
+    .changeData {
+      a {
+        text-decoration: none;
+      }
+      .button {
+        background-color: $PRIMARY;
+      }
+      .buttonLabel {
+        font-family: "OpenSans-SemiBold", sans-serif;
+        color: $WHITE;
+        font-size: $BIG_SIZE;
+        text-transform: uppercase;
+        margin-left: 10px;
+      }
+    }
+    .title {
+      display: flex;
+      align-items: center;
+      svg {
+        color: $PRIMARY;
+      }
+      @media only screen and (max-width: 540px) {
+        width: auto;
+      }
+      h2 {
+        font-family: "OpenSans-SemiBold", sans-serif;
+        color: $PRIMARY_DARK;
+        font-size: $LARGE_SIZE;
+        text-transform: uppercase;
+        margin: 0 0 0 5px;
+      }
+    }
+  }
+  .cards {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: column;
+    .basicData {
+      padding: 25px;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      background-color: rgb(250, 250, 251);
+      margin-top: 50px;
+      width: calc(100% - 50px);
+      .inputs {
+        display: flex;
+        flex-direction: column;
+      }
+      .title {
+        display: flex;
+        align-items: center;
+        width: 600px;
+        height: 100px;
+        svg {
+          color: $PRIMARY;
+        }
+        @media only screen and (max-width: 540px) {
+          width: auto;
+        }
+        h2 {
+          font-family: "OpenSans-SemiBold", sans-serif;
+          color: $PRIMARY_DARK;
+          font-size: $LARGE_SIZE;
+          text-transform: uppercase;
+          margin: 0 0 0 5px;
+        }
+      }
+    }
+    .textField {
+      margin: 10px 0;
+    }
+  }
+}

@@ -11,7 +11,6 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { Link } from "react-router-dom";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import PaymentIcon from "@mui/icons-material/Payment";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
@@ -358,22 +357,6 @@ const Checkout = () => {
           </div>
           <div className="cards">
             <div className="leftCards">
-              <Card className="addressData">
-                <h3 className="title">Endereço</h3>
-                <div className="address">
-                  <h4 className="name">{user?.username}</h4>
-                  <h4 className="info">{user?.address.street}</h4>
-                  <h4 className="info">Bairro: {user?.address.district}</h4>
-                  <h4 className="info">Número: {user?.address.number}</h4>
-                  <h4 className="info">
-                    {user?.address.state} {user?.address.city}
-                  </h4>
-                  <h4 className="info">CEP: {user?.address.zipCode}</h4>
-                  <div className="edit">
-                    <Link to="/configAccount">Editar</Link>
-                  </div>
-                </div>
-              </Card>
               {isLoading ? (
                 <div className="circular">
                   <CircularProgress color="success" />

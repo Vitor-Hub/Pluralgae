@@ -58,7 +58,7 @@ const HeaderMenu = (props: IHeaderMenuProps) => {
           <></>
         )}
         <Link
-          to={signed ? "/checkout" : "/"}
+          to={signed ? "/address" : "/"}
           className={location.pathname === "/" ? "link" : "buy"}
         >
           <span>

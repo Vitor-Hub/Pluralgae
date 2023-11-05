@@ -13,6 +13,7 @@ import ConfigAccount from "./pages/ConfigAccount";
 import Checkout from "./pages/Checkout";
 import MyOders from "./pages/MyOrders";
 import Admin from "./pages/Admin";
+import Address from "./pages/Address";
 
 function App() {
   const AdvantagesRef = useRef<HTMLDivElement>(null);
@@ -50,6 +51,7 @@ function App() {
               <Route element={<Checkout />} path="/checkout" />
               <Route element={<MyOders />} path="/myoders" />
               <Route element={<Admin />} path="/admin" />
+              <Route element={<Address />} path="/address" />
             </Routes>
             <SignIn />
             <SignUp />
