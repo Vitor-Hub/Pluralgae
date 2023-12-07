@@ -12,10 +12,11 @@ import { Link } from "react-router-dom";
 import { PatternFormat } from "react-number-format";
 import { IUserAddress } from "../../types/userAddress.type";
 import { updateUserService } from "../../services/updateUser.service";
-import { useHistory } from "react-router-dom";
+import { useNavigate }  from "react-router-dom";
 
 const Address = () => {
   const { user, setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const formRef = useRef<HTMLFormElement>(null);
   const [updateUserAddress, setUpdateUserAddress] = useState<IUserAddress>({
@@ -84,8 +85,7 @@ const Address = () => {
           setAlert(true);
           setSaved(true);
           setNewGlobalUser();
-          const history = useHistory();
-          history.push("/checkout");
+          navigate("/checkout");
         })
         .catch((e: any) => {
           console.error(e);

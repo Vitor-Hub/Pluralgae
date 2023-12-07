@@ -239,38 +239,6 @@ const ConfigAccount = () => {
                   required
                   variant="outlined"
                 />
-                <TextField
-                  label="E-mail"
-                  className="textField"
-                  id="email"
-                  onChange={(e) =>
-                    setUpdateUser({
-                      ...updateUser,
-                      email: e.currentTarget.value,
-                    })
-                  }
-                  value={updateUser?.email}
-                  error={validateEmail()}
-                  required
-                  variant="outlined"
-                />
-                <PatternFormat
-                  format="(##)#####-####"
-                  id="phoneNumber"
-                  label="Celular"
-                  className="textField"
-                  value={updateUser?.phoneNumber}
-                  customInput={TextField}
-                  required
-                  error={validatePhoneNumber()}
-                  variant="outlined"
-                  onChange={(e) =>
-                    setUpdateUser({
-                      ...updateUser,
-                      phoneNumber: e.currentTarget.value.replace(/ /g, ""),
-                    })
-                  }
-                />
                 <PatternFormat
                   format="##/##/####"
                   id="birthdate"

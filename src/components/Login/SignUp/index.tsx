@@ -224,7 +224,7 @@ const SignUp = () => {
                     id="document"
                     value={userData?.document}
                     required
-                    label="document"
+                    label="CPF"
                     variant="outlined"
                     type="text"
                     onChange={(e) =>

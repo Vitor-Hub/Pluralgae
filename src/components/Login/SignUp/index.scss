@@ -19,8 +19,8 @@
   outline: none;
 
   @media only screen and (max-width: 650px) {
-    max-width: 400px;
-    max-height: unset;
+    max-width: 50vh;
+    overflow-y: auto;
   }
 
   .AlertComponent {

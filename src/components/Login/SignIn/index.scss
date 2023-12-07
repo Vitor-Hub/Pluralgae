@@ -14,7 +14,11 @@
   align-items: center;
   justify-content: flex-start;
   outline: none;
-
+  
+  @media only screen and (max-width: 650px) {
+    max-width: 50vh;
+    overflow-y: auto;
+  }
   h1 {
     font-family: "OpenSans-SemiBold", sans-serif;
     color: $PRIMARY;
