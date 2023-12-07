@@ -20,7 +20,7 @@ interface IProps {
 export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 export const AuthProvider: React.FC<IProps> = ({ children }) => {
-  const [user, setUser] = useState<IUser | null>(null);
+  const [user, setUserState] = useState<IUser | null>(null);
   const [error, setError] = useState<boolean>(false);
 
   const { setIsOpenSignInModal } = useContext(ModalControlContext);
@@ -29,29 +29,49 @@ export const AuthProvider: React.FC<IProps> = ({ children }) => {
     const storagedToken = localStorage.getItem("token");
     const storagedUser = localStorage.getItem("user");
 
-    if (storagedToken && storagedUser) setUser(JSON.parse(storagedUser));
+    if (storagedToken && storagedUser) setUserState(JSON.parse(storagedUser));
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("token", user.access_token);
+      localStorage.setItem("user", JSON.stringify(user));
+    }
+  }, [user]);
+
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      if (user) {
+        localStorage.setItem("token", user.access_token);
+        localStorage.setItem("user", JSON.stringify(user));
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [user]);
 
   const signIn = async (data: ISignIn) => {
     await auth
       .signInService(data)
       .then((response: any) => {
-        setUser(response.data);
+        setUserState(response.data);
         setError(false);
         setIsOpenSignInModal(false);
-        localStorage.setItem("token", response.data.access_token);
-        localStorage.setItem("user", JSON.stringify(response.data));
       })
       .catch((e: Error) => {
         console.error(e);
-        setUser(null);
+        setUserState(null);
         setError(true);
       });
   };
 
   const signOut = () => {
     localStorage.clear();
-    setUser(null);
+    setUserState(null);
   };
 
   return (
@@ -62,7 +82,7 @@ export const AuthProvider: React.FC<IProps> = ({ children }) => {
         signIn,
         signOut,
         error,
-        setUser,
+        setUser: setUserState,
       }}
     >
       {children}

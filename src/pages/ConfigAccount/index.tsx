@@ -62,14 +62,6 @@ const ConfigAccount = () => {
     }
   }, [user]);
 
-  const validatePhoneNumber = () => {
-    if (updateUser?.phoneNumber.length === 11) {
-      return false;
-    } else {
-      return true;
-    }
-  };
-
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
   }
